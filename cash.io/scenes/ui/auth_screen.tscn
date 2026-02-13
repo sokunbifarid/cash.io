@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dq1oapv312i1q"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iyj6h"]
+
+[node name="AuthScreen" type="Control" unique_id=782471059]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1727084462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_iyj6h")
+
+[node name="LoginCreateAccountPanel" type="Panel" parent="." unique_id=1329773463]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LoginCreateAccountPanel" unique_id=125022289]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "CASHIO"
