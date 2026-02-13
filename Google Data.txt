@@ -1,0 +1,7 @@
+Google Cloud Console Data
+Android:
+	OAuth ClientID: 371885959149-qouaqautd8ojvj67qtohd776rk2ue7of.apps.googleusercontent.com
+Web App:
+	OAuth Client ID: 371885959149-q8rjebpl1dc2ho14phuqnj7rn4d202ct.apps.googleusercontent.com
+	Client Secret: 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
+	Creation Date: Feb 13, 2026, 12:12:41pm

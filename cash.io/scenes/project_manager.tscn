@@ -1,0 +1,365 @@
+[gd_scene format=3 uid="uid://baeaydjdl102c"]
+
+[ext_resource type="PackedScene" uid="uid://dq1oapv312i1q" path="res://scenes/ui/auth_screen.tscn" id="1_1n1xv"]
+[ext_resource type="PackedScene" uid="uid://daec8ml178ago" path="res://scenes/ui/loading_screen_control.tscn" id="2_5xv6o"]
+[ext_resource type="Texture2D" uid="uid://cqp0pxowamljh" path="res://imports/comp/background.svg" id="3_o327q"]
+[ext_resource type="FontFile" uid="uid://cn36pje3t12ds" path="res://imports/font/Warungasem-Heavy-Font.ttf" id="4_rt21r"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="5_tp6b4"]
+[ext_resource type="Texture2D" uid="uid://cn7dgimrjp8uu" path="res://imports/comp/coin.svg" id="6_uvoiq"]
+[ext_resource type="FontFile" uid="uid://dh6kc7sk0sfdq" path="res://imports/font/CasterStreet-Light-Font.otf" id="7_216wy"]
+[ext_resource type="Texture2D" uid="uid://w7vyst1nep5c" path="res://imports/ui/music_on.svg" id="8_3lsco"]
+[ext_resource type="Texture2D" uid="uid://deyr3tbjco52" path="res://imports/ui/music_off.svg" id="9_bgcx4"]
+[ext_resource type="Texture2D" uid="uid://d4nmdhbqfg457" path="res://imports/ui/shake_on.svg" id="10_3lsco"]
+[ext_resource type="Texture2D" uid="uid://pkfr5c6qnb6u" path="res://imports/ui/shake_off.svg" id="11_bgcx4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpejq"]
+font = ExtResource("4_rt21r")
+font_size = 500
+font_color = Color(0.21575356, 0.5727679, 0.25753805, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1j3kf"]
+font = ExtResource("7_216wy")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lsco"]
+font = ExtResource("4_rt21r")
+font_size = 500
+font_color = Color(0.21575356, 0.5727679, 0.25753805, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bgcx4"]
+font = ExtResource("7_216wy")
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyt5q"]
+font = ExtResource("4_rt21r")
+font_size = 200
+font_color = Color(0.21568628, 0.57254905, 0.25882354, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y6r3"]
+font = ExtResource("7_216wy")
+font_size = 64
+font_color = Color(0.84716845, 0.9965059, 0.840146, 1)
+
+[node name="ProjectManager" type="Node" unique_id=527853207]
+
+[node name="AuthScreen" parent="." unique_id=782471059 instance=ExtResource("1_1n1xv")]
+
+[node name="LoadingScreenControl" parent="." unique_id=1798089108 instance=ExtResource("2_5xv6o")]
+
+[node name="MenuHolderScreen" type="Control" parent="." unique_id=2106148380]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="MenuHolderScreen" unique_id=861225010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_o327q")
+
+[node name="MainMenuScreen" type="Control" parent="MenuHolderScreen" unique_id=814790243]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIItemsVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/MainMenuScreen" unique_id=1957970955]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -422.5
+offset_top = -408.5
+offset_right = 422.5
+offset_bottom = 408.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="GameNameLabel" type="Label" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer" unique_id=197548731]
+layout_mode = 2
+text = "CASH.IO"
+label_settings = SubResource("LabelSettings_qpejq")
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer" unique_id=52040744]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PlayButtonTextured" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=2055212109 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/PlayButtonTextured" index="0" unique_id=152673229]
+text = "PLAY"
+
+[node name="SettingsButtonTextured" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=1833266791 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/SettingsButtonTextured" index="0" unique_id=152673229]
+text = "SETTINGS"
+
+[node name="ShopButtonTextured" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=399385079 instance=ExtResource("5_tp6b4")]
+modulate = Color(0.5698909, 0.569891, 0.569891, 1)
+layout_mode = 2
+disabled = true
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/ShopButtonTextured" index="0" unique_id=152673229]
+text = "SHOP"
+
+[node name="WalletButtonTextured" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=231147303 instance=ExtResource("5_tp6b4")]
+modulate = Color(0.5698909, 0.569891, 0.569891, 1)
+layout_mode = 2
+disabled = true
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/WalletButtonTextured" index="0" unique_id=152673229]
+text = "WALLET"
+
+[node name="PlayerWalletVBoxContainer2" type="VBoxContainer" parent="MenuHolderScreen/MainMenuScreen" unique_id=1024191349]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 63.0
+offset_right = -63.0
+offset_bottom = 140.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="PlayerCoinHBoxContainer" type="HBoxContainer" parent="MenuHolderScreen/MainMenuScreen/PlayerWalletVBoxContainer2" unique_id=829029675]
+layout_mode = 2
+alignment = 2
+
+[node name="CoinTextureRect" type="TextureRect" parent="MenuHolderScreen/MainMenuScreen/PlayerWalletVBoxContainer2/PlayerCoinHBoxContainer" unique_id=1962547034]
+layout_mode = 2
+texture = ExtResource("6_uvoiq")
+
+[node name="CoinValueLabel" type="Label" parent="MenuHolderScreen/MainMenuScreen/PlayerWalletVBoxContainer2/PlayerCoinHBoxContainer" unique_id=574739575]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_1j3kf")
+vertical_alignment = 1
+
+[node name="PlayScreen" type="Control" parent="MenuHolderScreen" unique_id=200141481]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIItemsVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/PlayScreen" unique_id=141577670]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -422.5
+offset_top = -408.5
+offset_right = 422.5
+offset_bottom = 408.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="GameNameLabel" type="Label" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer" unique_id=1160565660]
+layout_mode = 2
+text = "PLAY"
+label_settings = SubResource("LabelSettings_3lsco")
+horizontal_alignment = 1
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer" unique_id=496596664]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="1000RoomButtonTextured" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=891668013 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/1000RoomButtonTextured" index="0" unique_id=152673229]
+text = "1,000 ROOM"
+
+[node name="5000RoomButtonTextured" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=974906887 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/5000RoomButtonTextured" index="0" unique_id=152673229]
+text = "5,000 ROOM"
+
+[node name="10000ButtonTextured" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=167828666 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+disabled = true
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/10000ButtonTextured" index="0" unique_id=152673229]
+text = "10,000 ROOM"
+label_settings = SubResource("LabelSettings_bgcx4")
+
+[node name="PlayerWalletVBoxContainer2" type="VBoxContainer" parent="MenuHolderScreen/PlayScreen" unique_id=1506584746]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 63.0
+offset_right = -63.0
+offset_bottom = 140.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="PlayerCoinHBoxContainer" type="HBoxContainer" parent="MenuHolderScreen/PlayScreen/PlayerWalletVBoxContainer2" unique_id=800361840]
+layout_mode = 2
+alignment = 2
+
+[node name="CoinTextureRect" type="TextureRect" parent="MenuHolderScreen/PlayScreen/PlayerWalletVBoxContainer2/PlayerCoinHBoxContainer" unique_id=1407656078]
+layout_mode = 2
+texture = ExtResource("6_uvoiq")
+
+[node name="CoinValueLabel" type="Label" parent="MenuHolderScreen/PlayScreen/PlayerWalletVBoxContainer2/PlayerCoinHBoxContainer" unique_id=437599362]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_1j3kf")
+vertical_alignment = 1
+
+[node name="SettingsScreen" type="Control" parent="MenuHolderScreen" unique_id=2035481731]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/SettingsScreen" unique_id=1923772030]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -308.5
+offset_right = 350.0
+offset_bottom = 308.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="SettingsLabel" type="Label" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer" unique_id=960749395]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_qyt5q")
+horizontal_alignment = 1
+
+[node name="SettingsHolderVBoxContainer" type="VBoxContainer" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer" unique_id=2091514556]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MusicTextureButton" type="Button" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer" unique_id=2006748893]
+custom_minimum_size = Vector2(700, 120)
+layout_mode = 2
+
+[node name="MusicHBoxContainer" type="HBoxContainer" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/MusicTextureButton" unique_id=1472794796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 323
+alignment = 1
+
+[node name="MusicLabel" type="Label" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/MusicTextureButton/MusicHBoxContainer" unique_id=1679563339]
+layout_mode = 2
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_1y6r3")
+
+[node name="MusicTextureHolder" type="Control" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/MusicTextureButton/MusicHBoxContainer" unique_id=1579254982]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MusicOnTextureRect" type="TextureRect" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/MusicTextureButton/MusicHBoxContainer/MusicTextureHolder" unique_id=1990952208]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_3lsco")
+
+[node name="MusicOffTextureRect" type="TextureRect" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/MusicTextureButton/MusicHBoxContainer/MusicTextureHolder" unique_id=1252385779]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bgcx4")
+
+[node name="VibrationTextureButton" type="Button" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer" unique_id=1903152043]
+custom_minimum_size = Vector2(700, 120)
+layout_mode = 2
+
+[node name="VibrationHBoxContainer" type="HBoxContainer" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/VibrationTextureButton" unique_id=1278229846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="VibrationLabel" type="Label" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/VibrationTextureButton/VibrationHBoxContainer" unique_id=279285296]
+layout_mode = 2
+text = "VIBRATION"
+label_settings = SubResource("LabelSettings_1y6r3")
+
+[node name="VibrationTextureHolder" type="Control" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/VibrationTextureButton/VibrationHBoxContainer" unique_id=60731007]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VibrationOnTextureRect" type="TextureRect" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/VibrationTextureButton/VibrationHBoxContainer/VibrationTextureHolder" unique_id=1159236836]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_3lsco")
+stretch_mode = 5
+
+[node name="VibrationOffTextureRect" type="TextureRect" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/VibrationTextureButton/VibrationHBoxContainer/VibrationTextureHolder" unique_id=1793449462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_bgcx4")
+stretch_mode = 5
+
+[node name="CloseButtonTextured" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer" unique_id=145186861 instance=ExtResource("5_tp6b4")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/CloseButtonTextured" index="0" unique_id=152673229]
+text = "CLOSE"
+
+[editable path="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/PlayButtonTextured"]
+[editable path="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/SettingsButtonTextured"]
+[editable path="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/ShopButtonTextured"]
+[editable path="MenuHolderScreen/MainMenuScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/WalletButtonTextured"]
+[editable path="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/1000RoomButtonTextured"]
+[editable path="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/5000RoomButtonTextured"]
+[editable path="MenuHolderScreen/PlayScreen/UIItemsVBoxContainer/ButtonsVBoxContainer/10000ButtonTextured"]
+[editable path="MenuHolderScreen/SettingsScreen/SettingsVBoxContainer/SettingsHolderVBoxContainer/CloseButtonTextured"]

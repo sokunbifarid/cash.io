@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dq1oapv312i1q"]
+
+[ext_resource type="Texture2D" uid="uid://cqp0pxowamljh" path="res://imports/comp/background.svg" id="1_cu5hi"]
+[ext_resource type="Script" uid="uid://bxnku2vuh1sc" path="res://scripts/ui/auth_screen.gd" id="1_unbpt"]
+[ext_resource type="Texture2D" uid="uid://cn6wm6vg2fmh3" path="res://imports/ui/auth_screen_top_panel.svg" id="2_unbpt"]
+[ext_resource type="FontFile" uid="uid://cn36pje3t12ds" path="res://imports/font/Warungasem-Heavy-Font.ttf" id="3_jemel"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_x5a5e"]
+[ext_resource type="Script" uid="uid://7encpcd1svof" path="res://scripts/auth/google_sign_in.gd" id="6_x5a5e"]
+[ext_resource type="Script" uid="uid://b66bmj55b6p72" path="res://scripts/auth/apple_sign_in.gd" id="7_dlmad"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dlmad"]
+font = ExtResource("3_jemel")
+font_size = 256
+font_color = Color(0.21575356, 0.5727679, 0.25753805, 1)
+
+[node name="AuthScreen" type="Control" unique_id=782471059 node_paths=PackedStringArray("google_signin_node", "apple_signin_node")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_unbpt")
+google_signin_node = NodePath("GoogleSignIn")
+apple_signin_node = NodePath("AppleSignIn")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1727084462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cu5hi")
+
+[node name="LoginCreateAccountControl" type="Control" parent="." unique_id=206391600]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginCreatePanelTextureRect" type="TextureRect" parent="LoginCreateAccountControl" unique_id=913561510]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_unbpt")
+
+[node name="UIItemsVBoxContainer" type="VBoxContainer" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect" unique_id=1043002469]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = -238.0
+offset_right = 216.5
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="GameNameLabel" type="Label" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer" unique_id=631090014]
+layout_mode = 2
+text = "CASH.IO"
+label_settings = SubResource("LabelSettings_dlmad")
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer" unique_id=1831714739]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GoogleButtonTextured" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=2055212109 instance=ExtResource("4_x5a5e")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/GoogleButtonTextured" index="0" unique_id=152673229]
+text = "Google"
+
+[node name="AppleButtonTextured" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer" unique_id=1039158849 instance=ExtResource("4_x5a5e")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/AppleButtonTextured" index="0" unique_id=152673229]
+text = "Apple"
+
+[node name="GoogleSignIn" type="Control" parent="." unique_id=1418006811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_x5a5e")
+
+[node name="AppleSignIn" type="Control" parent="." unique_id=1711412376]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_dlmad")
+
+[connection signal="pressed" from="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/GoogleButtonTextured" to="." method="_on_google_button_textured_pressed"]
+[connection signal="pressed" from="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/AppleButtonTextured" to="." method="_on_apple_button_textured_pressed"]
+
+[editable path="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/GoogleButtonTextured"]
+[editable path="LoginCreateAccountControl/LoginCreatePanelTextureRect/UIItemsVBoxContainer/ButtonsVBoxContainer/AppleButtonTextured"]

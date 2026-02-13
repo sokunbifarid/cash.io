@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d1yu56grq3etg"]
+
+[ext_resource type="Script" uid="uid://dt4gjq5eqbxcs" path="res://scripts/ui/auth_issue_notice_panel.gd" id="1_2ioce"]
+[ext_resource type="FontFile" uid="uid://dh6kc7sk0sfdq" path="res://imports/font/CasterStreet-Light-Font.otf" id="2_c4o00"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b770b"]
+font = ExtResource("2_c4o00")
+font_size = 50
+
+[node name="AuthIssueNoticePanel" type="Panel" unique_id=577526210]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 84.0
+grow_horizontal = 2
+script = ExtResource("1_2ioce")
+
+[node name="AuthIssueLabel" type="Label" parent="." unique_id=466266899]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_b770b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VisibleTimer" type="Timer" parent="." unique_id=224821016]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="VisibleTimer" to="." method="_on_visible_timer_timeout"]

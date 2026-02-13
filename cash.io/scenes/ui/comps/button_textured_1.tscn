@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bu6xa070exske"]
+
+[ext_resource type="Texture2D" uid="uid://drw1rsufi2yia" path="res://imports/comp/button_1.svg" id="1_xgabg"]
+[ext_resource type="FontFile" uid="uid://dh6kc7sk0sfdq" path="res://imports/font/CasterStreet-Light-Font.otf" id="2_upiu5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_870o2"]
+font = ExtResource("2_upiu5")
+font_size = 42
+
+[node name="ButtonTextured_1" type="TextureButton" unique_id=2055212109]
+texture_normal = ExtResource("1_xgabg")
+stretch_mode = 3
+
+[node name="ButtonTextLabel" type="Label" parent="." unique_id=152673229]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_870o2")
+horizontal_alignment = 1
+vertical_alignment = 1

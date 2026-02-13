@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="cash.io"
+run/main_scene="uid://baeaydjdl102c"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalManager="*uid://dbhwm8dulxu7u"
 
 [display]
 

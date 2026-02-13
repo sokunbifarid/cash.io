@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="13.646583mm"
+   height="19.050003mm"
+   viewBox="0 0 13.646583 19.050003"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="background.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="reference doc.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0167041"
+     inkscape:cx="3299.8786"
+     inkscape:cy="336.87285"
+     inkscape:window-width="1127"
+     inkscape:window-height="607"
+     inkscape:window-x="0"
+     inkscape:window-y="386"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="true">
+    <inkscape:page
+       x="0"
+       y="8.0213427e-15"
+       width="13.646583"
+       height="19.050001"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter26"
+       x="-0.14447837"
+       y="-0.095657682"
+       width="1.2889567"
+       height="1.1913154">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.759283"
+         id="feGaussianBlur26" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-876.11267,-100.46524)">
+    <g
+       id="g27"
+       transform="matrix(0.83940809,0,0,0.83940809,145.48498,20.458882)">
+      <path
+         id="path26"
+         style="opacity:0.417323;fill:#121212;fill-opacity:1;stroke-width:0.314884;filter:url(#filter26)"
+         d="m 873.1596,103.30241 h 3.23303 l 7.61688,-5.687997 c 0.88329,-0.712248 0.81644,-0.673652 0.81644,0.406556 v 17.421201 c 0.0757,1.09289 -0.0782,0.80656 -0.82774,0.2442 l -7.56687,-5.6767 h -3.27174 c -0.51474,0 -0.92913,-0.4144 -0.92913,-0.92913 v -4.849 c 0,-0.51476 0.41439,-0.92913 0.92913,-0.92913 z"
+         sodipodi:nodetypes="sccccccssss"
+         inkscape:export-filename="cash.io\imports\ui\music_off.svg"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         id="path9"
+         style="fill:#f2f2f2;stroke-width:0.314884"
+         d="m 873.1596,103.30241 h 3.23303 l 7.61688,-5.687997 c 0.88329,-0.712248 0.81644,-0.673652 0.81644,0.406556 v 17.421201 c 0.0757,1.09289 -0.0782,0.80656 -0.82774,0.2442 l -7.56687,-5.6767 h -3.27174 c -0.51474,0 -0.92913,-0.4144 -0.92913,-0.92913 v -4.849 c 0,-0.51476 0.41439,-0.92913 0.92913,-0.92913 z"
+         sodipodi:nodetypes="sccccccssss"
+         inkscape:export-filename="cash.io\imports\ui\music_off.svg"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+  </g>
+</svg>
