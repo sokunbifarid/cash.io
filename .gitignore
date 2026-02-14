@@ -1,1 +1,2 @@
-.secret_items
+.gitignore
+secret_items/
