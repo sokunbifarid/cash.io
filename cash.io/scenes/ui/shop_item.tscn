@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dbed714aqjing"]
+
+[ext_resource type="Texture2D" uid="uid://blv14l2gw17oj" path="res://imports/ui/shop/Shop_currency_purchase_panel.png" id="1_obnp4"]
+[ext_resource type="Script" uid="uid://bomhc85pyaxln" path="res://scripts/ui/shop_item.gd" id="2_aty2n"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="2_jol1k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dlx3d"]
+font = ExtResource("2_jol1k")
+
+[node name="ShopItem" type="TextureRect" unique_id=600481751]
+texture = ExtResource("1_obnp4")
+script = ExtResource("2_aty2n")
+
+[node name="ShopItemDisplay" type="TextureRect" parent="." unique_id=220412576]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 8.0
+offset_right = 21.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="ShopItemCostLabel" type="Label" parent="." unique_id=561369582]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -28.0
+offset_right = 17.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "500"
+label_settings = SubResource("LabelSettings_dlx3d")
+horizontal_alignment = 1

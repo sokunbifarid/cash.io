@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://baeaydjdl102c"]
+
+[ext_resource type="PackedScene" uid="uid://dq1oapv312i1q" path="res://scenes/ui/auth_screen.tscn" id="1_1n1xv"]
+[ext_resource type="Script" uid="uid://c60qhcmv4ieoi" path="res://scripts/project_manager.gd" id="1_o327q"]
+[ext_resource type="PackedScene" uid="uid://daec8ml178ago" path="res://scenes/ui/loading_screen_control.tscn" id="2_5xv6o"]
+[ext_resource type="PackedScene" uid="uid://y7vwrmcaour5" path="res://scenes/ui/menu_holder_screen.tscn" id="3_blf6u"]
+[ext_resource type="PackedScene" uid="uid://bsn50xkyb0l4s" path="res://scenes/ui/server_issue_screen_control.tscn" id="6_qpejq"]
+[ext_resource type="PackedScene" uid="uid://d1yu56grq3etg" path="res://scenes/ui/notice_panel.tscn" id="6_rt21r"]
+[ext_resource type="PackedScene" uid="uid://vhduy5yim2d6" path="res://scenes/game/game.tscn" id="6_tp6b4"]
+
+[node name="ProjectManager" type="Node" unique_id=527853207]
+script = ExtResource("1_o327q")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1420896]
+
+[node name="AuthScreen" parent="UI" unique_id=782471059 instance=ExtResource("1_1n1xv")]
+
+[node name="MenuHolderScreen" parent="UI" unique_id=1293409466 instance=ExtResource("3_blf6u")]
+visible = false
+
+[node name="LoadingScreenControl" parent="UI" unique_id=1798089108 instance=ExtResource("2_5xv6o")]
+
+[node name="NoticePanel" parent="UI" unique_id=577526210 instance=ExtResource("6_rt21r")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 800.0
+grow_horizontal = 1
+
+[node name="ServerIssueScreenControl" parent="UI" unique_id=1133546773 instance=ExtResource("6_qpejq")]
+visible = false
+
+[node name="Game" parent="." unique_id=1443596819 instance=ExtResource("6_tp6b4")]

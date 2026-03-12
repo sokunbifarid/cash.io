@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://copabold202vn"]
+
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="1_eij5l"]
+[ext_resource type="Script" uid="uid://cmwmjm5gdgeae" path="res://scripts/game/cash_out_button.gd" id="1_lubcw"]
+[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="2_lubcw"]
+[ext_resource type="Texture2D" uid="uid://pjsdwhwrxsyo" path="res://imports/game/Cashout_progress_outline.png" id="2_n3agu"]
+[ext_resource type="Texture2D" uid="uid://ddyk2mjac4v22" path="res://imports/ui/Cashout_white.png" id="3_n3agu"]
+
+[node name="CashOutButton" type="Control"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 40.0
+script = ExtResource("1_lubcw")
+
+[node name="EnableTextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -27.5
+offset_right = 105.0
+offset_bottom = 27.5
+grow_vertical = 2
+scale = Vector2(1, 0.9)
+pivot_offset = Vector2(55, 27)
+fill_mode = 4
+texture_progress = ExtResource("2_n3agu")
+
+[node name="CashoutButtonTextured" parent="." instance=ExtResource("1_eij5l")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_vertical = 2
+pivot_offset = Vector2(50, 20)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_lubcw")
+
+[node name="ButtonSorterHBoxContainer" parent="CashoutButtonTextured" index="0"]
+offset_left = -37.0
+offset_top = -16.5
+offset_right = 37.0
+offset_bottom = 16.5
+
+[node name="ButtonIconTextureRect" parent="CashoutButtonTextured/ButtonSorterHBoxContainer" index="0"]
+texture = ExtResource("3_n3agu")
+
+[node name="ButtonTextLabel" parent="CashoutButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "CASHOUT"
+
+[connection signal="pressed" from="CashoutButtonTextured" to="." method="_on_cashout_button_textured_pressed"]
+
+[editable path="CashoutButtonTextured"]

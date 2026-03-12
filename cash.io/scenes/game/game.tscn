@@ -1,0 +1,344 @@
+[gd_scene load_steps=29 format=3 uid="uid://vhduy5yim2d6"]
+
+[ext_resource type="PackedScene" uid="uid://ern6vtiujw1s" path="res://scenes/game/in_game_player_v_box_container.tscn" id="1_7h61r"]
+[ext_resource type="Script" uid="uid://ctcfy5x1aexsk" path="res://scripts/game/game.gd" id="1_kelw5"]
+[ext_resource type="Script" uid="uid://b8ur6ow1pu5w1" path="res://scripts/game/in_game_hud.gd" id="2_5jirj"]
+[ext_resource type="Script" uid="uid://54vpju7ymnmg" path="res://scripts/game/in_game_network_manager.gd" id="2_kelw5"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="3_bdhmt"]
+[ext_resource type="PackedScene" uid="uid://copabold202vn" path="res://scenes/game/cash_out_button.tscn" id="3_otnwt"]
+[ext_resource type="Texture2D" uid="uid://cx1xtqbwejwb5" path="res://imports/game/Leaderboard_panel.png" id="6_4j704"]
+[ext_resource type="Script" uid="uid://bbeev1ppcqv6n" path="res://scripts/game/in_game_leaderboard_panel.gd" id="7_5jirj"]
+[ext_resource type="Texture2D" uid="uid://yeepw2cqmikr" path="res://imports/ui/Leaderboard_white.png" id="7_kp23o"]
+[ext_resource type="PackedScene" uid="uid://bq4sikl83bk7" path="res://scenes/ui/poor_connection_ui.tscn" id="7_uyinl"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="8_5jirj"]
+[ext_resource type="Texture2D" uid="uid://dxts727fj61p4" path="res://imports/game/Clock_Icon.png" id="9_5v6r0"]
+[ext_resource type="FontFile" uid="uid://bqcs6qyl0rlcn" path="res://imports/font/Gotham-font-family/Gotham Narrow/GothamNarrow-Bold.otf" id="10_uyinl"]
+[ext_resource type="Script" uid="uid://6s3rar28157r" path="res://scripts/game/game_compleition.gd" id="11_otnwt"]
+[ext_resource type="Texture2D" uid="uid://ctpw6i10fpdil" path="res://imports/game/Map_Background.png" id="11_vaxfo"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="12_3xj4h"]
+[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="13_5v6r0"]
+[ext_resource type="Script" uid="uid://ccqpku5e4ac1n" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="14_3xj4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8b66f"]
+font = ExtResource("10_uyinl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vaxfo"]
+texture = ExtResource("6_4j704")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftsea"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_otnwt"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_3xj4h"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_5v6r0"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_uyinl"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_10c2w"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_pg2xm"]
+font = ExtResource("12_3xj4h")
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_gc57s"]
+font = ExtResource("8_5jirj")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_kelw5")
+
+[node name="InGameHUDCanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="InGameHUD" type="Control" parent="InGameHUDCanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_5jirj")
+
+[node name="InGameHUDSorterControl" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 51.0
+offset_top = 8.0
+offset_right = -51.0
+offset_bottom = 115.0
+grow_horizontal = 2
+
+[node name="InGamePlayerVBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl" instance=ExtResource("1_7h61r")]
+visible = false
+layout_mode = 0
+offset_left = 104.0
+offset_right = 138.0
+offset_bottom = 48.0
+
+[node name="InGameDataHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl"]
+layout_mode = 0
+offset_right = 173.0
+offset_bottom = 68.0
+theme_override_constants/separation = 25
+
+[node name="CashOutButton" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameDataHBoxContainer" instance=ExtResource("3_otnwt")]
+layout_mode = 2
+
+[node name="ClockContentController" type="Control" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameDataHBoxContainer"]
+custom_minimum_size = Vector2(48, 68)
+layout_mode = 2
+
+[node name="ClockVBoxContainer" type="VBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameDataHBoxContainer/ClockContentController"]
+custom_minimum_size = Vector2(48, 68)
+layout_mode = 1
+offset_right = 48.0
+offset_bottom = 68.0
+pivot_offset = Vector2(24, 34)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -5
+
+[node name="ClockTextureRect" type="TextureRect" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameDataHBoxContainer/ClockContentController/ClockVBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_5v6r0")
+
+[node name="ClockValueLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameDataHBoxContainer/ClockContentController/ClockVBoxContainer"]
+layout_mode = 2
+text = "00s"
+label_settings = SubResource("LabelSettings_8b66f")
+horizontal_alignment = 1
+
+[node name="InGameRightHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_bottom = 107.0
+grow_horizontal = 0
+
+[node name="PoorConnectionUI" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer" instance=ExtResource("7_uyinl")]
+layout_mode = 2
+
+[node name="InGameLeaderboardPanel" type="Panel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer"]
+custom_minimum_size = Vector2(110, 107)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vaxfo")
+script = ExtResource("7_5jirj")
+
+[node name="LeaderboardVBoxContainer" type="VBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.5
+offset_top = 8.0
+offset_right = 43.5
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+
+[node name="LeaderboardTextHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeaederboardTextureRect" type="TextureRect" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardTextHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_kp23o")
+
+[node name="LeaderboardLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardTextHBoxContainer"]
+layout_mode = 2
+text = "LEADERBOARD"
+label_settings = SubResource("LabelSettings_ftsea")
+
+[node name="LeaderboardItemSorterVBoxContainer" type="VBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer"]
+layout_mode = 2
+
+[node name="LeaderboardItemLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer"]
+layout_mode = 2
+text = "1. Paul"
+label_settings = SubResource("LabelSettings_otnwt")
+text_overrun_behavior = 1
+
+[node name="LeaderboardItemLabel2" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer"]
+layout_mode = 2
+text = "2. James"
+label_settings = SubResource("LabelSettings_3xj4h")
+text_overrun_behavior = 1
+
+[node name="LeaderboardItemLabel3" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer"]
+layout_mode = 2
+text = "3. Michael"
+label_settings = SubResource("LabelSettings_5v6r0")
+text_overrun_behavior = 1
+
+[node name="LeaderboardItemLabel4" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer"]
+layout_mode = 2
+text = "4. Adam"
+label_settings = SubResource("LabelSettings_uyinl")
+text_overrun_behavior = 1
+
+[node name="LeaderboardItemLabel5" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer"]
+layout_mode = 2
+text = "5. Chris"
+label_settings = SubResource("LabelSettings_10c2w")
+text_overrun_behavior = 1
+
+[node name="Input" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InputRect" type="TextureRect" parent="InGameHUDCanvasLayer/InGameHUD/Input"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -176.0
+offset_right = 172.0
+offset_bottom = -32.0
+grow_vertical = 0
+pivot_offset = Vector2(70, 72)
+script = ExtResource("14_3xj4h")
+antialiased = true
+base_radius = 60.0
+knob_radius = 35.0
+use_input_actions = true
+
+[node name="GameCompletion" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_otnwt")
+
+[node name="GameCompletionPanel" type="Panel" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameCompletionDataVBoxContainer" type="VBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -85.0
+offset_right = 110.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="GameStateLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer"]
+layout_mode = 2
+text = "YOU LOST"
+label_settings = SubResource("LabelSettings_pg2xm")
+horizontal_alignment = 1
+
+[node name="GameCompletionDataSorterVBoxContainer" type="VBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer"]
+layout_mode = 2
+
+[node name="TimeUsedLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer"]
+layout_mode = 2
+text = "Time Used: "
+label_settings = SubResource("LabelSettings_gc57s")
+horizontal_alignment = 1
+
+[node name="CoinAmountHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinStatsLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/CoinAmountHBoxContainer"]
+layout_mode = 2
+text = "Coin Lost: "
+label_settings = SubResource("LabelSettings_gc57s")
+
+[node name="CoinTextureRect" type="TextureRect" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/CoinAmountHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_5v6r0")
+
+[node name="CoinAmountValueLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/CoinAmountHBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_gc57s")
+
+[node name="TotalCoinAmountHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TotalCoinStatsLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/TotalCoinAmountHBoxContainer"]
+layout_mode = 2
+text = "Total Coins Owned:"
+label_settings = SubResource("LabelSettings_gc57s")
+
+[node name="CoinTextureRect" type="TextureRect" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/TotalCoinAmountHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_5v6r0")
+
+[node name="TotalCoinAmountValueLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/TotalCoinAmountHBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_gc57s")
+
+[node name="HomeButtonTextured" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer" instance=ExtResource("3_bdhmt")]
+layout_mode = 2
+
+[node name="ButtonTextLabel" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/HomeButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "HOME"
+
+[node name="GameNodes" type="Node2D" parent="."]
+
+[node name="GameMap" type="Sprite2D" parent="GameNodes"]
+texture_repeat = 2
+position = Vector2(-15000, -15000)
+texture = ExtResource("11_vaxfo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 30000, 30000)
+
+[node name="InGameNetworkManager" type="Node" parent="GameNodes" node_paths=PackedStringArray("character_holder", "pellets_holder", "viruses_holder")]
+script = ExtResource("2_kelw5")
+character_holder = NodePath("../CharactersHolder")
+pellets_holder = NodePath("../PelletsHolder")
+viruses_holder = NodePath("../VirusesHolder")
+
+[node name="PelletsHolder" type="Node2D" parent="GameNodes"]
+
+[node name="CharactersHolder" type="Node2D" parent="GameNodes"]
+
+[node name="VirusesHolder" type="Node2D" parent="GameNodes"]
+
+[connection signal="pressed" from="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/HomeButtonTextured" to="InGameHUDCanvasLayer/InGameHUD/GameCompletion" method="_on_home_button_textured_pressed"]
+
+[editable path="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/HomeButtonTextured"]

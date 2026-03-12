@@ -1,0 +1,374 @@
+[gd_scene load_steps=24 format=3 uid="uid://k0hxrsngxkh1"]
+
+[ext_resource type="Script" uid="uid://eqnsagauhvx1" path="res://scripts/ui/settings_screen.gd" id="1_03o02"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_03o02"]
+[ext_resource type="Texture2D" uid="uid://dadkryc1wky5g" path="res://imports/ui/Settings/Settings_panel.png" id="2_k8osj"]
+[ext_resource type="Texture2D" uid="uid://4n202fgc6roo" path="res://imports/ui/Settings/Settings_slider_fill.png" id="7_lx43f"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="9_5ghpo"]
+[ext_resource type="Texture2D" uid="uid://dc42rb7f83776" path="res://imports/ui/Settings/Settings_item_panel_1.png" id="9_6vgmg"]
+[ext_resource type="Texture2D" uid="uid://m2ybo60yh8os" path="res://imports/ui/Settings/Settings_slider_grabber.png" id="10_m7mh0"]
+[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="10_p84si"]
+[ext_resource type="Texture2D" uid="uid://c47wercns8e8r" path="res://imports/ui/Settings/Settings_slider_back_panel.png" id="11_m7mh0"]
+[ext_resource type="Texture2D" uid="uid://dyr1t15c0geoi" path="res://imports/ui/Settings/Settings_slider_icon.png" id="13_w2cwy"]
+[ext_resource type="Texture2D" uid="uid://bavl1r5qci4of" path="res://imports/ui/comp/Button_5.png" id="15_w2cwy"]
+[ext_resource type="Texture2D" uid="uid://sj1tuobrari7" path="res://imports/ui/Settings/Solar_exit_white.png" id="16_5ghpo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w2cwy"]
+font = ExtResource("2_03o02")
+font_size = 25
+outline_size = 15
+outline_color = Color(0.88573813, 0.63960785, 0.23444167, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ghpo"]
+texture = ExtResource("9_6vgmg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_p84si"]
+font = ExtResource("2_03o02")
+font_size = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qerx8"]
+texture = ExtResource("11_m7mh0")
+texture_margin_left = 53.0
+texture_margin_top = 7.0
+texture_margin_right = 53.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p84si"]
+texture = ExtResource("7_lx43f")
+texture_margin_left = 53.0
+texture_margin_top = 7.0
+texture_margin_right = 53.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(0, 0, 106, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx43f"]
+atlas = ExtResource("7_lx43f")
+region = Rect2(0, 0, 106, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8osj"]
+texture = SubResource("AtlasTexture_lx43f")
+texture_margin_left = 53.0
+texture_margin_top = 7.0
+texture_margin_right = 53.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8osj"]
+atlas = ExtResource("7_lx43f")
+region = Rect2(0, 0, 106, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6vgmg"]
+texture = SubResource("AtlasTexture_k8osj")
+texture_margin_left = 53.0
+texture_margin_top = 7.0
+texture_margin_right = 53.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lx43f"]
+texture = ExtResource("9_6vgmg")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p84si"]
+atlas = ExtResource("15_w2cwy")
+
+[node name="SettingsScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+script = ExtResource("1_03o02")
+
+[node name="SettingsPanelTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -123.5
+offset_right = 211.01001
+offset_bottom = 123.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k8osj")
+
+[node name="SettingsLabel" type="Label" parent="SettingsPanelTextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.5
+offset_top = 32.0
+offset_right = 109.5
+offset_bottom = 52.0
+grow_horizontal = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_w2cwy")
+horizontal_alignment = 1
+
+[node name="SettingsItemsVBoxContainer" type="VBoxContainer" parent="SettingsPanelTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -44.0
+offset_right = 156.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsItem1" type="Panel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer"]
+custom_minimum_size = Vector2(281, 76)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5ghpo")
+
+[node name="SettingsItem1HBoxContainer" type="HBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -23.5
+offset_right = 140.5
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="MusicVBoxContainer" type="VBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MusicLabel" type="Label" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_p84si")
+horizontal_alignment = 1
+
+[node name="MusicSliderControl" type="Control" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer"]
+custom_minimum_size = Vector2(144, 30)
+layout_mode = 2
+
+[node name="MusicHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
+custom_minimum_size = Vector2(117, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("10_m7mh0")
+theme_override_icons/grabber_highlight = ExtResource("10_m7mh0")
+theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_k8osj")
+max_value = 6.0
+value = 6.0
+
+[node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
+layout_mode = 1
+offset_right = 30.0
+offset_bottom = 29.0
+mouse_filter = 2
+texture = ExtResource("13_w2cwy")
+stretch_mode = 5
+
+[node name="SoundEffectVBoxContainer" type="VBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer"]
+layout_mode = 2
+
+[node name="SoundEffectLabel" type="Label" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer"]
+layout_mode = 2
+text = "Sound Effect"
+label_settings = SubResource("LabelSettings_p84si")
+horizontal_alignment = 1
+
+[node name="SoundEffectSliderControl" type="Control" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer"]
+custom_minimum_size = Vector2(144, 30)
+layout_mode = 2
+
+[node name="SoundEffectHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
+custom_minimum_size = Vector2(117, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("10_m7mh0")
+theme_override_icons/grabber_highlight = ExtResource("10_m7mh0")
+theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_6vgmg")
+max_value = 6.0
+value = 6.0
+
+[node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -14.5
+offset_right = 30.0
+offset_bottom = 14.5
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_w2cwy")
+stretch_mode = 5
+
+[node name="SettingsItem2" type="Panel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer"]
+custom_minimum_size = Vector2(300, 76)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lx43f")
+
+[node name="ButtonsSorterVBoxContainer" type="VBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.5
+offset_top = -34.0
+offset_right = 143.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsButtonsHBoxContainer" type="HBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer"]
+layout_mode = 2
+
+[node name="SignoutButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
+custom_minimum_size = Vector2(93, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_p84si")
+
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured" index="0"]
+offset_left = -29.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonSorterHBoxContainer" index="0"]
+texture = ExtResource("16_5ghpo")
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Signout"
+
+[node name="DeleteAccountButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
+custom_minimum_size = Vector2(93, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_p84si")
+
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured" index="0"]
+offset_left = -29.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Delete Account"
+
+[node name="HelpAndSupportButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
+custom_minimum_size = Vector2(93, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_p84si")
+
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured" index="0"]
+offset_left = -29.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Help & Support"
+
+[node name="SettingsButtonsHBoxContainer1" type="HBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WithdrawTextureButton" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1" instance=ExtResource("9_5ghpo")]
+custom_minimum_size = Vector2(93, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_p84si")
+
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton" index="0"]
+offset_left = -29.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonSorterHBoxContainer" index="1"]
+text = "Withdraw"
+
+[node name="BottomVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="SettingsBackButtonTextured" parent="BottomVBoxContainer" instance=ExtResource("9_5ghpo")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("10_p84si")
+
+[node name="ButtonSorterHBoxContainer" parent="BottomVBoxContainer/SettingsBackButtonTextured" index="0"]
+offset_left = -15.0
+offset_top = -14.5
+offset_right = 15.0
+offset_bottom = -1.5
+
+[node name="ButtonIconTextureRect" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "BACK"
+
+[connection signal="drag_started" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl/MusicHSlider" to="." method="_on_music_h_slider_drag_started"]
+[connection signal="value_changed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="drag_started" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl/SoundEffectHSlider" to="." method="_on_sound_effect_h_slider_drag_started"]
+[connection signal="value_changed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl/SoundEffectHSlider" to="." method="_on_sound_effect_h_slider_value_changed"]
+[connection signal="pressed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured" to="." method="_on_signout_button_textured_pressed"]
+[connection signal="pressed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured" to="." method="_on_delete_account_button_textured_pressed"]
+[connection signal="pressed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured" to="." method="_on_help_and_support_button_textured_pressed"]
+[connection signal="pressed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton" to="." method="_on_withdraw_texture_button_pressed"]
+[connection signal="pressed" from="BottomVBoxContainer/SettingsBackButtonTextured" to="." method="_on_settings_back_button_textured_pressed"]
+
+[editable path="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured"]
+[editable path="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured"]
+[editable path="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured"]
+[editable path="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton"]
+[editable path="BottomVBoxContainer/SettingsBackButtonTextured"]

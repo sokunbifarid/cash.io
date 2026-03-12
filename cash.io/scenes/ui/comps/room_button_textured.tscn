@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2dtkd1a8u6nj"]
+
+[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="1_rev4r"]
+[ext_resource type="Script" uid="uid://cl16sn85afgch" path="res://scripts/ui/comps/room_button_textured.gd" id="2_khp1v"]
+[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="3_khp1v"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="3_l72bd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rev4r"]
+atlas = ExtResource("1_rev4r")
+region = Rect2(20, 8, 108, 44)
+
+[sub_resource type="LabelSettings" id="LabelSettings_870o2"]
+font = ExtResource("3_l72bd")
+font_size = 10
+
+[node name="room_button_textured" type="TextureButton"]
+offset_right = 108.0
+offset_bottom = 44.0
+texture_normal = SubResource("AtlasTexture_rev4r")
+stretch_mode = 5
+script = ExtResource("2_khp1v")
+
+[node name="ButtonSorterHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -16.5
+offset_right = 48.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ButtonIconTextureRect" type="TextureRect" parent="ButtonSorterHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_khp1v")
+stretch_mode = 5
+
+[node name="ButtonTextLabel" type="Label" parent="ButtonSorterHBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_870o2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

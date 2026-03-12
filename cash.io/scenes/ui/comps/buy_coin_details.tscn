@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnmduy11opw1g"]
+
+[ext_resource type="Script" uid="uid://cmb1lf24bs36k" path="res://scripts/ui/comps/buy_coin_details.gd" id="1_i7lvs"]
+[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="1_kjv8w"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="2_1l2mp"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="2_wrm4p"]
+[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="3_x2gcd"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="7_1l2ig"]
+[ext_resource type="Texture2D" uid="uid://e0t2sqw36em5" path="res://imports/ui/Coin_value_back_panel.png" id="7_bpq5b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d62b"]
+atlas = ExtResource("3_x2gcd")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjpvo"]
+font = ExtResource("2_1l2mp")
+font_size = 12
+font_color = Color(0.88235295, 0.5568628, 0.15294118, 1)
+outline_size = 2
+outline_color = Color(0.38508248, 0.31564954, 0.04476589, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnpik"]
+font = ExtResource("2_1l2mp")
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_lmtor"]
+font = ExtResource("7_1l2ig")
+font_size = 24
+outline_size = 4
+
+[node name="BuyCoinDetails" type="Control"]
+custom_minimum_size = Vector2(102, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 102.0
+offset_bottom = 40.0
+script = ExtResource("1_i7lvs")
+
+[node name="BuyCoinButtonTextured" parent="." instance=ExtResource("2_wrm4p")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 40.0
+texture_normal = SubResource("AtlasTexture_3d62b")
+
+[node name="ButtonSorterHBoxContainer" parent="BuyCoinButtonTextured" index="0"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = -18.5
+offset_right = -2.0
+offset_bottom = 18.5
+grow_horizontal = 0
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="CoinTextureRect" type="TextureRect" parent="BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="0"]
+layout_mode = 2
+texture = ExtResource("1_kjv8w")
+stretch_mode = 5
+
+[node name="ButtonIconTextureRect" parent="BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="1"]
+custom_minimum_size = Vector2(55, 0)
+size_flags_vertical = 4
+texture = ExtResource("7_bpq5b")
+stretch_mode = 0
+
+[node name="CoinValueLabel" type="Label" parent="BuyCoinButtonTextured/ButtonSorterHBoxContainer/ButtonIconTextureRect" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_fjpvo")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="ButtonTextLabel" parent="BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
+text = "+"
+label_settings = SubResource("LabelSettings_wnpik")
+
+[node name="CoinIncrementAnimationLabel" type="Label" parent="."]
+modulate = Color(0, 0.7647059, 0.21176471, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -56.0
+offset_bottom = -26.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_lmtor")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BuyCoinButtonTextured" to="." method="_on_buy_coin_button_textured_pressed"]
+
+[editable path="BuyCoinButtonTextured"]

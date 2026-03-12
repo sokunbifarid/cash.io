@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1yu56grq3etg"]
+
+[ext_resource type="Script" uid="uid://dt4gjq5eqbxcs" path="res://scripts/ui/notice_panel.gd" id="1_2ioce"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_2ioce"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b770b"]
+font = ExtResource("2_2ioce")
+font_size = 15
+
+[node name="NoticePanel" type="Panel" unique_id=577526210]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(800, 30)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+script = ExtResource("1_2ioce")
+
+[node name="NoticeLabel" type="Label" parent="." unique_id=466266899]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NOTICE"
+label_settings = SubResource("LabelSettings_b770b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VisibleTimer" type="Timer" parent="." unique_id=224821016]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="VisibleTimer" to="." method="_on_visible_timer_timeout"]

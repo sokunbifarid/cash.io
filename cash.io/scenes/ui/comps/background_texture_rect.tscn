@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://qy8assu4urrj"]
+
+[ext_resource type="Texture2D" uid="uid://chxtqushv0one" path="res://imports/ui/Menu-background/Background.png" id="1_0o6xa"]
+[ext_resource type="Texture2D" uid="uid://dr76xr8speu1y" path="res://imports/ui/Menu-background/Cash.png" id="2_kjkk7"]
+
+[node name="BackgroundTextureRect" type="TextureRect" unique_id=832078628]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0o6xa")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1792789696]
+layout_mode = 0
+offset_left = 41.999992
+offset_top = -63.0
+offset_right = 142.0
+offset_bottom = 35.0
+rotation = 1.0466536
+texture = ExtResource("2_kjkk7")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=770192791]
+layout_mode = 0
+offset_left = 67.00001
+offset_top = 428.00003
+offset_right = 167.0
+offset_bottom = 526.0
+rotation = 5.0225
+scale = Vector2(1, -1)
+texture = ExtResource("2_kjkk7")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1798887179]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 367.00003
+offset_right = 970.0
+offset_bottom = 465.00003
+rotation = 4.1673207
+scale = Vector2(1, -1)
+texture = ExtResource("2_kjkk7")
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=1192212040]
+layout_mode = 0
+offset_left = 742.0
+offset_top = -64.00003
+offset_right = 842.0
+offset_bottom = 33.99997
+rotation = 2.0194356
+scale = Vector2(1, -1)
+texture = ExtResource("2_kjkk7")

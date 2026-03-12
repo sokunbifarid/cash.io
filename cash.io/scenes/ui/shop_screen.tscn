@@ -1,0 +1,205 @@
+[gd_scene load_steps=23 format=3 uid="uid://dlaei2dvkb6wb"]
+
+[ext_resource type="Texture2D" uid="uid://xpus7grgrspv" path="res://imports/ui/shop/Shop_Background_Blur.png" id="1_2vd2v"]
+[ext_resource type="Script" uid="uid://l100lggqyb2n" path="res://scripts/ui/shop_screen.gd" id="2_ust1g"]
+[ext_resource type="Texture2D" uid="uid://cmgmeb4fcgp5b" path="res://imports/ui/shop/Shop_panel.png" id="3_ust1g"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_dlx3d"]
+[ext_resource type="Texture2D" uid="uid://c1srbuwj6g60j" path="res://imports/ui/shop/Shop_visible_screen_right_button_panel.png" id="5_d62vj"]
+[ext_resource type="Texture2D" uid="uid://dva2lox7yocuk" path="res://imports/ui/shop/Shop_visible_screen_left_button_panel.png" id="6_dlx3d"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="7_7iig3"]
+[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="7_yitpt"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="8_dlx3d"]
+[ext_resource type="Texture2D" uid="uid://b32kf36wpi4b3" path="res://imports/ui/shop/Shop_scroll_panel.png" id="9_7iig3"]
+[ext_resource type="Texture2D" uid="uid://b2uiwm0x8d1gd" path="res://imports/ui/shop/Shop_scroll_grabber.png" id="10_6ads7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teqjh"]
+texture = ExtResource("1_2vd2v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7lon"]
+texture = ExtResource("3_ust1g")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ads7"]
+font = ExtResource("7_7iig3")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_yitpt"]
+font = ExtResource("7_7iig3")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8niw"]
+font = ExtResource("8_dlx3d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7iig3"]
+texture = ExtResource("9_7iig3")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ads7"]
+texture = ExtResource("10_6ads7")
+texture_margin_left = 3.0
+texture_margin_right = 3.0
+
+[sub_resource type="Theme" id="Theme_yitpt"]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_7iig3")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_6ads7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yitpt"]
+texture = ExtResource("9_7iig3")
+texture_margin_top = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8niw"]
+texture = ExtResource("10_6ads7")
+texture_margin_left = 3.0
+texture_margin_right = 3.0
+
+[sub_resource type="Theme" id="Theme_k7vaa"]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_yitpt")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_n8niw")
+
+[node name="ShopScreen" type="Panel"]
+visible = false
+custom_minimum_size = Vector2(800, 360)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_teqjh")
+script = ExtResource("2_ust1g")
+
+[node name="ShopPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -130.0
+offset_right = 193.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(193, 130)
+theme_override_styles/panel = SubResource("StyleBoxTexture_c7lon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = -16.0
+offset_right = 241.0
+offset_bottom = 230.5
+grow_horizontal = 2
+
+[node name="CoinsSkinsButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(67, 30)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_d62vj")
+texture_pressed = ExtResource("6_dlx3d")
+
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" index="0"]
+offset_left = -14.5
+offset_top = -6.5
+offset_right = 14.5
+offset_bottom = 6.5
+theme_override_constants/separation = 62
+
+[node name="ButtonIconTextureRect" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Coins"
+label_settings = SubResource("LabelSettings_6ads7")
+
+[node name="SkinsButtonTextLabel" type="Label" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="2"]
+layout_mode = 2
+text = "Skins"
+label_settings = SubResource("LabelSettings_yitpt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopItemCategory" type="Control" parent="ShopPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+
+[node name="CoinsItemsVBoxContainer" type="VBoxContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 214.0
+grow_horizontal = 2
+
+[node name="CoinsLabel" type="Label" parent="ShopPanel/VBoxContainer/ShopItemCategory/CoinsItemsVBoxContainer"]
+layout_mode = 2
+text = "Coins"
+label_settings = SubResource("LabelSettings_n8niw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/CoinsItemsVBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = SubResource("Theme_yitpt")
+horizontal_scroll_mode = 0
+
+[node name="CoinsItemsGridContainer" type="GridContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/CoinsItemsVBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="SkinsItemsVBoxContainer" type="VBoxContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="SkinsLabel" type="Label" parent="ShopPanel/VBoxContainer/ShopItemCategory/SkinsItemsVBoxContainer"]
+layout_mode = 2
+text = "Skins"
+label_settings = SubResource("LabelSettings_n8niw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/SkinsItemsVBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = SubResource("Theme_k7vaa")
+horizontal_scroll_mode = 0
+
+[node name="SkinsItemsGridContainer" type="GridContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/SkinsItemsVBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="CloseButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_yitpt")
+
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CloseButtonTextured" index="0"]
+offset_left = -19.5
+offset_top = -6.5
+offset_right = 19.5
+offset_bottom = 6.5
+
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "CLOSE"
+
+[connection signal="toggled" from="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" to="." method="_on_coins_skins_button_textured_toggled"]
+[connection signal="pressed" from="ShopPanel/VBoxContainer/CloseButtonTextured" to="." method="_on_close_button_textured_pressed"]
+
+[editable path="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured"]
+[editable path="ShopPanel/VBoxContainer/CloseButtonTextured"]

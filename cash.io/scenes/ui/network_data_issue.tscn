@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://bimxcioohym5"]
+
+[ext_resource type="Script" uid="uid://ojw1rpyvu7oq" path="res://scripts/ui/network_data_issue.gd" id="1_2utjs"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="1_nnm2l"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="2_2utjs"]
+[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="3_at4lu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qlhaa"]
+font = ExtResource("1_nnm2l")
+font_size = 30
+
+[node name="NetworkDataIssue" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2utjs")
+
+[node name="NetworkDataIssuePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NetworkDataIssueMessageLabel" type="Label" parent="NetworkDataIssuePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -10.500015
+offset_right = 182.5
+offset_bottom = 26.499985
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(182, 18)
+text = "Issue Retrieving Player Data"
+label_settings = SubResource("LabelSettings_qlhaa")
+
+[node name="ReloadButtonTextured" parent="NetworkDataIssuePanel" instance=ExtResource("2_2utjs")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -81.0
+offset_right = 105.5
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_at4lu")
+
+[node name="ButtonTextLabel" parent="NetworkDataIssuePanel/ReloadButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Reload"
+
+[connection signal="pressed" from="NetworkDataIssuePanel/ReloadButtonTextured" to="." method="_on_reload_button_textured_pressed"]
+
+[editable path="NetworkDataIssuePanel/ReloadButtonTextured"]

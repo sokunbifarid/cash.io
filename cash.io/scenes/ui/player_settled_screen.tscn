@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkoj6d15e6v2t"]
+
+[ext_resource type="Script" uid="uid://dccvtj8jjvkg5" path="res://scripts/ui/player_settled_screen.gd" id="1_btlyv"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_o5ckp"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="3_qrviw"]
+[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="4_mb21i"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="5_mb21i"]
+[ext_resource type="Texture2D" uid="uid://bavl1r5qci4of" path="res://imports/ui/comp/Button_5.png" id="6_3jkv5"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="7_xnyfk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3jkv5"]
+font = ExtResource("2_o5ckp")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_xnyfk"]
+font = ExtResource("3_qrviw")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_o56fe"]
+font = ExtResource("2_o5ckp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o56fe"]
+atlas = ExtResource("6_3jkv5")
+
+[sub_resource type="GDScript" id="GDScript_ey4c1"]
+script/source = "extends TextureButton
+
+
+
+
+func _on_pressed() -> void:
+	SfxAudioManager.play_button_pressed_sfx()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_vs0o4"]
+font = ExtResource("7_xnyfk")
+font_size = 14
+
+[node name="PlayerSettledScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btlyv")
+
+[node name="PlayerSettledPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+
+[node name="PlayerSettledVBoxContainer" type="VBoxContainer" parent="PlayerSettledPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -46.0
+offset_right = 170.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LastMatchEndedLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledVBoxContainer"]
+layout_mode = 2
+text = "LAST MATCH ENDED"
+label_settings = SubResource("LabelSettings_3jkv5")
+horizontal_alignment = 1
+
+[node name="MatchStateLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledVBoxContainer"]
+layout_mode = 2
+text = "YOU SURVIVED LAST MATCH"
+label_settings = SubResource("LabelSettings_xnyfk")
+horizontal_alignment = 1
+
+[node name="CoinDataHBoxContainer" type="HBoxContainer" parent="PlayerSettledPanel/PlayerSettledVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinStatusLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer"]
+layout_mode = 2
+text = "Coin Saved:"
+label_settings = SubResource("LabelSettings_o56fe")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_mb21i")
+
+[node name="CoinSavedAmountLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_o56fe")
+
+[node name="CloseButtonTextured_1" parent="PlayerSettledPanel" instance=ExtResource("5_mb21i")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.5
+offset_top = -80.0
+offset_right = 46.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_o56fe")
+script = SubResource("GDScript_ey4c1")
+
+[node name="ButtonSorterHBoxContainer" parent="PlayerSettledPanel/CloseButtonTextured_1" index="0"]
+offset_left = -24.5
+offset_top = -9.0
+offset_right = 24.5
+offset_bottom = 9.0
+
+[node name="ButtonIconTextureRect" parent="PlayerSettledPanel/CloseButtonTextured_1/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="PlayerSettledPanel/CloseButtonTextured_1/ButtonSorterHBoxContainer" index="1"]
+text = "CLOSE"
+label_settings = SubResource("LabelSettings_vs0o4")
+
+[connection signal="pressed" from="PlayerSettledPanel/CloseButtonTextured_1" to="." method="_on_close_button_textured_1_pressed"]
+
+[editable path="PlayerSettledPanel/CloseButtonTextured_1"]

@@ -1,0 +1,324 @@
+[gd_scene load_steps=30 format=3 uid="uid://y7vwrmcaour5"]
+
+[ext_resource type="PackedScene" uid="uid://qy8assu4urrj" path="res://scenes/ui/comps/background_texture_rect.tscn" id="1_ey53q"]
+[ext_resource type="Script" uid="uid://dby1wkxep8b4p" path="res://scripts/ui/menu_holder_screen.gd" id="1_xfmk6"]
+[ext_resource type="Texture2D" uid="uid://dv6v8iad13rju" path="res://imports/ui/Menu-panel-1.png" id="3_bf2bh"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="3_fhcvj"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="5_dcpsw"]
+[ext_resource type="Texture2D" uid="uid://db3ob52v1brk5" path="res://imports/ui/comp/Button_6.png" id="5_h4e7x"]
+[ext_resource type="Texture2D" uid="uid://oqhsvcprfbsf" path="res://imports/ui/Coming_soon_button_panel.png" id="7_h4e7x"]
+[ext_resource type="PackedScene" uid="uid://dql4hudkwsmrv" path="res://scenes/ui/play_screen.tscn" id="8_fhcvj"]
+[ext_resource type="Texture2D" uid="uid://bjqlxur4vhrbg" path="res://imports/ui/Coming_soon_panel.png" id="8_g23d2"]
+[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="8_whsla"]
+[ext_resource type="Texture2D" uid="uid://rvsra4ic2omm" path="res://imports/ui/Profile-icon-white.png" id="8_xfmk6"]
+[ext_resource type="PackedScene" uid="uid://k0hxrsngxkh1" path="res://scenes/ui/settings_screen.tscn" id="9_7r51e"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="9_ybt8a"]
+[ext_resource type="Texture2D" uid="uid://dfya14i4sjpc5" path="res://imports/ui/Gear-white.png" id="10_fhcvj"]
+[ext_resource type="Texture2D" uid="uid://b6djikswgtxup" path="res://imports/ui/Shopping-cart-white.png" id="11_bf2bh"]
+[ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="12_g23d2"]
+[ext_resource type="PackedScene" uid="uid://dlaei2dvkb6wb" path="res://scenes/ui/shop_screen.tscn" id="15_bf2bh"]
+[ext_resource type="PackedScene" uid="uid://d1xqsjqstty6v" path="res://scenes/ui/profile_screen.tscn" id="18_h4e7x"]
+[ext_resource type="PackedScene" uid="uid://cjdctoi3rtpsx" path="res://scenes/ui/deposit_screen.tscn" id="19_g23d2"]
+[ext_resource type="PackedScene" uid="uid://f8aa8b6kkmf" path="res://scenes/ui/withdrawal_screen.tscn" id="20_ybt8a"]
+[ext_resource type="PackedScene" uid="uid://dkoj6d15e6v2t" path="res://scenes/ui/player_settled_screen.tscn" id="21_brtkd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g23d2"]
+atlas = ExtResource("5_h4e7x")
+region = Rect2(0, 0, 222, 48)
+
+[sub_resource type="GDScript" id="GDScript_ybt8a"]
+script/source = "extends TextureButton
+
+
+
+
+func _on_pressed() -> void:
+	SfxAudioManager.play_button_pressed_sfx()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ugjv"]
+font = ExtResource("5_dcpsw")
+font_size = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teqjh"]
+atlas = ExtResource("7_h4e7x")
+
+[sub_resource type="LabelSettings" id="LabelSettings_brtkd"]
+font = ExtResource("5_dcpsw")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdkpl"]
+font = ExtResource("9_ybt8a")
+font_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_g23d2"]
+font = ExtResource("5_dcpsw")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcpsw"]
+font = ExtResource("5_dcpsw")
+font_size = 12
+
+[node name="MenuHolderScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xfmk6")
+
+[node name="BackgroundTextureRect2" parent="." instance=ExtResource("1_ey53q")]
+layout_mode = 1
+
+[node name="MainMenuScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+
+[node name="MainMenuPanelTextureRect" type="TextureRect" parent="MainMenuScreen"]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -122.0
+offset_right = 204.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bf2bh")
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -10.0
+offset_right = 105.5
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BubblesModeButtonTextured" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer" instance=ExtResource("3_fhcvj")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_g23d2")
+script = SubResource("GDScript_ybt8a")
+
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured" index="0"]
+offset_left = -43.5
+offset_top = -10.5
+offset_right = 43.5
+offset_bottom = 4.5
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Bubbles Mode"
+label_settings = SubResource("LabelSettings_5ugjv")
+
+[node name="LinesGameModeButtonTextured" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer" instance=ExtResource("3_fhcvj")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+texture_normal = SubResource("AtlasTexture_teqjh")
+
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured" index="0"]
+offset_left = -34.5
+offset_top = -9.5
+offset_right = 34.5
+offset_bottom = 5.5
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Lines Mode"
+label_settings = SubResource("LabelSettings_brtkd")
+
+[node name="CommingSoonTextureRect" type="TextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -5.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_g23d2")
+stretch_mode = 5
+
+[node name="CommingSoonLabel" type="Label" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/CommingSoonTextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -6.0
+offset_right = -3.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Coming Soon"
+label_settings = SubResource("LabelSettings_fdkpl")
+
+[node name="TopButtonControl" type="Control" parent="MainMenuScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 28.0
+offset_top = 8.0
+offset_right = -22.0
+offset_bottom = 58.0
+grow_horizontal = 2
+
+[node name="ProfileButtonTextured" parent="MainMenuScreen/TopButtonControl" instance=ExtResource("3_fhcvj")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 40.0
+texture_normal = ExtResource("8_whsla")
+
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured" index="0"]
+offset_left = -38.0
+offset_top = -13.0
+offset_right = 38.0
+offset_bottom = 13.0
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonSorterHBoxContainer" index="0"]
+texture = ExtResource("8_xfmk6")
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Profile"
+label_settings = SubResource("LabelSettings_g23d2")
+
+[node name="BuyCoinDetails" parent="MainMenuScreen/TopButtonControl" instance=ExtResource("12_g23d2")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[node name="BottomButtonsControl" type="Control" parent="MainMenuScreen"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -48.0
+offset_right = -18.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SettingsButtonTextured" parent="MainMenuScreen/BottomButtonsControl" instance=ExtResource("3_fhcvj")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 40.0
+texture_normal = ExtResource("8_whsla")
+
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured" index="0"]
+offset_left = -38.0
+offset_top = -13.0
+offset_right = 38.0
+offset_bottom = 13.0
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonSorterHBoxContainer" index="0"]
+texture = ExtResource("10_fhcvj")
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Settings"
+label_settings = SubResource("LabelSettings_dcpsw")
+
+[node name="ShopButtonTextured" parent="MainMenuScreen/BottomButtonsControl" instance=ExtResource("3_fhcvj")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("8_whsla")
+
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured" index="0"]
+offset_left = -38.0
+offset_top = -13.0
+offset_right = 38.0
+offset_bottom = 13.0
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonSorterHBoxContainer" index="0"]
+texture = ExtResource("11_bf2bh")
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Shop"
+label_settings = SubResource("LabelSettings_dcpsw")
+
+[node name="PlayScreen" parent="." instance=ExtResource("8_fhcvj")]
+layout_mode = 1
+
+[node name="SettingsScreen" parent="." instance=ExtResource("9_7r51e")]
+layout_mode = 1
+
+[node name="ShopScreen" parent="." instance=ExtResource("15_bf2bh")]
+layout_mode = 1
+
+[node name="ProfileScreen" parent="." instance=ExtResource("18_h4e7x")]
+layout_mode = 1
+
+[node name="DepositScreen" parent="." instance=ExtResource("19_g23d2")]
+layout_mode = 1
+
+[node name="WithdrawalScreen" parent="." instance=ExtResource("20_ybt8a")]
+layout_mode = 1
+
+[node name="PlayerSettledScreen" parent="." instance=ExtResource("21_brtkd")]
+layout_mode = 1
+
+[connection signal="pressed" from="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured" to="." method="_on_bubbles_mode_button_textured_pressed"]
+[connection signal="pressed" from="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured" to="." method="_on_lines_game_mode_button_textured_pressed"]
+[connection signal="pressed" from="MainMenuScreen/TopButtonControl/ProfileButtonTextured" to="." method="_on_profile_button_textured_pressed"]
+[connection signal="buy_coin_button" from="MainMenuScreen/TopButtonControl/BuyCoinDetails" to="." method="_on_buy_coin_details_buy_coin_button"]
+[connection signal="pressed" from="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured" to="." method="_on_settings_button_textured_pressed"]
+[connection signal="pressed" from="MainMenuScreen/BottomButtonsControl/ShopButtonTextured" to="." method="_on_shop_button_textured_pressed"]
+[connection signal="play_screen_closed" from="PlayScreen" to="." method="_on_play_screen_play_screen_closed"]
+[connection signal="close_settings" from="SettingsScreen" to="." method="_on_settings_screen_close_settings"]
+[connection signal="open_withdrawal" from="SettingsScreen" to="." method="_on_settings_screen_open_withdrawal"]
+[connection signal="close_shop" from="ShopScreen" to="." method="_on_shop_screen_close_shop"]
+[connection signal="close_profile" from="ProfileScreen" to="." method="_on_profile_screen_close_profile"]
+[connection signal="close_deposit" from="DepositScreen" to="." method="_on_deposit_screen_close_deposit"]
+[connection signal="close_withdrawal_screen" from="WithdrawalScreen" to="." method="_on_withdrawal_screen_close_withdrawal_screen"]
+
+[editable path="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured"]
+[editable path="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured"]
+[editable path="MainMenuScreen/TopButtonControl/ProfileButtonTextured"]
+[editable path="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured"]
+[editable path="MainMenuScreen/BottomButtonsControl/ShopButtonTextured"]

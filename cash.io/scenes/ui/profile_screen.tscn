@@ -1,0 +1,217 @@
+[gd_scene load_steps=22 format=3 uid="uid://d1xqsjqstty6v"]
+
+[ext_resource type="Script" uid="uid://dun41t5ybg75h" path="res://scripts/ui/profile_screen.gd" id="1_uwfm8"]
+[ext_resource type="Texture2D" uid="uid://chxtqushv0one" path="res://imports/ui/Menu-background/Background.png" id="2_3u5s0"]
+[ext_resource type="Texture2D" uid="uid://cc4jthuj2dqeq" path="res://imports/ui/Profile/Profile-panel-1.png" id="2_7y07s"]
+[ext_resource type="Texture2D" uid="uid://cvnufi1cqsdq8" path="res://imports/ui/Profile/Profile_input_name_panel.png" id="3_3u5s0"]
+[ext_resource type="Texture2D" uid="uid://bw2m0f7xdhyqc" path="res://imports/ui/Profile/Characters/Skin_1.png" id="4_vdh88"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="5_blmyo"]
+[ext_resource type="Texture2D" uid="uid://cr3kj1qavhndg" path="res://imports/ui/Profile/Profile_input_panel.png" id="6_d3eat"]
+[ext_resource type="Texture2D" uid="uid://cgbo23ry0ubrx" path="res://imports/ui/Profile/Profile_input_name_pencil_ui.png" id="7_1vrdu"]
+[ext_resource type="Texture2D" uid="uid://5ivuwtsmrp6r" path="res://imports/ui/Profile/Profile_select_skin_panel.png" id="8_ruc0o"]
+[ext_resource type="Texture2D" uid="uid://dsbcmfvgp5obw" path="res://imports/ui/Profile/Profile_v_slider_top_panel.png" id="9_bjxst"]
+[ext_resource type="Texture2D" uid="uid://dyhtin5se1qk3" path="res://imports/ui/Profile/Profile_v_slider_back_panel.png" id="10_s40l1"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="11_bqyh1"]
+[ext_resource type="Texture2D" uid="uid://bavl1r5qci4of" path="res://imports/ui/comp/Button_5.png" id="12_lhfur"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdh88"]
+texture = ExtResource("2_3u5s0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxtee"]
+texture = ExtResource("2_7y07s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htoyf"]
+texture = ExtResource("6_d3eat")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="ImageTexture" id="ImageTexture_htoyf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olvqu"]
+texture = ExtResource("9_bjxst")
+texture_margin_left = 3.0
+texture_margin_top = 20.0
+texture_margin_right = 3.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nudmm"]
+texture = ExtResource("10_s40l1")
+texture_margin_left = 2.0
+texture_margin_right = 2.0
+
+[sub_resource type="Theme" id="Theme_7ni2c"]
+VScrollBar/icons/decrement = SubResource("ImageTexture_htoyf")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_htoyf")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_htoyf")
+VScrollBar/icons/increment = SubResource("ImageTexture_htoyf")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_htoyf")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_htoyf")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_olvqu")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_nudmm")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htoyf"]
+atlas = ExtResource("12_lhfur")
+region = Rect2(0, 0, 94, 32)
+
+[node name="ProfileScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+script = ExtResource("1_uwfm8")
+
+[node name="BackCoverPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vdh88")
+
+[node name="ProfilePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(435, 269)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -134.5
+offset_right = 217.5
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(217, 134)
+theme_override_styles/panel = SubResource("StyleBoxTexture_wxtee")
+
+[node name="ProfileSorterVBoxContainer" type="VBoxContainer" parent="ProfilePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -31.5
+offset_right = 122.0
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProfilePanel1TextureRect" type="TextureRect" parent="ProfilePanel/ProfileSorterVBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3u5s0")
+
+[node name="ProfileDataHBoxContainer" type="HBoxContainer" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel1TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ProfileSelectedSkinTextureRect" type="TextureRect" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel1TextureRect/ProfileDataHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_vdh88")
+stretch_mode = 5
+
+[node name="NicknameLineEdit" type="LineEdit" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel1TextureRect/ProfileDataHBoxContainer"]
+custom_minimum_size = Vector2(186, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.35156232, 0.35156316, 0.35156256, 1)
+theme_override_fonts/font = ExtResource("5_blmyo")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_htoyf")
+placeholder_text = "Nickname..."
+editable = false
+right_icon = ExtResource("7_1vrdu")
+
+[node name="ProfilePanel2TextureRect" type="TextureRect" parent="ProfilePanel/ProfileSorterVBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_ruc0o")
+
+[node name="ProfilePanel2ScrollContainer" type="ScrollContainer" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel2TextureRect"]
+custom_minimum_size = Vector2(206, 66)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.75
+offset_top = -37.0
+offset_right = 110.75
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ni2c")
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 0
+
+[node name="ProfileSkinPanelGridContainer" type="GridContainer" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel2TextureRect/ProfilePanel2ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="ProfileButtonsHBoxContainer" type="HBoxContainer" parent="ProfilePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SubmitButtonTextured" parent="ProfilePanel/ProfileButtonsHBoxContainer" instance=ExtResource("11_bqyh1")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_htoyf")
+
+[node name="ButtonSorterHBoxContainer" parent="ProfilePanel/ProfileButtonsHBoxContainer/SubmitButtonTextured" index="0"]
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 6.5
+
+[node name="ButtonIconTextureRect" parent="ProfilePanel/ProfileButtonsHBoxContainer/SubmitButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="ProfilePanel/ProfileButtonsHBoxContainer/SubmitButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Submit"
+
+[node name="BackButtonTextured" parent="ProfilePanel/ProfileButtonsHBoxContainer" instance=ExtResource("11_bqyh1")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_htoyf")
+
+[node name="ButtonSorterHBoxContainer" parent="ProfilePanel/ProfileButtonsHBoxContainer/BackButtonTextured" index="0"]
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 6.5
+
+[node name="ButtonIconTextureRect" parent="ProfilePanel/ProfileButtonsHBoxContainer/BackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="ProfilePanel/ProfileButtonsHBoxContainer/BackButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
+
+[connection signal="pressed" from="ProfilePanel/ProfileButtonsHBoxContainer/SubmitButtonTextured" to="." method="_on_submit_button_textured_pressed"]
+[connection signal="pressed" from="ProfilePanel/ProfileButtonsHBoxContainer/BackButtonTextured" to="." method="_on_back_button_textured_pressed"]
+
+[editable path="ProfilePanel/ProfileButtonsHBoxContainer/SubmitButtonTextured"]
+[editable path="ProfilePanel/ProfileButtonsHBoxContainer/BackButtonTextured"]

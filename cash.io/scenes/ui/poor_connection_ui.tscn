@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq4sikl83bk7"]
+
+[ext_resource type="Script" uid="uid://dy0tvhdfd6p2q" path="res://scripts/ui/poor_connection_ui.gd" id="1_663om"]
+[ext_resource type="Texture2D" uid="uid://beewuolf51riv" path="res://imports/ui/wifi_white_icon.png" id="1_mtnxm"]
+
+[node name="PoorConnectionUI" type="TextureRect"]
+custom_minimum_size = Vector2(24, 24)
+offset_right = 24.0
+offset_bottom = 24.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_mtnxm")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_663om")

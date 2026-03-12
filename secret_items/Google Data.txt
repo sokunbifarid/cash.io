@@ -5,3 +5,16 @@ Web App:
 	OAuth Client ID: 371885959149-q8rjebpl1dc2ho14phuqnj7rn4d202ct.apps.googleusercontent.com
 	Client Secret: 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
 	Creation Date: Feb 13, 2026, 12:12:41pm
+Desktop App:
+	OAuth Client ID: 371885959149-b55ad6378499f22aom0ml7gb0t939f7c.apps.googleusercontent.com
+	Client Secret: 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
+	Creation Date: February 25, 2026, 1:32:46 PM GMT+1
+New Desktop App:
+	OAuth Client ID: 47649257757-4gpcoecghnkb0qriv629hc60do28brb8.apps.googleusercontent.com
+	Client Secret: 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
+	Creation Date: February 25, 2026, 5:14:44 PM GMT+1
+
+New Web App (WORKED):
+	OAuth Client ID: 47649257757-mfr0d4s3tgl8tf94smvt4q0fpb1kov2e.apps.googleusercontent.com
+	Client Secret: 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
+	Creation Date: February 24, 2026, 11:51:33 PM GMT+1

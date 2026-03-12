@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c8hhvs16oflcn"]
+
+[ext_resource type="Texture2D" uid="uid://6pgdqihoa0x2" path="res://imports/ui/comp/Button-2.svg" id="1_0ifjj"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="2_3u4s5"]
+[ext_resource type="Script" uid="uid://cxiv3qfm023p4" path="res://scripts/ui/comps/settings_texture_button.gd" id="2_n81uy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y6r3"]
+font = ExtResource("2_3u4s5")
+font_size = 15
+font_color = Color(0.84716845, 0.9965059, 0.840146, 1)
+
+[node name="SettingsTextureButton" type="Button" unique_id=1199758012]
+icon = ExtResource("1_0ifjj")
+flat = true
+script = ExtResource("2_n81uy")
+
+[node name="SettingsHBoxContainer" type="HBoxContainer" parent="." unique_id=1955164842]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -26.0
+offset_right = 177.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="SettingsLabel" type="Label" parent="SettingsHBoxContainer" unique_id=363476335]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_1y6r3")
+
+[node name="SettingsTextureHolder" type="Control" parent="SettingsHBoxContainer" unique_id=843020293]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="SettingsOnTextureRect" type="TextureRect" parent="SettingsHBoxContainer/SettingsTextureHolder" unique_id=331386017]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 36.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+stretch_mode = 5
+
+[node name="SettingsOffTextureRect" type="TextureRect" parent="SettingsHBoxContainer/SettingsTextureHolder" unique_id=812940558]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 18.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+stretch_mode = 5
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

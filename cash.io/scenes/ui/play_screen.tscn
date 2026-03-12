@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://dql4hudkwsmrv"]
+
+[ext_resource type="Script" uid="uid://lrovtg3hd5vi" path="res://scripts/ui/play_screen.gd" id="1_07qul"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_07qul"]
+[ext_resource type="Texture2D" uid="uid://dv6v8iad13rju" path="res://imports/ui/Menu-panel-1.png" id="2_xr71u"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="3_xr71u"]
+[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="4_jxkuk"]
+[ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="5_a3ih6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07qul"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mnah"]
+font = ExtResource("2_07qul")
+
+[node name="PlayScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+script = ExtResource("1_07qul")
+
+[node name="PlayScreenPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_07qul")
+
+[node name="PlayScreenTextureRect" type="TextureRect" parent="PlayScreenPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -134.5
+offset_right = 217.5
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xr71u")
+
+[node name="UIButtonsVBoxContainer" type="VBoxContainer" parent="PlayScreenPanel/PlayScreenTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -11.5
+offset_right = 105.5
+offset_bottom = 146.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="SelectRoomLabel" type="Label" parent="PlayScreenPanel/PlayScreenTextureRect/UIButtonsVBoxContainer"]
+layout_mode = 2
+text = "Select Room"
+label_settings = SubResource("LabelSettings_7mnah")
+horizontal_alignment = 1
+
+[node name="UIButtonsSorterVBoxContainer" type="GridContainer" parent="PlayScreenPanel/PlayScreenTextureRect/UIButtonsVBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BottomVBoxContainer" type="VBoxContainer" parent="PlayScreenPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="PlayBackButtonTextured" parent="PlayScreenPanel/BottomVBoxContainer" instance=ExtResource("3_xr71u")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("4_jxkuk")
+
+[node name="ButtonSorterHBoxContainer" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured" index="0"]
+offset_left = -15.0
+offset_top = -14.5
+offset_right = 15.0
+offset_bottom = -1.5
+
+[node name="ButtonIconTextureRect" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
+text = "BACK"
+
+[node name="BuyCoinDetails" parent="PlayScreenPanel" instance=ExtResource("5_a3ih6")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -118.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 56.0
+grow_horizontal = 0
+
+[node name="ButtonTextLabel" parent="PlayScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
+text = " "
+
+[connection signal="pressed" from="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured" to="." method="_on_play_back_button_textured_pressed"]
+
+[editable path="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured"]
+[editable path="PlayScreenPanel/BuyCoinDetails"]
+[editable path="PlayScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]

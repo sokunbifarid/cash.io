@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ern6vtiujw1s"]
+
+[ext_resource type="Script" uid="uid://dhmoe0nws2dts" path="res://scripts/game/in_game_player_v_box_container.gd" id="1_sqggq"]
+[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="1_v511w"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_sqggq"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="3_ibjcj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6t1iq"]
+font = ExtResource("2_sqggq")
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbny2"]
+font = ExtResource("3_ibjcj")
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qixgj"]
+font = ExtResource("2_sqggq")
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InGamePlayerVBoxContainer" type="VBoxContainer" unique_id=2030692280]
+theme_override_constants/separation = 0
+script = ExtResource("1_sqggq")
+
+[node name="InGameCoinDataHBoxContainer" type="HBoxContainer" parent="." unique_id=982098992]
+layout_mode = 2
+
+[node name="CoinTextureRect" type="TextureRect" parent="InGameCoinDataHBoxContainer" unique_id=478181231]
+layout_mode = 2
+texture = ExtResource("1_v511w")
+
+[node name="CoinValueLabel" type="Label" parent="InGameCoinDataHBoxContainer" unique_id=1851224921]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_6t1iq")
+
+[node name="MassVBoxContainer" type="VBoxContainer" parent="." unique_id=1091437437]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="MassLabel" type="Label" parent="MassVBoxContainer" unique_id=917334538]
+layout_mode = 2
+text = "MASS"
+label_settings = SubResource("LabelSettings_qbny2")
+horizontal_alignment = 1
+
+[node name="MassValueLabel" type="Label" parent="MassVBoxContainer" unique_id=26554931]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_qixgj")
+horizontal_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

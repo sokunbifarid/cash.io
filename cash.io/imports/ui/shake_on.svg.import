@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4nmdhbqfg457"
-path="res://.godot/imported/shake_on.svg-2b7540c5c2f7f164a9a4f28b081852eb.ctex"
+uid="uid://e3tnhkj18s4y"
+path="res://.godot/imported/Shake_on.svg-ede5918691815f3253377c91cdbdfaca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imports/ui/shake_on.svg"
-dest_files=["res://.godot/imported/shake_on.svg-2b7540c5c2f7f164a9a4f28b081852eb.ctex"]
+source_file="res://imports/ui/Shake_on.svg"
+dest_files=["res://.godot/imported/Shake_on.svg-ede5918691815f3253377c91cdbdfaca.ctex"]
 
 [params]
 

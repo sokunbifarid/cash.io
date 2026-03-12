@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://dq1oapv312i1q"]
+
+[ext_resource type="Script" uid="uid://bxnku2vuh1sc" path="res://scripts/ui/auth_screen.gd" id="1_unbpt"]
+[ext_resource type="PackedScene" uid="uid://qy8assu4urrj" path="res://scenes/ui/comps/background_texture_rect.tscn" id="2_52ll0"]
+[ext_resource type="Texture2D" uid="uid://4uvd1vr83k7b" path="res://imports/ui/Menu-panel.png" id="3_gq12j"]
+[ext_resource type="Texture2D" uid="uid://px1ljl0gx2tr" path="res://imports/ui/Google-logo.png" id="4_dlmad"]
+[ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_x5a5e"]
+[ext_resource type="Texture2D" uid="uid://6hbr6l2lf0vj" path="res://imports/ui/Apple-logo.png" id="5_1hc61"]
+[ext_resource type="PackedScene" uid="uid://c51h16jx7gqbp" path="res://scenes/auth/google_sign_in.tscn" id="6_x5a5e"]
+[ext_resource type="PackedScene" uid="uid://di270afj8ano2" path="res://scenes/auth/apple_sign_in.tscn" id="7_dlmad"]
+[ext_resource type="PackedScene" uid="uid://d1yu56grq3etg" path="res://scenes/ui/auth_issue_notice_panel.tscn" id="8_dlmad"]
+[ext_resource type="FontFile" path="res://imports/font/CasterStreet-Light-Font.otf" id="9_1hc61"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_52ll0"]
+font = ExtResource("9_1hc61")
+font_size = 50
+font_color = Color(0.0018755076, 0.0018755078, 0.0018755076, 1)
+
+[node name="AuthScreen" type="Control" unique_id=782471059 node_paths=PackedStringArray("google_signin_node", "apple_signin_node")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_unbpt")
+google_signin_node = NodePath("GoogleSignIn")
+apple_signin_node = NodePath("")
+
+[node name="BackgroundTextureRect" parent="." unique_id=832078628 instance=ExtResource("2_52ll0")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="LoginCreateAccountControl" type="Control" parent="." unique_id=206391600]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginCreatePanelTextureRect" type="TextureRect" parent="LoginCreateAccountControl" unique_id=913561510]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -122.0
+offset_right = 204.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gq12j")
+
+[node name="ButtonsVBoxContainer" type="VBoxContainer" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect" unique_id=1831714739]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = -15.0
+offset_right = 216.5
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -20
+
+[node name="GoogleButtonTextured" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer" unique_id=2055212109 instance=ExtResource("4_x5a5e")]
+layout_mode = 2
+
+[node name="ButtonIconTextureRect" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured/ButtonSorterHBoxContainer" parent_id_path=PackedInt32Array(2055212109, 617067692) index="0" unique_id=1227533788]
+texture = ExtResource("4_dlmad")
+
+[node name="ButtonTextLabel" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured/ButtonSorterHBoxContainer" parent_id_path=PackedInt32Array(2055212109, 617067692) index="1" unique_id=152673229]
+text = "Sign In With Google"
+
+[node name="AppleButtonTextured" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer" unique_id=1039158849 instance=ExtResource("4_x5a5e")]
+layout_mode = 2
+
+[node name="ButtonIconTextureRect" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured/ButtonSorterHBoxContainer" parent_id_path=PackedInt32Array(1039158849, 617067692) index="0" unique_id=1227533788]
+texture = ExtResource("5_1hc61")
+
+[node name="ButtonTextLabel" parent="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured/ButtonSorterHBoxContainer" parent_id_path=PackedInt32Array(1039158849, 617067692) index="1" unique_id=152673229]
+text = "Sign In With Apple"
+
+[node name="GoogleSignIn" parent="." unique_id=885169633 node_paths=PackedStringArray("google_auth_status_label_node", "google_auth_signout_button") instance=ExtResource("6_x5a5e")]
+layout_mode = 1
+google_auth_status_label_node = NodePath("../GoogleAuthStatusLabel")
+google_auth_signout_button = NodePath("../GoogleSignoutButtonTextured_1")
+
+[node name="AppleSignIn" parent="." unique_id=795949120 instance=ExtResource("7_dlmad")]
+layout_mode = 1
+
+[node name="AuthIssueNoticePanel" parent="." unique_id=577526210 instance=ExtResource("8_dlmad")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+grow_horizontal = 1
+
+[node name="GoogleAuthStatusLabel" type="Label" parent="." unique_id=257736814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -479.0
+offset_top = -32.5
+offset_right = 479.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_52ll0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoogleSignoutButtonTextured_1" parent="." unique_id=429896223 instance=ExtResource("4_x5a5e")]
+visible = false
+layout_mode = 0
+offset_left = 1270.0
+offset_top = 631.0
+offset_right = 1529.0
+offset_bottom = 717.0
+texture_normal = null
+
+[node name="ButtonTextLabel" parent="GoogleSignoutButtonTextured_1/ButtonSorterHBoxContainer" parent_id_path=PackedInt32Array(429896223, 617067692) index="1" unique_id=152673229]
+text = "G-Signout"
+
+[connection signal="pressed" from="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured" to="." method="_on_google_button_textured_pressed"]
+[connection signal="pressed" from="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured" to="." method="_on_apple_button_textured_pressed"]
+[connection signal="pressed" from="GoogleSignoutButtonTextured_1" to="." method="_on_google_signout_button_textured_1_pressed"]
+
+[editable path="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured"]
+[editable path="LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured"]
+[editable path="GoogleSignoutButtonTextured_1"]

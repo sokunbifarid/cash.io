@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://daec8ml178ago"]
 
 [ext_resource type="Script" uid="uid://bxgsr705aqpra" path="res://scripts/ui/loading_screen_control.gd" id="1_7od4f"]
-[ext_resource type="FontFile" uid="uid://cn36pje3t12ds" path="res://imports/font/Warungasem-Heavy-Font.ttf" id="1_gxaxw"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="2_7od4f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7od4f"]
-font = ExtResource("1_gxaxw")
-font_size = 128
+font = ExtResource("2_7od4f")
+font_size = 40
 
 [node name="LoadingScreenControl" type="Control" unique_id=1798089108]
 visible = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,10 +33,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -50.0
-offset_right = 144.0
-offset_bottom = 50.0
+offset_left = -100.0
+offset_top = -24.5
+offset_right = 100.0
+offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Loading..."

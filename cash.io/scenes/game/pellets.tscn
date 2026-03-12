@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://v2js4x2t6odi"]
+
+[ext_resource type="Texture2D" uid="uid://bduup0lk0nevh" path="res://imports/game/Pellets_new.png" id="1_bieph"]
+
+[node name="Pellets" type="Sprite2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_bieph")

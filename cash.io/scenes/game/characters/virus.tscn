@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ccuo0x208ec6"]
+
+[ext_resource type="Script" uid="uid://1m4fjqhrjytt" path="res://scripts/game/characters/virus.gd" id="1_tfi2w"]
+[ext_resource type="Texture2D" uid="uid://k8vm2fnkqc82" path="res://imports/game/enemies/Virus.png" id="1_uyb0h"]
+
+[node name="Virus" type="Sprite2D" unique_id=5390390]
+texture = ExtResource("1_uyb0h")
+script = ExtResource("1_tfi2w")
