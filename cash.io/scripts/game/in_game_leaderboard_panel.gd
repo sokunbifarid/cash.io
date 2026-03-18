@@ -5,6 +5,7 @@ extends Panel
 var players_list: Dictionary = {}
 var recorded_players_id: Array = []
 var player_with_higest_coin_name: String = ""
+var player_with_higest_coin_id: String = ""
 var players_with_highest_coin_coin_count: int = 0
 const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/60.0
 var websocket_tick_count: float = 0
@@ -13,7 +14,13 @@ func _ready() -> void:
 	hide_all_leaderboard_item()
 	SignalManager.prepare_game.connect(_on_prepare_game)
 	SignalManager.match_over_signal.connect(_on_match_over_signal)
+	SignalManager.prepare_game_for_play_again_signal.connect(_on_prepare_game_for_play_again_signal)
 	set_process(false)
+
+func _on_prepare_game_for_play_again_signal() -> void:
+	set_process(false)
+	players_list = {}
+	recorded_players_id = []
 
 func _on_prepare_game() -> void:
 	set_process(true)
@@ -35,31 +42,58 @@ func _process(delta: float) -> void:
 		return
 	else:
 		websocket_tick_count = 0
-	var focused_character: Dictionary = {}
+	#var focused_character: Dictionary = {}
+	recorded_players_id = []
+	var leaderboard_position: int = 1
 	players_list = GameHttpNetworkManager.current_player_list
+	for i in leaderboard_item_sorter_v_box_container.get_child_count():
+		leaderboard_item_sorter_v_box_container.get_child(i).hide()
+	print("player list: ", players_list)
 	if players_list.size() > 0:
-		var leaderboard_position: int = 1
-		for j in leaderboard_item_sorter_v_box_container.get_child_count():
-			if j != leaderboard_item_sorter_v_box_container.get_child_count() - 1:
-				leaderboard_item_sorter_v_box_container.get_child(j).hide()
-				player_with_higest_coin_name = ""
-				for i in players_list:
-					if not recorded_players_id.has(i):
-						if players_list[i].current_coin >= players_with_highest_coin_coin_count:
-							players_with_highest_coin_coin_count = players_list[i].current_coin
-							player_with_higest_coin_name = players_list[i].current_name.left(5)
-							recorded_players_id.append(i)
-				if player_with_higest_coin_name != "":
-					leaderboard_item_sorter_v_box_container.get_child(j).show()
-					leaderboard_item_sorter_v_box_container.get_child(j).text = str(leaderboard_position) + ". " + player_with_higest_coin_name + ":  " + str(players_with_highest_coin_coin_count) + " coins"
-					leaderboard_item_sorter_v_box_container.get_child(j).modulate = Color.WHITE
-					leaderboard_position += 1
-			else:
-				if players_list.has(str(GameHttpNetworkManager.get_current_player_id())):
-					leaderboard_item_sorter_v_box_container.get_child(j).show()
-					leaderboard_item_sorter_v_box_container.get_child(j).text = str(leaderboard_position) + ". " + players_list[GameHttpNetworkManager.get_current_player_id()].current_name.left(5) + ":  " + str(players_list[GameHttpNetworkManager.get_current_player_id()].current_coin) + " coins"
-					leaderboard_item_sorter_v_box_container.get_child(j).modulate = Color.ORANGE
-					leaderboard_position += 1
+		for i in players_list.size():#leaderboard_item_sorter_v_box_container.get_child_count():
+			player_with_higest_coin_id = ""
+			for j in players_list:
+				if not recorded_players_id.has(j):
+					if players_list[j].current_coin >= players_with_highest_coin_coin_count:
+						players_with_highest_coin_coin_count = players_list[j].current_coin
+						player_with_higest_coin_id = j
+			if player_with_higest_coin_id != "":
+				recorded_players_id.append(player_with_higest_coin_id)
+		if not recorded_players_id.has(GameHttpNetworkManager.get_current_player_id()):
+			recorded_players_id[recorded_players_id.size() - 1] = GameHttpNetworkManager.get_current_player_id()
+		for l in players_list.size():#leaderboard_item_sorter_v_box_container.get_child_count():
+			if l < leaderboard_item_sorter_v_box_container.get_child_count():
+				leaderboard_item_sorter_v_box_container.get_child(l).show()
+				leaderboard_item_sorter_v_box_container.get_child(l).set_data(str(leaderboard_position) + ". " + players_list[recorded_players_id[l]].current_name.left(7), str(players_list[recorded_players_id[l]].current_coin))
+				print("leaderboard setting data, player_id: %s, new character data id: %s" % [GameHttpNetworkManager.get_current_player_id(), recorded_players_id[l]])
+				if recorded_players_id[l] == GameHttpNetworkManager.get_current_player_id():
+					leaderboard_item_sorter_v_box_container.get_child(l).is_player_data(true)
+				else:
+					leaderboard_item_sorter_v_box_container.get_child(l).is_player_data(false)
+				leaderboard_position += 1
+	
+		#var leaderboard_position: int = 1
+		#for j in leaderboard_item_sorter_v_box_container.get_child_count():
+			#if j != leaderboard_item_sorter_v_box_container.get_child_count() - 1:
+				#leaderboard_item_sorter_v_box_container.get_child(j).hide()
+				#player_with_higest_coin_name = ""
+				#for i in players_list:
+					#if not recorded_players_id.has(i):
+						#if players_list[i].current_coin >= players_with_highest_coin_coin_count:
+							#players_with_highest_coin_coin_count = players_list[i].current_coin
+							#player_with_higest_coin_name = players_list[i].current_name.left(5)
+							#recorded_players_id.append(i)
+				#if player_with_higest_coin_name != "":
+					#leaderboard_item_sorter_v_box_container.get_child(j).show()
+					#leaderboard_item_sorter_v_box_container.get_child(j).text = str(leaderboard_position) + ". " + player_with_higest_coin_name + ":  " + str(players_with_highest_coin_coin_count) + " coins"
+					#leaderboard_item_sorter_v_box_container.get_child(j).modulate = Color.WHITE
+					#leaderboard_position += 1
+			#else:
+				#if players_list.has(str(GameHttpNetworkManager.get_current_player_id())):
+					#leaderboard_item_sorter_v_box_container.get_child(j).show()
+					#leaderboard_item_sorter_v_box_container.get_child(j).text = str(leaderboard_position) + ". " + players_list[GameHttpNetworkManager.get_current_player_id()].current_name.left(5) + ":  " + str(players_list[GameHttpNetworkManager.get_current_player_id()].current_coin) + " coins"
+					#leaderboard_item_sorter_v_box_container.get_child(j).modulate = Color.ORANGE
+					#leaderboard_position += 1
 
 func populate_list_of_leaderboard_items(data: Dictionary) -> void:
 	hide_all_leaderboard_item()

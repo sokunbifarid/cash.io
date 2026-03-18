@@ -1,36 +1,37 @@
-[gd_scene load_steps=27 format=4 uid="uid://f8aa8b6kkmf"]
+[gd_scene load_steps=37 format=4 uid="uid://f8aa8b6kkmf"]
 
 [ext_resource type="Texture2D" uid="uid://dv6v8iad13rju" path="res://imports/ui/Menu-panel-1.png" id="1_8pg0f"]
 [ext_resource type="Script" uid="uid://deajjk3y5bosi" path="res://scripts/ui/withdrawal_screen.gd" id="1_h3aen"]
-[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_h3aen"]
-[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="3_6v0bk"]
+[ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="2_ey370"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_h3aen"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="3_6v0bk"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_6x7p8"]
-[ext_resource type="Texture2D" uid="uid://6pgdqihoa0x2" path="res://imports/ui/comp/Button-2.svg" id="5_6x7p8"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="6_ey370"]
-[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="6_x3q10"]
+[ext_resource type="Texture2D" uid="uid://dqo8qifowio5p" path="res://assets/ui/comp/Button_1.png" id="5_x3q10"]
 [ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="7_0gmwe"]
-[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="9_6v0bk"]
-[ext_resource type="FontFile" uid="uid://ciobcmfc8k2ev" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Light.otf" id="10_ey370"]
+[ext_resource type="Texture2D" uid="uid://bfv7p7bkeiql3" path="res://assets/ui/comp/Screen_panel_4.png" id="8_xgbb3"]
+[ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="9_0gmwe"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="9_6v0bk"]
+[ext_resource type="Texture2D" uid="uid://cr3kj1qavhndg" path="res://imports/ui/Profile/Profile_input_panel.png" id="10_2pu2u"]
+[ext_resource type="FontFile" uid="uid://ciobcmfc8k2ev" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Light.otf" id="10_ey370"]
+[ext_resource type="Texture2D" uid="uid://cyv5rt56q1qxx" path="res://assets/ui/Withdrawal_In_progress_Screen.png" id="11_0gmwe"]
+[ext_resource type="Texture2D" uid="uid://bsfinjr5g6khe" path="res://assets/ui/comp/Background_3.png" id="11_nhauy"]
+[ext_resource type="Texture2D" uid="uid://ktbaajn32c4i" path="res://assets/ui/comp/Comic_lines.png" id="12_w3me0"]
+[ext_resource type="Texture2D" uid="uid://byooer6ibiwk6" path="res://assets/ui/comp/Button_6.png" id="13_uosmo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uosmo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhauy"]
 font = ExtResource("2_h3aen")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgbb3"]
-atlas = ExtResource("5_6x7p8")
-region = Rect2(20, 10, 171, 41)
-
-[sub_resource type="LabelSettings" id="LabelSettings_x3q10"]
-font = ExtResource("6_ey370")
+[sub_resource type="LabelSettings" id="LabelSettings_w3me0"]
 font_size = 12
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2pu2u"]
-atlas = ExtResource("6_x3q10")
-region = Rect2(20, 10, 106, 41)
-
-[sub_resource type="LabelSettings" id="LabelSettings_w3me0"]
-font_size = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ydwt"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
 
 [sub_resource type="Image" id="Image_6v0bk"]
 data = {
@@ -796,13 +797,51 @@ cache/0/50/0/glyphs/30/size = Vector2(29, 41)
 cache/0/50/0/glyphs/30/uv_rect = Rect2(1, 122, 29, 41)
 cache/0/50/0/glyphs/30/texture_idx = 0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1g4x"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rv5q"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkij6"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 5.0
+texture_margin_bottom = 5.0
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_frkc2"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_0gmwe"]
 font = ExtResource("10_ey370")
 font_size = 11
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msspk"]
+texture = ExtResource("10_2pu2u")
+texture_margin_top = 10.0
+texture_margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xgbb3"]
+texture = ExtResource("11_nhauy")
+
 [sub_resource type="LabelSettings" id="LabelSettings_6x7p8"]
 font = ExtResource("9_6v0bk")
-font_size = 28
+font_size = 24
 
 [node name="WithdrawalScreen" type="Control"]
 visible = false
@@ -825,15 +864,21 @@ pivot_offset = Vector2(400, 180)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_uosmo")
 
 [node name="WithdrawalMethodTextureRect" type="TextureRect" parent="WithdrawalMethodScreenPanel"]
+custom_minimum_size = Vector2(434, 269)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -217.5
+offset_top = -134.5
 offset_right = 217.5
-offset_bottom = 269.0
+offset_bottom = 134.5
 grow_horizontal = 2
-texture = ExtResource("1_8pg0f")
+grow_vertical = 2
+texture = ExtResource("2_ey370")
+expand_mode = 1
 
 [node name="UIButtonsVBoxContainer" type="VBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect"]
 layout_mode = 1
@@ -860,70 +905,75 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="NairaWithdrawalMethodButtonTextured" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(171, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_xgbb3")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured" index="0"]
+custom_minimum_size = Vector2(171, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_x3q10")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -20.5
+offset_top = -12.0
+offset_right = 20.5
+offset_bottom = 6.0
 
-[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "NAIRA"
-label_settings = SubResource("LabelSettings_x3q10")
+[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Naira"
 
 [node name="CryptoWithdrawalMethodButtonTextured" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(171, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_xgbb3")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured" index="0"]
+custom_minimum_size = Vector2(171, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_x3q10")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -26.5
+offset_top = -13.0
+offset_right = 26.5
+offset_bottom = 5.0
 
-[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "CRYPTO"
-label_settings = SubResource("LabelSettings_x3q10")
+[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Crypto"
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="WithdrawalMethodScreenPanel"]
+[node name="WithdrawalMethodBackButtonTextured" parent="WithdrawalMethodScreenPanel" instance=ExtResource("4_6x7p8")]
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -54.0
-offset_right = -18.0
-grow_horizontal = 2
+offset_left = -129.0
+offset_top = -71.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="WithdrawalMethodBackButtonTextured" parent="WithdrawalMethodScreenPanel/BottomVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_2pu2u")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/BottomVBoxContainer/WithdrawalMethodBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_0gmwe")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalMethodScreenPanel/BottomVBoxContainer/WithdrawalMethodBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -20.5
+offset_top = -12.0
+offset_right = 20.5
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/BottomVBoxContainer/WithdrawalMethodBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "BACK"
 
 [node name="BuyCoinDetails" parent="WithdrawalMethodScreenPanel" instance=ExtResource("7_0gmwe")]
@@ -940,12 +990,6 @@ grow_horizontal = 0
 [node name="BuyCoinButtonTextured" parent="WithdrawalMethodScreenPanel/BuyCoinDetails" index="0"]
 disabled = true
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured" index="0"]
-alignment = 1
-
-[node name="ButtonTextLabel" parent="WithdrawalMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
-visible = false
-
 [node name="WithdrawalFormScreenPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -958,15 +1002,18 @@ pivot_offset = Vector2(400, 180)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_uosmo")
 
 [node name="WithdrawalTextureRect" type="TextureRect" parent="WithdrawalFormScreenPanel"]
+custom_minimum_size = Vector2(418, 336)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -217.5
+offset_top = -8.0
 offset_right = 217.5
-offset_bottom = 269.0
+offset_bottom = 328.0
 grow_horizontal = 2
-texture = ExtResource("1_8pg0f")
+texture = ExtResource("8_xgbb3")
+expand_mode = 1
 
 [node name="UIButtonsVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect"]
 layout_mode = 1
@@ -976,12 +1023,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -105.5
-offset_top = -23.5
+offset_top = -87.5
 offset_right = 105.5
-offset_bottom = 263.5
+offset_bottom = 199.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 0
 
 [node name="WithdrawalFormLabel" type="Label" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer"]
 layout_mode = 2
@@ -991,6 +1038,7 @@ horizontal_alignment = 1
 
 [node name="WithdrawalDetailsVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="AccountNameVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer"]
 layout_mode = 2
@@ -1005,6 +1053,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_4ydwt")
 placeholder_text = "Account name.."
 max_length = 16
 
@@ -1021,6 +1070,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontFile_nhauy")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_d1g4x")
 placeholder_text = "Account number..."
 max_length = 10
 virtual_keyboard_type = 2
@@ -1038,6 +1088,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_3rv5q")
 placeholder_text = "Bank name..."
 max_length = 16
 
@@ -1054,6 +1105,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_wkij6")
 placeholder_text = "Crypto address..."
 max_length = 16
 
@@ -1070,6 +1122,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_frkc2")
 placeholder_text = "N1000"
 max_length = 16
 virtual_keyboard_type = 2
@@ -1079,52 +1132,57 @@ layout_mode = 2
 alignment = 1
 
 [node name="WithdrawalFormSubmitButtonTextured" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_xgbb3")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_0gmwe")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 25.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonTextLabel" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Submit"
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel"]
+[node name="WithdrawalFormBackButtonTextured" parent="WithdrawalFormScreenPanel" instance=ExtResource("4_6x7p8")]
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -54.0
-offset_right = -18.0
-grow_horizontal = 2
+offset_left = -121.0
+offset_top = -63.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="WithdrawalFormBackButtonTextured" parent="WithdrawalFormScreenPanel/BottomVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_2pu2u")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalFormScreenPanel/BottomVBoxContainer/WithdrawalFormBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalFormScreenPanel/WithdrawalFormBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_0gmwe")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalFormScreenPanel/BottomVBoxContainer/WithdrawalFormBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalFormBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -19.0
+offset_top = -11.0
+offset_right = 19.0
+offset_bottom = 7.0
 
-[node name="ButtonTextLabel" parent="WithdrawalFormScreenPanel/BottomVBoxContainer/WithdrawalFormBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="WithdrawalFormScreenPanel/WithdrawalFormBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [node name="BuyCoinDetails" parent="WithdrawalFormScreenPanel" instance=ExtResource("7_0gmwe")]
 layout_mode = 1
@@ -1139,12 +1197,6 @@ grow_horizontal = 0
 
 [node name="BuyCoinButtonTextured" parent="WithdrawalFormScreenPanel/BuyCoinDetails" index="0"]
 disabled = true
-
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalFormScreenPanel/BuyCoinDetails/BuyCoinButtonTextured" index="0"]
-alignment = 1
-
-[node name="ButtonTextLabel" parent="WithdrawalFormScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
-visible = false
 
 [node name="WithdrawalDataScreenPanel" type="Panel" parent="."]
 visible = false
@@ -1212,6 +1264,7 @@ label_settings = SubResource("LabelSettings_w3me0")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_msspk")
 placeholder_text = "N1000"
 max_length = 16
 virtual_keyboard_type = 2
@@ -1221,51 +1274,54 @@ layout_mode = 2
 alignment = 1
 
 [node name="WithdrawalDataSubmitButtonTextured" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_xgbb3")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_0gmwe")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -27.0
+offset_top = -13.0
+offset_right = 27.0
+offset_bottom = 5.0
 
-[node name="ButtonTextLabel" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonTextLabel" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Submit"
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="WithdrawalDataScreenPanel"]
+[node name="WithdrawalDataBackButtonTextured" parent="WithdrawalDataScreenPanel" instance=ExtResource("4_6x7p8")]
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -54.0
-offset_right = -18.0
-grow_horizontal = 2
+offset_left = -121.0
+offset_top = -63.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
-
-[node name="WithdrawalDataBackButtonTextured" parent="WithdrawalDataScreenPanel/BottomVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_2pu2u")
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalDataScreenPanel/BottomVBoxContainer/WithdrawalDataBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalDataScreenPanel/WithdrawalDataBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_0gmwe")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalDataScreenPanel/BottomVBoxContainer/WithdrawalDataBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalDataScreenPanel/WithdrawalDataBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -19.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 6.0
 
-[node name="ButtonTextLabel" parent="WithdrawalDataScreenPanel/BottomVBoxContainer/WithdrawalDataBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="WithdrawalDataScreenPanel/WithdrawalDataBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [node name="BuyCoinDetails" parent="WithdrawalDataScreenPanel" instance=ExtResource("7_0gmwe")]
 layout_mode = 1
@@ -1281,12 +1337,6 @@ grow_horizontal = 0
 [node name="BuyCoinButtonTextured" parent="WithdrawalDataScreenPanel/BuyCoinDetails" index="0"]
 disabled = true
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalDataScreenPanel/BuyCoinDetails/BuyCoinButtonTextured" index="0"]
-alignment = 1
-
-[node name="ButtonTextLabel" parent="WithdrawalDataScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
-visible = false
-
 [node name="WithdrawalInProgressScreenPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -1296,71 +1346,109 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(400, 180)
+theme_override_styles/panel = SubResource("StyleBoxTexture_xgbb3")
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="WithdrawalInProgressScreenPanel"]
+[node name="ComicEffect" type="TextureRect" parent="WithdrawalInProgressScreenPanel"]
+custom_minimum_size = Vector2(800, 360)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+texture = ExtResource("12_w3me0")
+expand_mode = 1
+
+[node name="WithdrawalTextureRect" type="TextureRect" parent="WithdrawalInProgressScreenPanel"]
+custom_minimum_size = Vector2(371, 185)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -237.5
-offset_top = -55.5
-offset_right = 237.5
-offset_bottom = 55.5
+offset_left = -185.5
+offset_top = -92.5
+offset_right = 185.5
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_0gmwe")
+expand_mode = 1
+
+[node name="WithdrawalVBoxContainer" type="VBoxContainer" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -20.0
+offset_right = 85.5
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 31
 
-[node name="WithdrawalInProgressLabel" type="Label" parent="WithdrawalInProgressScreenPanel/BottomVBoxContainer"]
+[node name="WithdrawalInProgressLabel" type="Label" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer"]
 layout_mode = 2
-text = "WITHDRAWAL SUCCESSFUL"
+text = "Withdrawal In
+Progress"
 label_settings = SubResource("LabelSettings_6x7p8")
 horizontal_alignment = 1
 
-[node name="WithdrawalInProgressBackButtonTextured" parent="WithdrawalInProgressScreenPanel/BottomVBoxContainer" instance=ExtResource("4_6x7p8")]
-custom_minimum_size = Vector2(0, 0)
+[node name="WithdrawalInProgressBackButtonTextured" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer" instance=ExtResource("4_6x7p8")]
+custom_minimum_size = Vector2(64, 26)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_2pu2u")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ButtonSorterHBoxContainer" parent="WithdrawalInProgressScreenPanel/BottomVBoxContainer/WithdrawalInProgressBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(64, 26)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("13_uosmo")
 
-[node name="ButtonIconTextureRect" parent="WithdrawalInProgressScreenPanel/BottomVBoxContainer/WithdrawalInProgressBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 17.0
+offset_bottom = 9.0
+
+[node name="ButtonIconTextureRect" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="WithdrawalInProgressScreenPanel/BottomVBoxContainer/WithdrawalInProgressBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [connection signal="pressed" from="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured" to="." method="_on_naira_withdrawal_method_button_textured_pressed"]
 [connection signal="pressed" from="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured" to="." method="_on_crypto_withdrawal_method_button_textured_pressed"]
-[connection signal="pressed" from="WithdrawalMethodScreenPanel/BottomVBoxContainer/WithdrawalMethodBackButtonTextured" to="." method="_on_withdrawal_method_back_button_textured_pressed"]
+[connection signal="pressed" from="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured" to="." method="_on_withdrawal_method_back_button_textured_pressed"]
 [connection signal="text_changed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/AccountNameVBoxContainer/WithdrawalFormAccountNameValueLineEdit" to="." method="_on_withdrawal_form_account_name_value_line_edit_text_changed"]
 [connection signal="text_changed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/AccountNumberVBoxContainer/WithdrawalFormAccountNumberValueLineEdit" to="." method="_on_withdrawal_form_account_number_value_line_edit_text_changed"]
 [connection signal="text_changed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/BankNameVBoxContainer/WithdrawalFormBankNameValueLineEdit" to="." method="_on_withdrawal_form_bank_name_value_line_edit_text_changed"]
 [connection signal="text_changed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoAddressVBoxContainer/WithdrawalFormCryptoAddressValueLineEdit" to="." method="_on_withdrawal_form_crypto_address_value_line_edit_text_changed"]
 [connection signal="text_changed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer/WithdrawalFormWithdrawalAmountValueLineEdit" to="." method="_on_withdrawal_form_withdrawal_amount_value_line_edit_text_changed"]
 [connection signal="pressed" from="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured" to="." method="_on_withdrawal_form_submit_button_textured_pressed"]
-[connection signal="pressed" from="WithdrawalFormScreenPanel/BottomVBoxContainer/WithdrawalFormBackButtonTextured" to="." method="_on_withdrawal_form_back_button_textured_pressed"]
+[connection signal="pressed" from="WithdrawalFormScreenPanel/WithdrawalFormBackButtonTextured" to="." method="_on_withdrawal_form_back_button_textured_pressed"]
 [connection signal="text_changed" from="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer/WithdrawalDataWithdrawalAmountValueLineEdit" to="." method="_on_withdrawal_data_withdrawal_amount_value_line_edit_text_changed"]
 [connection signal="pressed" from="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured" to="." method="_on_withdrawal_data_submit_button_textured_pressed"]
-[connection signal="pressed" from="WithdrawalDataScreenPanel/BottomVBoxContainer/WithdrawalDataBackButtonTextured" to="." method="_on_withdrawal_data_back_button_textured_pressed"]
-[connection signal="pressed" from="WithdrawalInProgressScreenPanel/BottomVBoxContainer/WithdrawalInProgressBackButtonTextured" to="." method="_on_withdrawal_in_progress_back_button_textured_pressed"]
+[connection signal="pressed" from="WithdrawalDataScreenPanel/WithdrawalDataBackButtonTextured" to="." method="_on_withdrawal_data_back_button_textured_pressed"]
+[connection signal="pressed" from="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured" to="." method="_on_withdrawal_in_progress_back_button_textured_pressed"]
 
 [editable path="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/NairaWithdrawalMethodButtonTextured"]
 [editable path="WithdrawalMethodScreenPanel/WithdrawalMethodTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoWithdrawalMethodButtonTextured"]
-[editable path="WithdrawalMethodScreenPanel/BottomVBoxContainer/WithdrawalMethodBackButtonTextured"]
+[editable path="WithdrawalMethodScreenPanel/WithdrawalMethodBackButtonTextured"]
 [editable path="WithdrawalMethodScreenPanel/BuyCoinDetails"]
 [editable path="WithdrawalMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]
 [editable path="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalFormSubmitButtonTextured"]
-[editable path="WithdrawalFormScreenPanel/BottomVBoxContainer/WithdrawalFormBackButtonTextured"]
+[editable path="WithdrawalFormScreenPanel/WithdrawalFormBackButtonTextured"]
 [editable path="WithdrawalFormScreenPanel/BuyCoinDetails"]
 [editable path="WithdrawalFormScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]
 [editable path="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/UIButtonsSorterHBoxContainer/WithdrawalDataSubmitButtonTextured"]
-[editable path="WithdrawalDataScreenPanel/BottomVBoxContainer/WithdrawalDataBackButtonTextured"]
+[editable path="WithdrawalDataScreenPanel/WithdrawalDataBackButtonTextured"]
 [editable path="WithdrawalDataScreenPanel/BuyCoinDetails"]
 [editable path="WithdrawalDataScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]
-[editable path="WithdrawalInProgressScreenPanel/BottomVBoxContainer/WithdrawalInProgressBackButtonTextured"]
+[editable path="WithdrawalInProgressScreenPanel/WithdrawalTextureRect/WithdrawalVBoxContainer/WithdrawalInProgressBackButtonTextured"]

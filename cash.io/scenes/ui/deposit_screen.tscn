@@ -1,32 +1,23 @@
 [gd_scene load_steps=22 format=3 uid="uid://cjdctoi3rtpsx"]
 
 [ext_resource type="Script" uid="uid://bugeb5vkfynek" path="res://scripts/ui/deposit_screen.gd" id="1_s3pvw"]
-[ext_resource type="Texture2D" uid="uid://dv6v8iad13rju" path="res://imports/ui/Menu-panel-1.png" id="2_xtjk7"]
-[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="3_1nb1i"]
+[ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="2_dc32x"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="3_1nb1i"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_pop38"]
-[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="4_xtjk7"]
-[ext_resource type="Texture2D" uid="uid://6pgdqihoa0x2" path="res://imports/ui/comp/Button-2.svg" id="5_3gp48"]
-[ext_resource type="Texture2D" uid="uid://bavl1r5qci4of" path="res://imports/ui/comp/Button_5.png" id="6_1nb1i"]
-[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="6_dc32x"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="4_xtjk7"]
+[ext_resource type="Texture2D" uid="uid://dqo8qifowio5p" path="res://assets/ui/comp/Button_1.png" id="5_xtjk7"]
+[ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="6_1nb1i"]
 [ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="7_nrv1f"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="10_pop38"]
+[ext_resource type="Texture2D" uid="uid://bsfinjr5g6khe" path="res://assets/ui/comp/Background_3.png" id="9_dc32x"]
+[ext_resource type="Texture2D" uid="uid://cr3kj1qavhndg" path="res://imports/ui/Profile/Profile_input_panel.png" id="9_nrv1f"]
+[ext_resource type="Texture2D" uid="uid://ktbaajn32c4i" path="res://assets/ui/comp/Comic_lines.png" id="10_nrv1f"]
+[ext_resource type="Texture2D" uid="uid://do232q6tqbawc" path="res://assets/ui/Deposit_Payment_Successful_Screen.png" id="11_kxhjl"]
+[ext_resource type="Texture2D" uid="uid://byooer6ibiwk6" path="res://assets/ui/comp/Button_6.png" id="12_fx7rm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pop38"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3gp48"]
 font = ExtResource("3_1nb1i")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dc32x"]
-atlas = ExtResource("5_3gp48")
-region = Rect2(20, 10, 171, 41)
-
-[sub_resource type="LabelSettings" id="LabelSettings_nrv1f"]
-font = ExtResource("10_pop38")
-font_size = 12
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxhjl"]
-atlas = ExtResource("6_dc32x")
-region = Rect2(20, 10, 106, 41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i55n3"]
 
@@ -34,19 +25,24 @@ region = Rect2(20, 10, 106, 41)
 font = ExtResource("3_1nb1i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pop38"]
-font_size = 8
+font_size = 12
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_htoyf"]
-atlas = ExtResource("6_1nb1i")
-region = Rect2(0, 0, 93, 32)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxhjl"]
+content_margin_left = 1.0
+texture = ExtResource("9_nrv1f")
+texture_margin_left = 93.0
+texture_margin_top = 10.0
+texture_margin_right = 120.0
+texture_margin_bottom = 10.0
+expand_margin_left = 10.0
+expand_margin_right = 10.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hbn31"]
-atlas = ExtResource("6_dc32x")
-region = Rect2(20, 10, 106, 41)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dc1qf"]
+texture = ExtResource("9_dc32x")
 
 [sub_resource type="LabelSettings" id="LabelSettings_dc32x"]
 font = ExtResource("3_1nb1i")
-font_size = 42
+font_size = 24
 
 [node name="DepositScreen" type="Control"]
 visible = false
@@ -69,6 +65,7 @@ pivot_offset = Vector2(400, 180)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pop38")
 
 [node name="DepositMethodTextureRect" type="TextureRect" parent="DepositMethodMethodScreenPanel"]
+custom_minimum_size = Vector2(434, 269)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -81,7 +78,8 @@ offset_right = 217.5
 offset_bottom = 134.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xtjk7")
+texture = ExtResource("2_dc32x")
+expand_mode = 1
 
 [node name="UIButtonsVBoxContainer" type="VBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect"]
 layout_mode = 1
@@ -108,71 +106,86 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="NairaDepositMethodButtonTextured" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(171, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_dc32x")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured" index="0"]
+custom_minimum_size = Vector2(171, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_xtjk7")
 
-[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -18.5
+offset_top = -12.0
+offset_right = 18.5
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "NAIRA"
-label_settings = SubResource("LabelSettings_nrv1f")
+[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Naira"
 
 [node name="CryptoDepositMethodButtonTextured" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(171, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_dc32x")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured" index="0"]
+custom_minimum_size = Vector2(171, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_xtjk7")
 
-[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -24.5
+offset_top = -13.0
+offset_right = 24.5
+offset_bottom = 5.0
+
+[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "CRYPTO"
-label_settings = SubResource("LabelSettings_nrv1f")
+[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Crypto"
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="DepositMethodMethodScreenPanel"]
+[node name="DepositMethodBackButtonTextured" parent="DepositMethodMethodScreenPanel" instance=ExtResource("4_pop38")]
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -54.0
-offset_right = -18.0
-grow_horizontal = 2
+offset_left = -121.0
+offset_top = -63.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="DepositMethodBackButtonTextured" parent="DepositMethodMethodScreenPanel/BottomVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_kxhjl")
 
-[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/BottomVBoxContainer/DepositMethodBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("6_1nb1i")
 
-[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/BottomVBoxContainer/DepositMethodBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/BottomVBoxContainer/DepositMethodBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [node name="BuyCoinDetails" parent="DepositMethodMethodScreenPanel" instance=ExtResource("7_nrv1f")]
 layout_mode = 1
@@ -188,10 +201,7 @@ grow_horizontal = 0
 [node name="BuyCoinButtonTextured" parent="DepositMethodMethodScreenPanel/BuyCoinDetails" index="0"]
 disabled = true
 
-[node name="ButtonSorterHBoxContainer" parent="DepositMethodMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured" index="0"]
-alignment = 1
-
-[node name="ButtonTextLabel" parent="DepositMethodMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
+[node name="Plus_ButtonSorterHBoxContainer_ButtonIconTextureRect#CoinValueLabel" parent="DepositMethodMethodScreenPanel/BuyCoinDetails/CoinAmountPanelTextureRect/HBoxContainer" index="2"]
 visible = false
 
 [node name="DepositScreenPanel" type="Panel" parent="."]
@@ -206,6 +216,7 @@ pivot_offset = Vector2(400, 180)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i55n3")
 
 [node name="DepositTextureRect" type="TextureRect" parent="DepositScreenPanel"]
+custom_minimum_size = Vector2(434, 269)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,7 +229,8 @@ offset_right = 217.5
 offset_bottom = 134.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xtjk7")
+texture = ExtResource("2_dc32x")
+expand_mode = 1
 
 [node name="UIButtonsVBoxContainer" type="VBoxContainer" parent="DepositScreenPanel/DepositTextureRect"]
 layout_mode = 1
@@ -251,58 +263,73 @@ label_settings = SubResource("LabelSettings_pop38")
 
 [node name="EnterAmountValueLineEdit" type="LineEdit" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/EnterAmountVBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.39688867, 0.3968896, 0.39688885, 1)
 theme_override_fonts/font = ExtResource("4_xtjk7")
 theme_override_font_sizes/font_size = 14
-text = "0"
+theme_override_styles/normal = SubResource("StyleBoxTexture_kxhjl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kxhjl")
 placeholder_text = "Amount..."
 max_length = 16
 
 [node name="DepositSubmissionButtonTextured" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_htoyf")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ButtonSorterHBoxContainer" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("6_1nb1i")
 
-[node name="ButtonIconTextureRect" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 25.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "SUBMIT"
+[node name="ButtonTextLabel" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Submit"
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="DepositScreenPanel"]
+[node name="DepositBackButtonTextured" parent="DepositScreenPanel" instance=ExtResource("4_pop38")]
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -54.0
-offset_right = -18.0
-grow_horizontal = 2
+offset_left = -121.0
+offset_top = -63.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
-
-[node name="DepositBackButtonTextured" parent="DepositScreenPanel/BottomVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_hbn31")
 
-[node name="ButtonSorterHBoxContainer" parent="DepositScreenPanel/BottomVBoxContainer/DepositBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="DepositScreenPanel/DepositBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("6_1nb1i")
 
-[node name="ButtonIconTextureRect" parent="DepositScreenPanel/BottomVBoxContainer/DepositBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="DepositScreenPanel/DepositBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 17.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="DepositScreenPanel/DepositBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="DepositScreenPanel/BottomVBoxContainer/DepositBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="DepositScreenPanel/DepositBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [node name="BuyCoinDetails" parent="DepositScreenPanel" instance=ExtResource("7_nrv1f")]
 layout_mode = 1
@@ -318,12 +345,6 @@ grow_horizontal = 0
 [node name="BuyCoinButtonTextured" parent="DepositScreenPanel/BuyCoinDetails" index="0"]
 disabled = true
 
-[node name="ButtonSorterHBoxContainer" parent="DepositScreenPanel/BuyCoinDetails/BuyCoinButtonTextured" index="0"]
-alignment = 1
-
-[node name="ButtonTextLabel" parent="DepositScreenPanel/BuyCoinDetails/BuyCoinButtonTextured/ButtonSorterHBoxContainer" index="2"]
-visible = false
-
 [node name="PaymentSuccessfulScreenPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -333,53 +354,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(400, 180)
+theme_override_styles/panel = SubResource("StyleBoxTexture_dc1qf")
 
-[node name="PaymentSuccessfulVBoxContainer" type="VBoxContainer" parent="PaymentSuccessfulScreenPanel"]
+[node name="ComicEffect" type="TextureRect" parent="PaymentSuccessfulScreenPanel"]
+custom_minimum_size = Vector2(800, 360)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 800.0
+offset_bottom = 360.0
+pivot_offset = Vector2(400, 180)
+texture = ExtResource("10_nrv1f")
+expand_mode = 1
+
+[node name="DepositSuccessfulTextureRect" type="TextureRect" parent="PaymentSuccessfulScreenPanel"]
+custom_minimum_size = Vector2(371, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.5
+offset_top = -90.0
+offset_right = 185.5
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+pivot_offset = Vector2(185, 90)
+texture = ExtResource("11_kxhjl")
+expand_mode = 1
 
-[node name="ConfirmPaymentLabel" type="Label" parent="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer"]
+[node name="PaymentSuccessfulVBoxContainer" type="VBoxContainer" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -16.5
+offset_right = 140.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ConfirmPaymentLabel" type="Label" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer"]
 layout_mode = 2
-text = "Payment Successful"
+text = "Payment 
+Successful"
 label_settings = SubResource("LabelSettings_dc32x")
 horizontal_alignment = 1
 
-[node name="PaymentSuccessfulBackButtonTextured" parent="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer" instance=ExtResource("4_pop38")]
-custom_minimum_size = Vector2(0, 0)
+[node name="PaymentSuccessfulBackButtonTextured" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer" instance=ExtResource("4_pop38")]
+custom_minimum_size = Vector2(64, 26)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_hbn31")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ButtonSorterHBoxContainer" parent="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -6.5
-offset_right = 15.0
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(64, 26)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("12_fx7rm")
 
-[node name="ButtonIconTextureRect" parent="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 17.0
+offset_bottom = 9.0
+
+[node name="ButtonIconTextureRect" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [connection signal="pressed" from="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured" to="." method="_on_naira_deposit_method_button_textured_pressed"]
 [connection signal="pressed" from="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured" to="." method="_on_crypto_deposit_method_button_textured_pressed"]
-[connection signal="pressed" from="DepositMethodMethodScreenPanel/BottomVBoxContainer/DepositMethodBackButtonTextured" to="." method="_on_deposit_method_back_button_textured_pressed"]
+[connection signal="pressed" from="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured" to="." method="_on_deposit_method_back_button_textured_pressed"]
 [connection signal="pressed" from="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured" to="." method="_on_deposit_submission_button_textured_pressed"]
-[connection signal="pressed" from="DepositScreenPanel/BottomVBoxContainer/DepositBackButtonTextured" to="." method="_on_deposit_back_button_textured_pressed"]
-[connection signal="pressed" from="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured" to="." method="_on_payment_successful_back_button_textured_pressed"]
+[connection signal="pressed" from="DepositScreenPanel/DepositBackButtonTextured" to="." method="_on_deposit_back_button_textured_pressed"]
+[connection signal="pressed" from="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured" to="." method="_on_payment_successful_back_button_textured_pressed"]
 
 [editable path="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/NairaDepositMethodButtonTextured"]
 [editable path="DepositMethodMethodScreenPanel/DepositMethodTextureRect/UIButtonsVBoxContainer/DepositDetailsVBoxContainer/CryptoDepositMethodButtonTextured"]
-[editable path="DepositMethodMethodScreenPanel/BottomVBoxContainer/DepositMethodBackButtonTextured"]
+[editable path="DepositMethodMethodScreenPanel/DepositMethodBackButtonTextured"]
 [editable path="DepositMethodMethodScreenPanel/BuyCoinDetails"]
 [editable path="DepositMethodMethodScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]
 [editable path="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/DepositSubmissionButtonTextured"]
-[editable path="DepositScreenPanel/BottomVBoxContainer/DepositBackButtonTextured"]
+[editable path="DepositScreenPanel/DepositBackButtonTextured"]
 [editable path="DepositScreenPanel/BuyCoinDetails"]
 [editable path="DepositScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]
-[editable path="PaymentSuccessfulScreenPanel/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured"]
+[editable path="PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect/PaymentSuccessfulVBoxContainer/PaymentSuccessfulBackButtonTextured"]

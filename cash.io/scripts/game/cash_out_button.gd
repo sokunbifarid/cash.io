@@ -1,6 +1,6 @@
 extends Control
 
-@onready var cashout_button_textured: TextureButton = $CashoutButtonTextured
+@onready var cashout_button_textured: Button = $CashoutButtonTextured
 @onready var enable_texture_progress_bar: TextureProgressBar = $EnableTextureProgressBar
 
 var the_tween: Tween
@@ -12,6 +12,11 @@ func _ready() -> void:
 	SignalManager.prepare_game.connect(_on_prepare_game)
 	SignalManager.match_over_signal.connect(_on_match_over_signal)
 	SignalManager.cashout_rejected_signal.connect(_on_cashout_rejected_signal)
+	SignalManager.prepare_game_for_play_again_signal.connect(_on_prepare_game_for_play_again_signal)
+	set_process(false)
+
+func _on_prepare_game_for_play_again_signal() -> void:
+	disable_cashout_button()
 	set_process(false)
 
 func _on_prepare_game() -> void:

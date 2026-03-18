@@ -20,7 +20,7 @@ func configure_button_pressed_audio_stream_player() -> void:
 func configure_clock_ticking_audio_stream_player() -> void:
 	clock_ticking_audio_stream_player.bus = "sfx"
 	clock_ticking_audio_stream_player.stream = CLOCK_TICKING_SFX
-	clock_ticking_audio_stream_player.volume_db = -12
+	clock_ticking_audio_stream_player.volume_db = -20
 	get_tree().root.add_child.call_deferred(clock_ticking_audio_stream_player)
 	print("clock ticking sfx properties set")
 
@@ -42,7 +42,8 @@ func play_clock_ticking_sfx() -> void:
 
 func stop_clock_ticking_sfx() -> void:
 	if clock_ticking_audio_stream_player:
-		clock_ticking_audio_stream_player.stop()
-		print("stopped playing clock tick sfx")
+		if clock_ticking_audio_stream_player.playing:
+			clock_ticking_audio_stream_player.stop()
+			print("stopped playing clock tick sfx")
 		return
 	print("clock ticking sfx not configured")

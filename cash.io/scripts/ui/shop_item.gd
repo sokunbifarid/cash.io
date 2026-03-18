@@ -2,8 +2,8 @@ extends TextureRect
 
 @export var shop_item_type: ALL_SHOP_ITEM_TYPE = ALL_SHOP_ITEM_TYPE.COIN
 
-const SHOP_CURRENCY_PURCHASE_PANEL = preload("uid://blv14l2gw17oj")
-const SHOP_SKIN_PURCHASE_PANEL = preload("uid://cj5acpsjga04s")
+const SHOP_CURRENCY_PURCHASE_PANEL = preload("uid://b0lf5tgclflx0")
+const SHOP_SKINS_PURCHASE_PANEL = preload("uid://vnb3rj7in32d")
 
 enum ALL_SHOP_ITEM_TYPE{COIN, SKIN}
 
@@ -18,4 +18,4 @@ func set_item_data(item_type: int = 0, item_texture: String = "", cost: int = 0)
 	if shop_item_type == ALL_SHOP_ITEM_TYPE.COIN:
 		self.texture = SHOP_CURRENCY_PURCHASE_PANEL
 	elif shop_item_type == ALL_SHOP_ITEM_TYPE.SKIN:
-		self.texture = SHOP_SKIN_PURCHASE_PANEL
+		self.texture = SHOP_SKINS_PURCHASE_PANEL

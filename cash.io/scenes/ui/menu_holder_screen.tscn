@@ -1,33 +1,29 @@
-[gd_scene load_steps=30 format=3 uid="uid://y7vwrmcaour5"]
+[gd_scene load_steps=31 format=3 uid="uid://y7vwrmcaour5"]
 
-[ext_resource type="PackedScene" uid="uid://qy8assu4urrj" path="res://scenes/ui/comps/background_texture_rect.tscn" id="1_ey53q"]
 [ext_resource type="Script" uid="uid://dby1wkxep8b4p" path="res://scripts/ui/menu_holder_screen.gd" id="1_xfmk6"]
-[ext_resource type="Texture2D" uid="uid://dv6v8iad13rju" path="res://imports/ui/Menu-panel-1.png" id="3_bf2bh"]
+[ext_resource type="Texture2D" uid="uid://dk0uuxapgrowd" path="res://assets/ui/comp/Background_2.png" id="2_ybt8a"]
+[ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="3_brtkd"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="3_fhcvj"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="5_dcpsw"]
-[ext_resource type="Texture2D" uid="uid://db3ob52v1brk5" path="res://imports/ui/comp/Button_6.png" id="5_h4e7x"]
-[ext_resource type="Texture2D" uid="uid://oqhsvcprfbsf" path="res://imports/ui/Coming_soon_button_panel.png" id="7_h4e7x"]
+[ext_resource type="Texture2D" uid="uid://cjkc6cjb50sqc" path="res://assets/ui/comp/Button_3.png" id="5_bf2bh"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="6_brtkd"]
+[ext_resource type="Texture2D" uid="uid://rmbf8uk2xcis" path="res://assets/ui/comp/Button_4.png" id="7_fdkpl"]
+[ext_resource type="Texture2D" uid="uid://ccp5ttubhrnwr" path="res://assets/ui/Coming_soon_marker.png" id="8_5ugjv"]
 [ext_resource type="PackedScene" uid="uid://dql4hudkwsmrv" path="res://scenes/ui/play_screen.tscn" id="8_fhcvj"]
-[ext_resource type="Texture2D" uid="uid://bjqlxur4vhrbg" path="res://imports/ui/Coming_soon_panel.png" id="8_g23d2"]
-[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="8_whsla"]
-[ext_resource type="Texture2D" uid="uid://rvsra4ic2omm" path="res://imports/ui/Profile-icon-white.png" id="8_xfmk6"]
 [ext_resource type="PackedScene" uid="uid://k0hxrsngxkh1" path="res://scenes/ui/settings_screen.tscn" id="9_7r51e"]
-[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="9_ybt8a"]
-[ext_resource type="Texture2D" uid="uid://dfya14i4sjpc5" path="res://imports/ui/Gear-white.png" id="10_fhcvj"]
-[ext_resource type="Texture2D" uid="uid://b6djikswgtxup" path="res://imports/ui/Shopping-cart-white.png" id="11_bf2bh"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="9_ybt8a"]
+[ext_resource type="Texture2D" uid="uid://ccpskypdgff50" path="res://assets/ui/comp/Button_2.png" id="10_teqjh"]
+[ext_resource type="Texture2D" uid="uid://cxfx6rffesv1n" path="res://assets/ui/icons/Profile_white_icon.png" id="11_c7lon"]
 [ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="12_g23d2"]
+[ext_resource type="Texture2D" uid="uid://d1nbucc04vo7f" path="res://assets/ui/icons/Settings_white_icon.png" id="13_i55n3"]
+[ext_resource type="Texture2D" uid="uid://cpyey7o8c3837" path="res://assets/ui/icons/Shop_white_icon.png" id="14_brtkd"]
 [ext_resource type="PackedScene" uid="uid://dlaei2dvkb6wb" path="res://scenes/ui/shop_screen.tscn" id="15_bf2bh"]
 [ext_resource type="PackedScene" uid="uid://d1xqsjqstty6v" path="res://scenes/ui/profile_screen.tscn" id="18_h4e7x"]
 [ext_resource type="PackedScene" uid="uid://cjdctoi3rtpsx" path="res://scenes/ui/deposit_screen.tscn" id="19_g23d2"]
 [ext_resource type="PackedScene" uid="uid://f8aa8b6kkmf" path="res://scenes/ui/withdrawal_screen.tscn" id="20_ybt8a"]
 [ext_resource type="PackedScene" uid="uid://dkoj6d15e6v2t" path="res://scenes/ui/player_settled_screen.tscn" id="21_brtkd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g23d2"]
-atlas = ExtResource("5_h4e7x")
-region = Rect2(0, 0, 222, 48)
-
 [sub_resource type="GDScript" id="GDScript_ybt8a"]
-script/source = "extends TextureButton
+script/source = "extends Button
 
 
 
@@ -36,28 +32,37 @@ func _on_pressed() -> void:
 	SfxAudioManager.play_button_pressed_sfx()
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_5ugjv"]
-font = ExtResource("5_dcpsw")
-font_size = 12
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcpsw"]
+atlas = ExtResource("5_bf2bh")
+region = Rect2(0, 0, 442, 94)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_teqjh"]
-atlas = ExtResource("7_h4e7x")
+[sub_resource type="LabelSettings" id="LabelSettings_wxtee"]
+font = ExtResource("6_brtkd")
+font_size = 14
+shadow_size = 0
 
-[sub_resource type="LabelSettings" id="LabelSettings_brtkd"]
-font = ExtResource("5_dcpsw")
-font_size = 12
+[sub_resource type="AtlasTexture" id="AtlasTexture_htoyf"]
+atlas = ExtResource("7_fdkpl")
+region = Rect2(0, 0, 442, 94)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fdkpl"]
 font = ExtResource("9_ybt8a")
 font_size = 9
 
-[sub_resource type="LabelSettings" id="LabelSettings_g23d2"]
-font = ExtResource("5_dcpsw")
-font_size = 12
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbn31"]
+atlas = ExtResource("10_teqjh")
+region = Rect2(0, 0, 224, 80)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dcpsw"]
-font = ExtResource("5_dcpsw")
-font_size = 12
+[sub_resource type="LabelSettings" id="LabelSettings_olvqu"]
+font = ExtResource("6_brtkd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nudmm"]
+atlas = ExtResource("10_teqjh")
+region = Rect2(0, 0, 224, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdkpl"]
+atlas = ExtResource("10_teqjh")
+region = Rect2(0, 0, 224, 80)
 
 [node name="MenuHolderScreen" type="Control"]
 layout_mode = 3
@@ -68,8 +73,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xfmk6")
 
-[node name="BackgroundTextureRect2" parent="." instance=ExtResource("1_ey53q")]
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(800, 360)
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ybt8a")
+expand_mode = 1
 
 [node name="MainMenuScreen" type="Control" parent="."]
 layout_mode = 1
@@ -81,20 +94,20 @@ grow_vertical = 2
 pivot_offset = Vector2(400, 180)
 
 [node name="MainMenuPanelTextureRect" type="TextureRect" parent="MainMenuScreen"]
-texture_filter = 4
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -204.0
-offset_top = -122.0
-offset_right = 204.0
-offset_bottom = 122.0
+offset_left = -230.0
+offset_top = -134.5
+offset_right = 230.0
+offset_bottom = 134.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_bf2bh")
+texture = ExtResource("3_brtkd")
+expand_mode = 1
 
 [node name="ButtonsVBoxContainer" type="VBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect"]
 layout_mode = 1
@@ -103,54 +116,64 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -105.5
-offset_top = -10.0
-offset_right = 105.5
-offset_bottom = 122.0
+offset_left = -112.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="BubblesModeButtonTextured" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer" instance=ExtResource("3_fhcvj")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(224, 47)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_g23d2")
 script = SubResource("GDScript_ybt8a")
 
-[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured" index="0"]
-offset_left = -43.5
-offset_top = -10.5
-offset_right = 43.5
-offset_bottom = 4.5
+[node name="ButtonTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured" index="0"]
+custom_minimum_size = Vector2(224, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_dcpsw")
 
-[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -54.0
+offset_top = -12.0
+offset_right = 54.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "Bubbles Mode"
-label_settings = SubResource("LabelSettings_5ugjv")
+[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/BubblesModeButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "BUBBLE MODE"
+label_settings = SubResource("LabelSettings_wxtee")
 
 [node name="LinesGameModeButtonTextured" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer" instance=ExtResource("3_fhcvj")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(221, 47)
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
-texture_normal = SubResource("AtlasTexture_teqjh")
 
-[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured" index="0"]
-offset_left = -34.5
-offset_top = -9.5
-offset_right = 34.5
-offset_bottom = 5.5
+[node name="ButtonTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured" index="0"]
+custom_minimum_size = Vector2(221, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_htoyf")
 
-[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -43.5
+offset_top = -11.0
+offset_right = 43.5
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "Lines Mode"
-label_settings = SubResource("LabelSettings_brtkd")
+[node name="ButtonTextLabel" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "LINE MODE"
 
 [node name="CommingSoonTextureRect" type="TextureRect" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured"]
+custom_minimum_size = Vector2(74, 19)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -162,7 +185,8 @@ offset_top = -5.0
 offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("8_g23d2")
+texture = ExtResource("8_5ugjv")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="CommingSoonLabel" type="Label" parent="MainMenuScreen/MainMenuPanelTextureRect/ButtonsVBoxContainer/LinesGameModeButtonTextured/CommingSoonTextureRect"]
@@ -172,10 +196,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -6.0
-offset_right = -3.0
-offset_bottom = 6.0
+offset_left = -61.0
+offset_top = -5.0
+offset_bottom = 7.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Coming Soon"
@@ -192,24 +215,31 @@ offset_bottom = 58.0
 grow_horizontal = 2
 
 [node name="ProfileButtonTextured" parent="MainMenuScreen/TopButtonControl" instance=ExtResource("3_fhcvj")]
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(112, 40)
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 40.0
-texture_normal = ExtResource("8_whsla")
 
-[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured" index="0"]
-offset_left = -38.0
-offset_top = -13.0
-offset_right = 38.0
-offset_bottom = 13.0
+[node name="ButtonTextureRect" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured" index="0"]
+custom_minimum_size = Vector2(112, 40)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_hbn31")
 
-[node name="ButtonIconTextureRect" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonSorterHBoxContainer" index="0"]
-texture = ExtResource("8_xfmk6")
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -33.0
+offset_top = -9.0
+offset_right = 33.0
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(16, 16)
+texture = ExtResource("11_c7lon")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/TopButtonControl/ProfileButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Profile"
-label_settings = SubResource("LabelSettings_g23d2")
+label_settings = SubResource("LabelSettings_olvqu")
 
 [node name="BuyCoinDetails" parent="MainMenuScreen/TopButtonControl" instance=ExtResource("12_g23d2")]
 layout_mode = 1
@@ -238,20 +268,26 @@ custom_minimum_size = Vector2(100, 40)
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 40.0
-texture_normal = ExtResource("8_whsla")
 
-[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured" index="0"]
-offset_left = -38.0
-offset_top = -13.0
-offset_right = 38.0
-offset_bottom = 13.0
+[node name="ButtonTextureRect" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured" index="0"]
+custom_minimum_size = Vector2(100, 40)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_nudmm")
 
-[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonSorterHBoxContainer" index="0"]
-texture = ExtResource("10_fhcvj")
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -39.0
+offset_top = -9.0
+offset_right = 39.0
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(16, 16)
+texture = ExtResource("13_i55n3")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Settings"
-label_settings = SubResource("LabelSettings_dcpsw")
 
 [node name="ShopButtonTextured" parent="MainMenuScreen/BottomButtonsControl" instance=ExtResource("3_fhcvj")]
 custom_minimum_size = Vector2(100, 40)
@@ -267,20 +303,26 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("8_whsla")
 
-[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured" index="0"]
-offset_left = -38.0
-offset_top = -13.0
-offset_right = 38.0
-offset_bottom = 13.0
+[node name="ButtonTextureRect" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured" index="0"]
+custom_minimum_size = Vector2(100, 40)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_fdkpl")
 
-[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonSorterHBoxContainer" index="0"]
-texture = ExtResource("11_bf2bh")
+[node name="ButtonSorterHBoxContainer" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -28.0
+offset_top = -9.0
+offset_right = 28.0
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonIconTextureRect" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(16, 16)
+texture = ExtResource("14_brtkd")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="MainMenuScreen/BottomButtonsControl/ShopButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Shop"
-label_settings = SubResource("LabelSettings_dcpsw")
 
 [node name="PlayScreen" parent="." instance=ExtResource("8_fhcvj")]
 layout_mode = 1

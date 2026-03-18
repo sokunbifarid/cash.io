@@ -2,8 +2,8 @@ extends Control
 
 signal buy_coin_button
 
-@onready var coin_value_label: Label = $BuyCoinButtonTextured/ButtonSorterHBoxContainer/ButtonIconTextureRect/CoinValueLabel
 @onready var coin_increment_animation_label: Label = $CoinIncrementAnimationLabel
+@onready var coin_amount_label: Label = $CoinAmountPanelTextureRect/HBoxContainer/CoinAmountLabel
 
 var the_tween: Tween
 
@@ -28,13 +28,13 @@ func _on_player_data_loaded_successfully_signal(payload: Dictionary) -> void:
 
 func set_coin_value(value: int) -> void:
 	var coin_amount: int = value
-	coin_value_label.text = str(coin_amount)
+	coin_amount_label.text = str(coin_amount)
 	if coin_amount <= 10000:
-		coin_value_label.label_settings.font_size = 12
+		coin_amount_label.label_settings.font_size = 14
 	elif coin_amount > 10000 and coin_amount < 100000:
-		coin_value_label.label_settings.font_size = 10
+		coin_amount_label.label_settings.font_size = 12
 	else:
-		coin_value_label.label_settings.font_size = 8
+		coin_amount_label.label_settings.font_size = 10
 	check_coin_last_amount(value)
 
 func check_coin_last_amount(value: int) -> void:

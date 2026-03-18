@@ -3,13 +3,16 @@ extends Panel
 signal close_shop
 
 @onready var shop_panel: Panel = $ShopPanel
-@onready var coins_skins_button_textured: TextureButton = $ShopPanel/VBoxContainer/CoinsSkinsButtonTextured
+@onready var coins_skins_button_textured: Button = $ShopPanel/VBoxContainer/CoinsSkinsButtonTextured
 @onready var coins_items_v_box_container: VBoxContainer = $ShopPanel/VBoxContainer/ShopItemCategory/CoinsItemsVBoxContainer
 @onready var skins_items_v_box_container: VBoxContainer = $ShopPanel/VBoxContainer/ShopItemCategory/SkinsItemsVBoxContainer
 @onready var coins_items_grid_container: GridContainer = $ShopPanel/VBoxContainer/ShopItemCategory/CoinsItemsVBoxContainer/ScrollContainer/CoinsItemsGridContainer
 @onready var skins_items_grid_container: GridContainer = $ShopPanel/VBoxContainer/ShopItemCategory/SkinsItemsVBoxContainer/ScrollContainer/SkinsItemsGridContainer
+@onready var coin_skins_button_texture_rect: TextureRect = $ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonTextureRect
 
 const SHOP_ITEM = preload("uid://dbed714aqjing")
+const SHOP_GROUP_1_SELECTION_PANEL = preload("uid://bdpgfohxowdyr")
+const SHOP_GROUP_2_SELECTION_PANEL = preload("uid://dedu362f5em11")
 
 var the_visibility_tween: Tween
 
@@ -21,7 +24,6 @@ var shop_data: Dictionary = {
 	"coin": {},
 	"skin": {}
 }
-
 
 
 func _ready() -> void:
@@ -41,8 +43,10 @@ func open_shop() -> void:
 func set_visible_shop_category_on_load()-> void:
 	if coins_skins_button_textured.button_pressed:
 		active_shop_category = all_shop_category.SKIN
+		coin_skins_button_texture_rect.texture = SHOP_GROUP_2_SELECTION_PANEL
 	else:
 		active_shop_category = all_shop_category.COIN
+		coin_skins_button_texture_rect.texture = SHOP_GROUP_1_SELECTION_PANEL
 	set_visible_shop_category()
 
 func set_visible_shop_category() -> void:
@@ -76,6 +80,8 @@ func _on_close_button_textured_pressed() -> void:
 func _on_coins_skins_button_textured_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		active_shop_category = all_shop_category.SKIN
+		coin_skins_button_texture_rect.texture = SHOP_GROUP_2_SELECTION_PANEL
 	else:
 		active_shop_category = all_shop_category.COIN
+		coin_skins_button_texture_rect.texture = SHOP_GROUP_1_SELECTION_PANEL
 	set_visible_shop_category()

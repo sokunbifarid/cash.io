@@ -1,8 +1,9 @@
 extends Control
 
-@onready var loading_label: Label = $LoadingPanel/LoadingLabel
+@onready var loading_progress_texture_progress_bar: TextureProgressBar = $LoadingPanel/LoadingVBoxContainer/LoadingProgressControl/LoadingProgressTextureProgressBar
 
 var the_tween: Tween
+const DURATION: float = 0.5
 
 func _ready() -> void:
 	connect_signals()
@@ -25,14 +26,25 @@ func _on_open_loading_screen(value: bool) -> void:
 
 func enable_loading_screen() -> void:
 	if not self.visible:
-		const DURATION: float = 0.25
 		self.show()
-		the_tween = create_tween()
-		the_tween.tween_property(loading_label, "text", "Loading", DURATION)
-		the_tween.tween_property(loading_label, "text", "Loading.", DURATION)
-		the_tween.tween_property(loading_label, "text", "Loading..", DURATION)
-		the_tween.tween_property(loading_label, "text", "Loading...", DURATION)
-		the_tween.set_loops()
+		loading_progress_texture_progress_bar.value = 0
+		#if the_tween:
+			#the_tween.kill()
+		#the_tween = create_tween()
+		#the_tween.tween_property(loading_label, "text", "Loading", DURATION)
+		#the_tween.tween_property(loading_label, "text", "Loading.", DURATION)
+		#the_tween.tween_property(loading_label, "text", "Loading..", DURATION)
+		#the_tween.tween_property(loading_label, "text", "Loading...", DURATION)
+		the_tween = create_tween().set_loops()
+		the_tween.tween_property(
+			loading_progress_texture_progress_bar,
+			"value",
+			loading_progress_texture_progress_bar.max_value,
+			DURATION
+		)
+		the_tween.tween_callback(func():
+			loading_progress_texture_progress_bar.value = 0
+		)
 
 func disable_loading_screen() -> void:
 	if self.visible:

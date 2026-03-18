@@ -1,7 +1,7 @@
 extends Control
 
-@onready var google_button_textured: TextureButton = $LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured
-@onready var apple_button_textured: TextureButton = $LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured
+@onready var google_button_textured: Button = $LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/GoogleButtonTextured
+@onready var apple_button_textured: Button = $LoginCreateAccountControl/LoginCreatePanelTextureRect/ButtonsVBoxContainer/AppleButtonTextured
 @export var google_sign_in: Node
 @export var google_web_sign_in: Node
 @export var apple_sign_in: Node

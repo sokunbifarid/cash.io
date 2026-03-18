@@ -2,6 +2,7 @@ extends Node
 
 @onready var in_game_hud_canvas_layer: CanvasLayer = $InGameHUDCanvasLayer
 @onready var game_nodes: Node2D = $GameNodes
+@onready var game_map: Sprite2D = $GameNodes/GameMap
 
 
 # Called when the node enters the scene tree for the first time.

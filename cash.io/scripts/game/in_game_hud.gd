@@ -15,6 +15,7 @@ const MIN_CLOCK_ALERT_VALUE: int = 10
 func _ready() -> void:
 	SignalManager.match_over_signal.connect(_on_match_over_signal)
 	SignalManager.prepare_game.connect(_on_prepare_game)
+	SignalManager.prepare_game_for_play_again_signal.connect(_on_prepare_game_for_play_again_signal)
 	hide_hud()
 	set_process(false)
 
@@ -22,6 +23,12 @@ func _ready() -> void:
 	#if event.is_pressed():
 		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			#input_rect.position = get_local_mouse_position() - input_rect.size/2
+
+func _on_prepare_game_for_play_again_signal() -> void:
+	hide_hud()
+	set_process(false)
+	disable_clock_alert_tween()
+	clock_v_box_container.modulate = Color.WHITE
 
 func _on_match_over_signal(_data: Dictionary, condition: bool) -> void:
 	hide_hud()
@@ -31,24 +38,27 @@ func _on_match_over_signal(_data: Dictionary, condition: bool) -> void:
 
 func _on_prepare_game() -> void:
 	show_hud()
-	set_process(true)
 	disable_clock_alert_tween()
 	clock_v_box_container.modulate = Color.WHITE
 	clock_alert_tween_is_active = false
+	await get_tree().create_timer(0.3).timeout
+	set_process(true)
 
 func _process(delta: float) -> void:
 	set_clock_value()
 
 func set_clock_value() -> void:
-	var clock_value: int = int(GameHttpNetworkManager.player_running_time)
-	clock_value_label.text = str(clock_value) + "s"
-	if clock_value <= MIN_CLOCK_ALERT_VALUE:
-		if clock_v_box_container.modulate != Color.RED:
-			clock_v_box_container.modulate = Color.RED
-			enable_clock_alert_tween()
-	else:
-		if clock_v_box_container.modulate != Color.WHITE:
-			clock_v_box_container.modulate = Color.WHITE
+	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
+		var clock_value: int = int(GameHttpNetworkManager.player_running_time)
+		clock_value_label.text = str(clock_value) + "s"
+		if clock_value <= MIN_CLOCK_ALERT_VALUE:
+			if clock_v_box_container.modulate != Color.RED:
+				clock_v_box_container.modulate = Color.RED
+				enable_clock_alert_tween()
+		else:
+			if clock_v_box_container.modulate != Color.WHITE:
+				clock_v_box_container.modulate = Color.WHITE
+			disable_clock_alert_tween()
 
 func enable_clock_alert_tween() -> void:
 	if not clock_alert_tween_is_active:

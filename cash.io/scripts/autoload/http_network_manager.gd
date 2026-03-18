@@ -7,6 +7,7 @@ var list_rooms_http_request_node: HTTPRequest
 var deposit_http_request_node: HTTPRequest
 var withdrawal_check_http_request_node: HTTPRequest
 var withdrawal_http_request_node: HTTPRequest
+var set_skin_http_request_node: HTTPRequest
 
 const SERVER_IP: String = "simplyludo.com"
 const SERVER_PORT: int = 443
@@ -14,11 +15,12 @@ const DEVICE_ID_AUTH_API: String = "/auth/device/authenticate"
 const FIREBASE_AUTH_API: String = "/auth/firebase/authenticate"
 const SOCIAL_AUTHENTICATE_API: String = "/auth/social/authenticate"
 const GET_ROOMS_API: String = "/rooms"
-const GET_USER_DATA_API: String = "/users/me?fields=username,email,wallet,userid"
+const GET_USER_DATA_API: String = "/users/me?fields=username,email,wallet,userid,active_avatar,owned_avatars"
 const MAKE_PAYMENT_API: String = "/payments/deposit"
 const CREATE_DEPOSIT_API: String = "/payments/deposits/create"
 const WITHDRAWAL_REQUEST_API: String = "/payments/withdrawals/create"
 const WITHDRAWAL_CHECK_ACCOUNT_API: String = "/payments/withdrawals/account-status"
+const SET_SKIN_API: String = "/users/avatar"
 
 var device_id: String = ""
 var authenticate_access_token: String = ""
@@ -138,6 +140,8 @@ func request_http_user_data() -> void:
 				var result_data: Dictionary = {
 					"username": "",
 					"wallet_balance": 0,
+					"active_avatar": "",
+					"owned_avatars": []
 				}
 				if response.has("username"):
 					result_data.username = response.username
@@ -145,6 +149,10 @@ func request_http_user_data() -> void:
 					result_data.wallet_balance = response.wallet_balance
 				if response.has("user_id"):
 					GameHttpNetworkManager.set_current_player_id(response.user_id)
+				if response.has("active_avatar"):
+					result_data.active_avatar = response.active_avatar
+				if response.has("owned_avatars"):
+					result_data.owned_avatars = response.owned_avatars
 				SignalManager.emit_player_data_loaded_successfully_signal(result_data)
 				user_data_request_timeout_timer.stop()
 				request_http_room_list()
@@ -213,21 +221,25 @@ func request_http_check_withdrawal() -> void:
 	if not withdrawal_check_http_request_node:
 		withdrawal_check_http_request_node = HTTPRequest.new()
 		add_child(withdrawal_check_http_request_node)
-		withdrawal_check_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			print("withdrawal response code: ", response_code)
-			print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
-			#SignalManager.emit_withdrawal_form_prompt_signal()
-			SignalManager.emit_open_loading_screen_signal(false)
-			if response_code == 404:
-				SignalManager.emit_withdrawal_form_prompt_signal()
-			elif response_code == 204:
-				SignalManager.emit_withdrawal_data_prompt_signal()
-			else:
-				SignalManager.emit_notice_signal("Error attempting withdrawal")
-	)
+		withdrawal_check_http_request_node.request_completed.connect(_on_withdrawal_check_http_request_node_request_completed)
 	var url : String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + WITHDRAWAL_CHECK_ACCOUNT_API
 	var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
+	print("ceck withdrawal request: ", url)
+	var err: Error = withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
+	print("http check withdrawal request status: ", err)
+
+func _on_withdrawal_check_http_request_node_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	print("withdrawal check response header: ", headers)
+	print("withdrawal response code: ", response_code)
+	print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
+	#SignalManager.emit_withdrawal_form_prompt_signal()
+	SignalManager.emit_open_loading_screen_signal(false)
+	if response_code == 404:
+		SignalManager.emit_withdrawal_form_prompt_signal()
+	elif response_code == 204:
+		SignalManager.emit_withdrawal_data_prompt_signal()
+	else:
+		SignalManager.emit_notice_signal("Error attempting withdrawal")
 
 func request_http_withdrawal(request_data: Dictionary) -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -254,6 +266,29 @@ func request_http_withdrawal(request_data: Dictionary) -> void:
 func request_payment() -> void:
 	var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + MAKE_PAYMENT_API
 	OS.shell_open(url)
+
+func request_append_user_selected_skin(skin_id: String) -> void:
+	if skin_id != "":
+		SignalManager.emit_open_loading_screen_signal(true)
+		print("selecting skin")
+		if not set_skin_http_request_node:
+			set_skin_http_request_node = HTTPRequest.new()
+			add_child(set_skin_http_request_node)
+			set_skin_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+				print("withdrawal response code: ", response_code)
+				print("withdrawal response body: ", JSON.parse_string(body.get_string_from_utf8()))
+				SignalManager.emit_open_loading_screen_signal(false)
+				if response_code == 204:
+					SignalManager.emit_player_change_skin_successful(true)
+				else:
+					SignalManager.emit_player_change_skin_successful(false)
+				)
+		var post_body: Dictionary = {"avatar": skin_id}
+		var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + SET_SKIN_API
+		var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
+		set_skin_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(post_body))
+	else:
+		SignalManager.emit_notice_signal("Issue with selected skin")
 
 func get_current_payment_provider() -> String:
 	return current_payment_provider

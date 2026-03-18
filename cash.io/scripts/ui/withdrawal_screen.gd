@@ -18,6 +18,7 @@ signal close_withdrawal_screen
 @onready var crypto_address_v_box_container: VBoxContainer = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoAddressVBoxContainer
 @onready var withdrawal_amount_v_box_container: VBoxContainer = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer
 @onready var withdrawal_form_crypto_address_value_line_edit: LineEdit = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoAddressVBoxContainer/WithdrawalFormCryptoAddressValueLineEdit
+@onready var comic_effect: TextureRect = $WithdrawalInProgressScreenPanel/ComicEffect
 
 var the_visibility_tween: Tween
 
@@ -42,6 +43,7 @@ func hide_all_screen() -> void:
 	withdrawal_data_screen_panel.hide()
 	withdrawal_in_progress_screen_panel.hide()
 	withdrawal_method_screen_panel.hide()
+	comic_effect.hide()
 	clear_all_text_fields()
 
 func _on_withdrawal_form_prompt_signal() -> void:
@@ -102,6 +104,8 @@ func open_withdrawal_data() -> void:
 	the_visibility_tween.tween_property(withdrawal_data_screen_panel, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func open_withdrawal_in_progress() -> void:
+	hide_all_screen()
+	comic_effect.show()
 	withdrawal_in_progress_screen_panel.show()
 	withdrawal_in_progress_screen_panel.scale = Vector2.ZERO
 	if the_visibility_tween:

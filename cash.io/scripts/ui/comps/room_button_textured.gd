@@ -1,9 +1,9 @@
-extends TextureButton
+extends Button
 
 signal room_button_pressed
 
-@onready var button_icon_texture_rect: TextureRect = $ButtonSorterHBoxContainer/ButtonIconTextureRect
-@onready var button_text_label: Label = $ButtonSorterHBoxContainer/ButtonTextLabel
+@onready var button_icon_texture_rect: TextureRect = $RoomButtonTextureRect/ButtonSorterHBoxContainer/ButtonIconTextureRect
+@onready var button_text_label: Label = $RoomButtonTextureRect/ButtonSorterHBoxContainer/ButtonTextLabel
 
 var button_room_id: String = ""
 

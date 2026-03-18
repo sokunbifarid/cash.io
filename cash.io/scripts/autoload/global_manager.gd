@@ -5,6 +5,7 @@ const USER_SAVE_DATA_PATH: String = "user://user_save_data.dat"
 
 enum GAME_STATE{AUTH, MAINMENU, PROFILE, SETTINGS, DEPOSIT, WITHDRAWAL, SHOP, BUBBLE_ROOMS, BUBBLE_GAME, BUBBLE_GAME_COMPLETED}
 var current_game_state: GAME_STATE = GAME_STATE.AUTH
+var player_selected_skin_id: String = ""
 
 var settings_data: Dictionary = {
 	"music_value": 6,

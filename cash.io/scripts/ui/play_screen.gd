@@ -2,7 +2,7 @@ extends Control
 
 signal play_screen_closed
 
-@onready var ui_buttons_sorter_v_box_container: GridContainer = $PlayScreenPanel/PlayScreenTextureRect/UIButtonsVBoxContainer/UIButtonsSorterVBoxContainer
+@onready var ui_buttons_sorter_v_box_container: GridContainer = $PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/UIButtonsSorterVBoxContainer
 
 const ROOM_BUTTON_TEXTURED = preload("uid://b2dtkd1a8u6nj")
 
@@ -38,7 +38,7 @@ func populate_all_rooms_ui_button(payload: Dictionary) -> void:
 		if payload.rooms.size() > 0:
 			var rooms: Array = payload.rooms
 			for i in rooms:
-				var button: TextureButton = ROOM_BUTTON_TEXTURED.instantiate()
+				var button: Button = ROOM_BUTTON_TEXTURED.instantiate()
 				ui_buttons_sorter_v_box_container.add_child(button)
 				button.set_button_data("", str(int(i.min_stake)) + " Room", i.id)
 				button.room_button_pressed.connect(_on_room_button_pressed)
@@ -49,6 +49,5 @@ func _on_play_back_button_textured_pressed() -> void:
 
 func _on_room_button_pressed(room_id: String) -> void:
 	print("room button pressed to join room")
-	GameHttpNetworkManager.number_of_retries_to_join_room = 0
 	#WebsocketMultiplayerRouter.start_websocket_server(room_id)
 	GameHttpNetworkManager.send_join_room(room_id)

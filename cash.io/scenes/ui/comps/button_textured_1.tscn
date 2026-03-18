@@ -1,22 +1,49 @@
-[gd_scene format=3 uid="uid://bu6xa070exske"]
+[gd_scene load_steps=10 format=3 uid="uid://bu6xa070exske"]
 
-[ext_resource type="Texture2D" uid="uid://6pgdqihoa0x2" path="res://imports/ui/comp/Button-2.svg" id="1_upiu5"]
+[ext_resource type="Texture2D" uid="uid://dqo8qifowio5p" path="res://assets/ui/comp/Button_1.png" id="1_870o2"]
 [ext_resource type="Script" uid="uid://cufo1tfwbark7" path="res://scripts/ui/comps/button_textured_1.gd" id="2_870o2"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="2_upiu5"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="2_upiu5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_870o2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcecx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rw2ew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckt1w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxpjo"]
+atlas = ExtResource("1_870o2")
+region = Rect2(0, 0, 342, 94)
 
 [sub_resource type="LabelSettings" id="LabelSettings_870o2"]
 font = ExtResource("2_upiu5")
-font_size = 10
+font_size = 14
 
-[node name="ButtonTextured_1" type="TextureButton" unique_id=2055212109]
+[node name="ButtonTextured_1" type="Button"]
 custom_minimum_size = Vector2(211, 81)
-offset_right = 141.0
-offset_bottom = 53.0
-texture_normal = ExtResource("1_upiu5")
-stretch_mode = 5
+offset_right = 344.0
+offset_bottom = 95.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_870o2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gcecx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rw2ew")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ckt1w")
+flat = true
 script = ExtResource("2_870o2")
 
-[node name="ButtonSorterHBoxContainer" type="HBoxContainer" parent="." unique_id=617067692]
+[node name="ButtonTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -173.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mxpjo")
+expand_mode = 1
+
+[node name="ButtonSorterHBoxContainer" type="HBoxContainer" parent="ButtonTextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -24,18 +51,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -80.5
-offset_top = -25.0
+offset_top = -23.5
 offset_right = 80.5
-offset_bottom = 8.0
+offset_bottom = 9.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ButtonIconTextureRect" type="TextureRect" parent="ButtonSorterHBoxContainer" unique_id=1227533788]
+[node name="ButtonIconTextureRect" type="TextureRect" parent="ButtonTextureRect/ButtonSorterHBoxContainer"]
 layout_mode = 2
 stretch_mode = 5
 
-[node name="ButtonTextLabel" type="Label" parent="ButtonSorterHBoxContainer" unique_id=152673229]
+[node name="ButtonTextLabel" type="Label" parent="ButtonTextureRect/ButtonSorterHBoxContainer"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_870o2")
 horizontal_alignment = 1

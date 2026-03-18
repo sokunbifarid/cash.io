@@ -1,17 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://k0hxrsngxkh1"]
+[gd_scene load_steps=33 format=3 uid="uid://k0hxrsngxkh1"]
 
 [ext_resource type="Script" uid="uid://eqnsagauhvx1" path="res://scripts/ui/settings_screen.gd" id="1_03o02"]
-[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_03o02"]
-[ext_resource type="Texture2D" uid="uid://dadkryc1wky5g" path="res://imports/ui/Settings/Settings_panel.png" id="2_k8osj"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_03o02"]
+[ext_resource type="Texture2D" uid="uid://bi07nlio76k3q" path="res://assets/ui/comp/Screen_panel_2.png" id="2_5ghpo"]
+[ext_resource type="Texture2D" uid="uid://cun3tmjk8v5wm" path="res://assets/ui/slider/slider_1/Slider_grabber.png" id="5_p84si"]
+[ext_resource type="Texture2D" uid="uid://dmrgkk4y64p0" path="res://assets/ui/slider/slider_1/Sider_under.png" id="6_qerx8"]
 [ext_resource type="Texture2D" uid="uid://4n202fgc6roo" path="res://imports/ui/Settings/Settings_slider_fill.png" id="7_lx43f"]
+[ext_resource type="Texture2D" uid="uid://d2r7tr528xh0" path="res://assets/ui/slider/slider_1/Slider_progress.png" id="7_sghad"]
+[ext_resource type="Texture2D" uid="uid://q6o5hfer1yhw" path="res://assets/ui/slider/slider_1/Slider_icon.png" id="8_rix0b"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="9_5ghpo"]
 [ext_resource type="Texture2D" uid="uid://dc42rb7f83776" path="res://imports/ui/Settings/Settings_item_panel_1.png" id="9_6vgmg"]
 [ext_resource type="Texture2D" uid="uid://m2ybo60yh8os" path="res://imports/ui/Settings/Settings_slider_grabber.png" id="10_m7mh0"]
-[ext_resource type="Texture2D" uid="uid://bci1fyojoxc3f" path="res://imports/ui/comp/Button-1.svg" id="10_p84si"]
-[ext_resource type="Texture2D" uid="uid://c47wercns8e8r" path="res://imports/ui/Settings/Settings_slider_back_panel.png" id="11_m7mh0"]
-[ext_resource type="Texture2D" uid="uid://dyr1t15c0geoi" path="res://imports/ui/Settings/Settings_slider_icon.png" id="13_w2cwy"]
-[ext_resource type="Texture2D" uid="uid://bavl1r5qci4of" path="res://imports/ui/comp/Button_5.png" id="15_w2cwy"]
-[ext_resource type="Texture2D" uid="uid://sj1tuobrari7" path="res://imports/ui/Settings/Solar_exit_white.png" id="16_5ghpo"]
+[ext_resource type="Texture2D" uid="uid://b6v7mt08tw52s" path="res://assets/ui/comp/Settings_button_1.png" id="12_1qs1h"]
+[ext_resource type="Texture2D" uid="uid://bvjsdjtgdq5rb" path="res://assets/ui/icons/Exit_white_icon.png" id="13_y3pst"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="14_phi4b"]
+[ext_resource type="Texture2D" uid="uid://c5p6ttad7ewri" path="res://assets/ui/comp/Settings_button_2.png" id="15_re41i"]
+[ext_resource type="Texture2D" uid="uid://b4rdy3dn4nvbi" path="res://assets/ui/comp/Settings_button_3.png" id="16_6yktp"]
+[ext_resource type="Texture2D" uid="uid://ctckkyriu5lt0" path="res://assets/ui/icons/Withdrawal_white_icon.png" id="17_jdsx3"]
+[ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="18_8hg3x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w2cwy"]
 font = ExtResource("2_03o02")
@@ -26,31 +32,23 @@ texture = ExtResource("9_6vgmg")
 font = ExtResource("2_03o02")
 font_size = 10
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wvya"]
+atlas = ExtResource("5_p84si")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qerx8"]
-texture = ExtResource("11_m7mh0")
-texture_margin_left = 53.0
-texture_margin_top = 7.0
-texture_margin_right = 53.0
-texture_margin_bottom = 7.0
+texture = ExtResource("6_qerx8")
+texture_margin_top = 8.0
+texture_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p84si"]
-texture = ExtResource("7_lx43f")
-texture_margin_left = 53.0
-texture_margin_top = 7.0
-texture_margin_right = 53.0
-texture_margin_bottom = 7.0
-region_rect = Rect2(0, 0, 106, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lx43f"]
-atlas = ExtResource("7_lx43f")
-region = Rect2(0, 0, 106, 15)
+texture = ExtResource("7_sghad")
+texture_margin_top = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8osj"]
-texture = SubResource("AtlasTexture_lx43f")
-texture_margin_left = 53.0
-texture_margin_top = 7.0
-texture_margin_right = 53.0
-texture_margin_bottom = 7.0
+texture = ExtResource("7_sghad")
+texture_margin_top = 5.0
+texture_margin_bottom = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8osj"]
 atlas = ExtResource("7_lx43f")
@@ -66,8 +64,21 @@ texture_margin_bottom = 7.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lx43f"]
 texture = ExtResource("9_6vgmg")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p84si"]
-atlas = ExtResource("15_w2cwy")
+[sub_resource type="LabelSettings" id="LabelSettings_5crou"]
+font = ExtResource("14_phi4b")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnpqd"]
+font = ExtResource("14_phi4b")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_003mo"]
+font = ExtResource("14_phi4b")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_ux8j3"]
+font = ExtResource("14_phi4b")
+font_size = 14
 
 [node name="SettingsScreen" type="Control"]
 visible = false
@@ -81,19 +92,21 @@ pivot_offset = Vector2(400, 180)
 script = ExtResource("1_03o02")
 
 [node name="SettingsPanelTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(449, 246)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -208.0
-offset_top = -123.5
-offset_right = 211.01001
-offset_bottom = 123.5
+offset_left = -224.5
+offset_top = -139.0
+offset_right = 224.5
+offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_k8osj")
+texture = ExtResource("2_5ghpo")
+expand_mode = 1
 
 [node name="SettingsLabel" type="Label" parent="SettingsPanelTextureRect"]
 layout_mode = 1
@@ -101,9 +114,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -109.5
-offset_top = 32.0
+offset_top = 40.0
 offset_right = 109.5
-offset_bottom = 52.0
+offset_bottom = 70.0
 grow_horizontal = 2
 text = "SETTINGS"
 label_settings = SubResource("LabelSettings_w2cwy")
@@ -116,10 +129,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -44.0
-offset_right = 156.0
-offset_bottom = 112.0
+offset_left = -150.0
+offset_top = -36.0
+offset_right = 150.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -159,32 +172,39 @@ custom_minimum_size = Vector2(144, 30)
 layout_mode = 2
 
 [node name="MusicHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
-custom_minimum_size = Vector2(117, 0)
+custom_minimum_size = Vector2(130, 12)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -117.0
-offset_top = -12.5
-offset_bottom = 12.5
+offset_left = -130.0
+offset_top = -25.0
+offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_icons/grabber = ExtResource("10_m7mh0")
-theme_override_icons/grabber_highlight = ExtResource("10_m7mh0")
+theme_override_icons/grabber = SubResource("AtlasTexture_4wvya")
+theme_override_icons/grabber_highlight = ExtResource("5_p84si")
 theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_k8osj")
 max_value = 6.0
-value = 6.0
+value = 4.0
 
 [node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
+custom_minimum_size = Vector2(30, 29)
 layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -14.5
 offset_right = 30.0
-offset_bottom = 29.0
+offset_bottom = 14.5
+grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("13_w2cwy")
+texture = ExtResource("8_rix0b")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="SoundEffectVBoxContainer" type="VBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer"]
@@ -197,7 +217,7 @@ label_settings = SubResource("LabelSettings_p84si")
 horizontal_alignment = 1
 
 [node name="SoundEffectSliderControl" type="Control" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer"]
-custom_minimum_size = Vector2(144, 30)
+custom_minimum_size = Vector2(140, 30)
 layout_mode = 2
 
 [node name="SoundEffectHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
@@ -219,9 +239,10 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_6vgmg")
 max_value = 6.0
-value = 6.0
+value = 4.0
 
 [node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
+custom_minimum_size = Vector2(30, 29)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -231,7 +252,8 @@ offset_right = 30.0
 offset_bottom = 14.5
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("13_w2cwy")
+texture = ExtResource("8_rix0b")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="SettingsItem2" type="Panel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer"]
@@ -259,74 +281,96 @@ layout_mode = 2
 [node name="SignoutButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
 custom_minimum_size = Vector2(93, 32)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_p84si")
 
-[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured" index="0"]
-offset_left = -29.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = 7.0
+[node name="ButtonTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured" index="0"]
+custom_minimum_size = Vector2(93, 32)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("12_1qs1h")
 
-[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonSorterHBoxContainer" index="0"]
-texture = ExtResource("16_5ghpo")
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -36.5
+offset_top = -9.0
+offset_right = 36.5
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(14, 14)
+texture = ExtResource("13_y3pst")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/SignoutButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Signout"
+label_settings = SubResource("LabelSettings_5crou")
 
 [node name="DeleteAccountButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
 custom_minimum_size = Vector2(93, 32)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_p84si")
 
-[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured" index="0"]
-offset_left = -29.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = 7.0
+[node name="ButtonTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured" index="0"]
+custom_minimum_size = Vector2(93, 32)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("15_re41i")
 
-[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -41.0
+offset_top = -6.5
+offset_right = 41.0
+offset_bottom = 6.5
 
-[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/DeleteAccountButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Delete Account"
+label_settings = SubResource("LabelSettings_bnpqd")
 
 [node name="HelpAndSupportButtonTextured" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer" instance=ExtResource("9_5ghpo")]
 custom_minimum_size = Vector2(93, 32)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_p84si")
 
-[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured" index="0"]
-offset_left = -29.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = 7.0
+[node name="ButtonTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured" index="0"]
+custom_minimum_size = Vector2(93, 32)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("15_re41i")
 
-[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -40.5
+offset_top = -6.5
+offset_right = 40.5
+offset_bottom = 6.5
 
-[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonSorterHBoxContainer" index="1"]
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer/HelpAndSupportButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Help & Support"
+label_settings = SubResource("LabelSettings_003mo")
 
 [node name="SettingsButtonsHBoxContainer1" type="HBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="WithdrawTextureButton" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1" instance=ExtResource("9_5ghpo")]
-custom_minimum_size = Vector2(93, 32)
+custom_minimum_size = Vector2(261, 33)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_p84si")
 
-[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton" index="0"]
-offset_left = -29.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = 7.0
+[node name="ButtonTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton" index="0"]
+custom_minimum_size = Vector2(261, 33)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("16_6yktp")
 
-[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonTextureRect" index="0"]
+offset_left = -49.0
+offset_top = -9.0
+offset_right = 49.0
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonSorterHBoxContainer" index="1"]
-text = "Withdraw"
+[node name="ButtonIconTextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(13, 13)
+texture = ExtResource("17_jdsx3")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem2/ButtonsSorterVBoxContainer/SettingsButtonsHBoxContainer1/WithdrawTextureButton/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Withdrawal"
+label_settings = SubResource("LabelSettings_ux8j3")
 
 [node name="BottomVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -334,28 +378,36 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -81.0
+offset_left = 22.0
+offset_top = -63.0
+offset_right = -22.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 
 [node name="SettingsBackButtonTextured" parent="BottomVBoxContainer" instance=ExtResource("9_5ghpo")]
-custom_minimum_size = Vector2(0, 0)
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = ExtResource("10_p84si")
 
-[node name="ButtonSorterHBoxContainer" parent="BottomVBoxContainer/SettingsBackButtonTextured" index="0"]
-offset_left = -15.0
-offset_top = -14.5
-offset_right = 15.0
-offset_bottom = -1.5
+[node name="ButtonTextureRect" parent="BottomVBoxContainer/SettingsBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("18_8hg3x")
 
-[node name="ButtonIconTextureRect" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = 7.0
+
+[node name="ButtonIconTextureRect" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="BottomVBoxContainer/SettingsBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [connection signal="drag_started" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl/MusicHSlider" to="." method="_on_music_h_slider_drag_started"]
 [connection signal="value_changed" from="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]

@@ -19,7 +19,7 @@ signal websocket_reconnected
 signal error_getting_user_data_signal
 
 signal load_pellets_on_join_match_signal(values: Array)
-signal load_players_on_join_match_signal(value: Array)
+signal load_players_on_join_match_signal(value: Array, bound: Vector2)
 #signal load_virus_on_join_match_signal(values: Array)
 
 #signal deposit_request_successful_signal
@@ -41,6 +41,10 @@ signal nakama_left_room_successfully_signal
 signal reset_game_signal
 
 signal websocket_connection_is_poor_signal(condition: bool)
+
+signal prepare_game_for_play_again_signal
+
+signal player_change_skin_successful(condition: bool)
 
 func emit_open_loading_screen_signal(value: bool) -> void:
 	open_loading_screen.emit(value)
@@ -94,8 +98,8 @@ func emit_websocket_reconnected_signal() -> void:
 func emit_load_pellets_on_join_match_signal(value: Array) -> void:
 	load_pellets_on_join_match_signal.emit(value)
 
-func emit_load_players_on_join_match_signal(value: Array) -> void:
-	load_players_on_join_match_signal.emit(value)
+func emit_load_players_on_join_match_signal(value: Array, bound: Vector2) -> void:
+	load_players_on_join_match_signal.emit(value, bound)
 
 #func emit_load_virus_on_join_match_signal(value: Array) -> void:
 	#load_virus_on_join_match_signal.emit(value)
@@ -126,3 +130,9 @@ func emit_withdrawal_successful_signal() -> void:
 
 func emit_websocket_connection_is_poor_signal(condition: bool) -> void:
 	websocket_connection_is_poor_signal.emit(condition)
+
+func emit_prepare_game_for_play_again_signal() -> void:
+	prepare_game_for_play_again_signal.emit()
+
+func emit_player_change_skin_successful(condition: bool) -> void:
+	player_change_skin_successful.emit(condition)

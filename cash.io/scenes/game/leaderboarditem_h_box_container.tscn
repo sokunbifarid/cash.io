@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb87penjj43ra"]
+
+[ext_resource type="Script" uid="uid://bdb5hwfo3ipb2" path="res://scripts/game/leaderboard_h_box_container.gd" id="1_ppuu2"]
+[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="2_jreb7"]
+[ext_resource type="Texture2D" uid="uid://boysxpy25fcj" path="res://assets/ui/icons/Coin_gold_icon.png" id="3_yj0ux"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_otnwt"]
+font = ExtResource("2_jreb7")
+font_size = 8
+
+[node name="LeaderboarditemHBoxContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+script = ExtResource("1_ppuu2")
+
+[node name="LeaderboardNameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1. Paul"
+label_settings = SubResource("LabelSettings_otnwt")
+visible_characters = 7
+
+[node name="LeaderboardCoinHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="CoinTextureRect" type="TextureRect" parent="LeaderboardCoinHBoxContainer"]
+custom_minimum_size = Vector2(8, 10)
+layout_mode = 2
+texture = ExtResource("3_yj0ux")
+expand_mode = 1
+
+[node name="LeaderboardCoinLabel" type="Label" parent="LeaderboardCoinHBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "10"
+label_settings = SubResource("LabelSettings_otnwt")
+horizontal_alignment = 2
+vertical_alignment = 1
+visible_characters = 7

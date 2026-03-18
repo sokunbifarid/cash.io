@@ -1,30 +1,20 @@
-[gd_scene load_steps=23 format=3 uid="uid://dlaei2dvkb6wb"]
+[gd_scene load_steps=19 format=3 uid="uid://dlaei2dvkb6wb"]
 
 [ext_resource type="Texture2D" uid="uid://xpus7grgrspv" path="res://imports/ui/shop/Shop_Background_Blur.png" id="1_2vd2v"]
 [ext_resource type="Script" uid="uid://l100lggqyb2n" path="res://scripts/ui/shop_screen.gd" id="2_ust1g"]
-[ext_resource type="Texture2D" uid="uid://cmgmeb4fcgp5b" path="res://imports/ui/shop/Shop_panel.png" id="3_ust1g"]
+[ext_resource type="Texture2D" uid="uid://bsctbpy4blrm6" path="res://assets/ui/Shop_panel.png" id="3_d62vj"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_dlx3d"]
-[ext_resource type="Texture2D" uid="uid://c1srbuwj6g60j" path="res://imports/ui/shop/Shop_visible_screen_right_button_panel.png" id="5_d62vj"]
-[ext_resource type="Texture2D" uid="uid://dva2lox7yocuk" path="res://imports/ui/shop/Shop_visible_screen_left_button_panel.png" id="6_dlx3d"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="7_7iig3"]
-[ext_resource type="Texture2D" uid="uid://u5jl63ipnkb7" path="res://imports/ui/comp/Button-3.svg" id="7_yitpt"]
-[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://imports/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="8_dlx3d"]
+[ext_resource type="Texture2D" uid="uid://bdpgfohxowdyr" path="res://assets/ui/Shop_group_1_selection_panel.png" id="5_dlx3d"]
+[ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="8_dlx3d"]
 [ext_resource type="Texture2D" uid="uid://b32kf36wpi4b3" path="res://imports/ui/shop/Shop_scroll_panel.png" id="9_7iig3"]
+[ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="9_d62vj"]
 [ext_resource type="Texture2D" uid="uid://b2uiwm0x8d1gd" path="res://imports/ui/shop/Shop_scroll_grabber.png" id="10_6ads7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teqjh"]
 texture = ExtResource("1_2vd2v")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7lon"]
-texture = ExtResource("3_ust1g")
-
-[sub_resource type="LabelSettings" id="LabelSettings_6ads7"]
-font = ExtResource("7_7iig3")
-font_size = 12
-
-[sub_resource type="LabelSettings" id="LabelSettings_yitpt"]
-font = ExtResource("7_7iig3")
-font_size = 12
+texture = ExtResource("3_d62vj")
 
 [sub_resource type="LabelSettings" id="LabelSettings_n8niw"]
 font = ExtResource("8_dlx3d")
@@ -89,39 +79,33 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -241.0
+offset_left = -181.0
 offset_top = -16.0
-offset_right = 241.0
-offset_bottom = 230.5
+offset_right = 181.0
+offset_bottom = 272.0
 grow_horizontal = 2
 
 [node name="CoinsSkinsButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
-custom_minimum_size = Vector2(67, 30)
+custom_minimum_size = Vector2(193, 30)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 toggle_mode = true
-texture_normal = ExtResource("5_d62vj")
-texture_pressed = ExtResource("6_dlx3d")
 
-[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" index="0"]
-offset_left = -14.5
-offset_top = -6.5
-offset_right = 14.5
-offset_bottom = 6.5
-theme_override_constants/separation = 62
+[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" index="0"]
+custom_minimum_size = Vector2(193, 30)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_dlx3d")
 
-[node name="ButtonIconTextureRect" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="0"]
-visible = false
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -72.5
+offset_top = -9.0
+offset_right = 72.5
+offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "Coins"
-label_settings = SubResource("LabelSettings_6ads7")
-
-[node name="SkinsButtonTextLabel" type="Label" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonSorterHBoxContainer" index="2"]
-layout_mode = 2
-text = "Skins"
-label_settings = SubResource("LabelSettings_yitpt")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "COINS              SKINS"
 
 [node name="ShopItemCategory" type="Control" parent="ShopPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 210)
@@ -183,20 +167,28 @@ theme_override_constants/v_separation = 0
 columns = 4
 
 [node name="CloseButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("7_yitpt")
 
-[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CloseButtonTextured" index="0"]
-offset_left = -19.5
-offset_top = -6.5
-offset_right = 19.5
-offset_bottom = 6.5
+[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/CloseButtonTextured" index="0"]
+custom_minimum_size = Vector2(105, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("9_d62vj")
 
-[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonSorterHBoxContainer" index="1"]
-text = "CLOSE"
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 17.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
 
 [connection signal="toggled" from="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" to="." method="_on_coins_skins_button_textured_toggled"]
 [connection signal="pressed" from="ShopPanel/VBoxContainer/CloseButtonTextured" to="." method="_on_close_button_textured_pressed"]

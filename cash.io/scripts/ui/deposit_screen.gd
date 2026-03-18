@@ -4,8 +4,10 @@ signal close_deposit
 
 @onready var deposit_screen_panel: Panel = $DepositScreenPanel
 @onready var enter_amount_value_line_edit: LineEdit = $DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/EnterAmountVBoxContainer/EnterAmountValueLineEdit
-@onready var payment_successful_screen_panel: Panel = $PaymentSuccessfulScreenPanel
 @onready var deposit_method_method_screen_panel: Panel = $DepositMethodMethodScreenPanel
+@onready var comic_effect: TextureRect = $PaymentSuccessfulScreenPanel/ComicEffect
+@onready var deposit_successful_texture_rect: TextureRect = $PaymentSuccessfulScreenPanel/DepositSuccessfulTextureRect
+@onready var payment_successful_screen_panel: Panel = $PaymentSuccessfulScreenPanel
 
 
 var the_visibility_tween: Tween
@@ -37,6 +39,7 @@ func hide_all_screens() -> void:
 	deposit_screen_panel.hide()
 	payment_successful_screen_panel.hide()
 	enter_amount_value_line_edit.text = ""
+	comic_effect.hide()
 
 func open_deposit() -> void:
 	GlobalManager.current_game_state = GlobalManager.GAME_STATE.DEPOSIT
@@ -62,12 +65,15 @@ func open_deposit_screen() -> void:
 	the_visibility_tween.tween_property(deposit_screen_panel, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func open_deposit_successful() -> void:
+	hide_all_screens()
+	comic_effect.show()
+	comic_effect.rotation = 0
 	payment_successful_screen_panel.show()
-	payment_successful_screen_panel.get_child(0).scale = Vector2.ZERO
+	deposit_successful_texture_rect.get_child(0).scale = Vector2.ZERO
 	if the_visibility_tween:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
-	the_visibility_tween.tween_property(payment_successful_screen_panel.get_child(0), "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	the_visibility_tween.tween_property(deposit_successful_texture_rect.get_child(0), "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func _on_deposit_back_button_textured_pressed() -> void:
 	hide_all_screens()

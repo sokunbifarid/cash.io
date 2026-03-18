@@ -1,10 +1,10 @@
 extends Control
 
-@onready var match_state_label: Label = $PlayerSettledPanel/PlayerSettledVBoxContainer/MatchStateLabel
-@onready var coin_status_label: Label = $PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer/CoinStatusLabel
-@onready var coin_saved_amount_label: Label = $PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer/CoinSavedAmountLabel
-@onready var coin_data_h_box_container: HBoxContainer = $PlayerSettledPanel/PlayerSettledVBoxContainer/CoinDataHBoxContainer
-@onready var player_settled_panel: Panel = $PlayerSettledPanel
+@onready var player_settled_texture_rect: TextureRect = $PlayerSettledPanel/PlayerSettledTextureRect
+@onready var match_state_label: Label = $PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/MatchStateLabel
+@onready var coin_data_h_box_container: HBoxContainer = $PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/CoinDataHBoxContainer
+@onready var coin_status_label: Label = $PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/CoinDataHBoxContainer/CoinStatusLabel
+@onready var coin_saved_amount_label: Label = $PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/CoinDataHBoxContainer/CoinSavedAmountLabel
 
 var the_visibility_tween: Tween
 
@@ -15,12 +15,12 @@ func _ready() -> void:
 
 func open_player_settled_screen() -> void:
 	self.show()
-	player_settled_panel.show()
-	player_settled_panel.scale = Vector2.ZERO
+	player_settled_texture_rect.show()
+	player_settled_texture_rect.scale = Vector2.ZERO
 	if the_visibility_tween:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
-	the_visibility_tween.tween_property(player_settled_panel, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	the_visibility_tween.tween_property(player_settled_texture_rect, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func _on_match_over_signal(data: Dictionary, condition: bool) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_ROOMS:
