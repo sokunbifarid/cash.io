@@ -52,7 +52,7 @@ func generate_code_challenge(verifier:String) -> String:
 		.replace("/","_")\
 		.replace("=","")
 
-func sign_in() -> void:
+func google_web_sign_in() -> void:
 	print("signin clicked")
 	auth_is_active = true
 	code_verifier = generate_code_verifier()
@@ -90,6 +90,43 @@ func sign_in() -> void:
 			JSON.stringify(post_load) +
 			", 'oauthPopup', 'width=500,height=600');")
 
+func apple_web_sign_in() -> void:
+	print("signin clicked")
+	auth_is_active = true
+	code_verifier = generate_code_verifier()
+	code_challenge = generate_code_challenge(code_verifier)
+	SignalManager.emit_open_loading_screen_signal(true)
+	timeout_timer = Timer.new()
+	add_child(timeout_timer)
+	timeout_timer.one_shot = true
+	timeout_timer.timeout.connect(_on_timeout_timer_timeout)
+	timeout_timer.wait_time = AUTH_ACTIVE_DURATION
+	timeout_timer.start()
+	set_process(true)
+
+	var post_load : String = AUTHORIZATION_URL + "?" + \
+	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + WEB_REDIRECT_URI + \
+	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=apple"
+		
+	if OS.get_name() == "Web":
+
+		JavaScriptBridge.eval("window.addEventListener('message', (event) => {
+		    if (event.origin !== window.location.origin) return;
+
+		    const { code, state } = event.data;
+
+			console.log('OAuth received:', code, state);
+
+			sessionStorage.setItem('code', code);
+			sessionStorage.setItem('state', state);
+			//localStorage.setItem('code', code);
+			//localStorage.setItem('state', state);
+		});")
+		JavaScriptBridge.eval(
+			"window.oauthPopup = window.open(" +
+			JSON.stringify(post_load) +
+			", 'oauthPopup', 'width=500,height=600');")
 
 
 func _process(delta: float) -> void:

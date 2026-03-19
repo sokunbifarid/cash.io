@@ -11,11 +11,15 @@ const API_AUDIENCE: String = "urn:cashio:api"
 const MOBILE_REDIRECT_URI: String = "cashio://auth/callback"
 const FRONTEND_DOMAIN: String = "cashio-web.vercel.app"
 const AUTHORIZATION_URL: String = "https://%s/authorize" % OAUTH_DOMAIN
+const GOOGLE_CONNECTION_NAME: String = "google-oauth2"
+const APPLE_CONNECTION_NAME: String = "apple"
+
 
 var STATE: String = str(randi()) + str(Time.get_ticks_usec())
 var code_challenge: String = ""
 var code_verifier: String = ""
 var auth_code: String = ""
+var current_connection_name: String = ""
 var timeout_timer: Timer
 var auth_is_active: bool = true
 
@@ -47,8 +51,9 @@ func query_string_to_dict(query: String) -> Dictionary:
 	
 	return result
 
-func sign_in() -> void:
+func google_sign_in() -> void:
 	print("signin clicked")
+	current_connection_name = GOOGLE_CONNECTION_NAME
 	auth_is_active = true
 	code_verifier = generate_code_verifier()
 	code_challenge = generate_code_challenge(code_verifier)
@@ -63,8 +68,34 @@ func sign_in() -> void:
 	var post_load : String = AUTHORIZATION_URL + "?" + \
 	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + MOBILE_REDIRECT_URI + \
 	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
-	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=google-oauth2"
-	OS.shell_open(post_load)
+	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=" + current_connection_name
+	if OS.get_name() == "Android":
+		OS.shell_open(post_load)
+	elif OS.get_name() == "iOS":
+		OS.execute("open", [post_load])
+
+func ios_sign_in() -> void:
+	print("signin clicked")
+	current_connection_name = APPLE_CONNECTION_NAME
+	auth_is_active = true
+	code_verifier = generate_code_verifier()
+	code_challenge = generate_code_challenge(code_verifier)
+	SignalManager.emit_open_loading_screen_signal(true)
+	timeout_timer = Timer.new()
+	add_child(timeout_timer)
+	timeout_timer.one_shot = true
+	timeout_timer.timeout.connect(_on_timeout_timer_timeout)
+	timeout_timer.wait_time = AUTH_ACTIVE_DURATION
+	timeout_timer.start()
+
+	var post_load : String = AUTHORIZATION_URL + "?" + \
+	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + MOBILE_REDIRECT_URI + \
+	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=" + current_connection_name
+	if OS.get_name() == "Android":
+		OS.shell_open(post_load)
+	elif OS.get_name() == "iOS":
+		OS.execute("open", [post_load])
 
 func generate_code_verifier() -> String:
 	var bytes = Crypto.new().generate_random_bytes(32)

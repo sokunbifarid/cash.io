@@ -13,7 +13,7 @@ const PELLETS_POSSIBLE_COLORS: Array = [Color(0.922, 0.349, 0.349),Color(0.35, 0
 func _ready() -> void:
 	randomize()
 	connect_signal()
-	set_process(false)
+
 
 func connect_signal() -> void:
 	#SignalManager.player_connected_to_multiplayer_network_signal.connect(_on_player_connected_to_multiplayer_network_signal)
@@ -24,32 +24,46 @@ func connect_signal() -> void:
 	SignalManager.reset_game_signal.connect(_on_reset_game_signal)
 	SignalManager.match_over_signal.connect(_on_match_over_signal)
 
+
 func _on_prepare_game_for_play_again_signal() -> void:
 	remove_all_old_pellets()
 	remove_all_old_players()
 
+#func _on_player_connected_to_multiplayer_network_signal(session_id: String) -> void:
+	#spawn_networked_player(session_id)
+
 func _on_load_pellets_on_join_match_signal(pellets: Array) -> void:
 	spawn_networked_pellets(pellets)
 
-func _on_match_over_signal(payload: Dictionary, condition: bool) -> void:
-	set_process(false)
 
 func _on_load_players_on_join_match_signal(players: Array, bound: Vector2) -> void:
 	print("load players on join match signal fired")
 	spawn_networked_player(players, bound)
+	print("on load bounds: ", bound)
 	set_process(true)
+	set_bounds(bound)
+
+#func _on_load_virus_on_join_match_signal(viruses: Array) -> void:
+	#spawn_networked_virus(viruses)
+
+func _on_match_over_signal(_payload: Dictionary, condition: bool) -> void:
+	set_process(false)
 
 func _process(delta: float) -> void:
 	if GameHttpNetworkManager.room_bound != Vector2.ZERO:
 		set_bounds(GameHttpNetworkManager.room_bound)
+		print("mapper bounds: ", GameHttpNetworkManager.room_bound)
 
 func set_bounds(bounds: Vector2) -> void:
 	if game_map:
+		const LIMIT_OFFSET: float = 50
 		if bounds != Vector2.ZERO:
-			bounds = bounds * 2
+			bounds = bounds - Vector2(LIMIT_OFFSET, LIMIT_OFFSET)
 			game_map.region_rect = Rect2(0,0, bounds.x, bounds.y)
-			game_map.position = Vector2(0,0)
+			game_map.position = Vector2(LIMIT_OFFSET, LIMIT_OFFSET)
 
+
+#use this when a game ends
 func remove_all_old_players() -> void:
 	for i in character_holder.get_children():
 		i.queue_free()

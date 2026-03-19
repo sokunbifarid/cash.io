@@ -40,7 +40,10 @@ func sign_in() -> void:
 	]
 
 	server.listen(SERVER_PORT)
-	OS.shell_open(auth_url)
+	if not OS.get_name() == "macOS":
+		OS.shell_open(auth_url)
+	elif OS.get_name() == "macOS":
+		OS.execute("open", [auth_url])
 	set_process(true)
 	auth_is_active = true
 	timeout_timer = Timer.new()
@@ -49,6 +52,7 @@ func sign_in() -> void:
 	timeout_timer.timeout.connect(_on_timeout_timer_timeout)
 	timeout_timer.wait_time = AUTH_ACTIVE_DURATION
 	timeout_timer.start()
+	print("this dae buffer")
 
 
 func _process(delta: float) -> void:

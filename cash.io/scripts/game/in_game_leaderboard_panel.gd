@@ -42,15 +42,12 @@ func _process(delta: float) -> void:
 		return
 	else:
 		websocket_tick_count = 0
-	#var focused_character: Dictionary = {}
-	recorded_players_id = []
+	var focused_character: Dictionary = {}
 	var leaderboard_position: int = 1
 	players_list = GameHttpNetworkManager.current_player_list
-	for i in leaderboard_item_sorter_v_box_container.get_child_count():
-		leaderboard_item_sorter_v_box_container.get_child(i).hide()
-	print("player list: ", players_list)
 	if players_list.size() > 0:
-		for i in players_list.size():#leaderboard_item_sorter_v_box_container.get_child_count():
+		for i in leaderboard_item_sorter_v_box_container.get_child_count():
+			leaderboard_item_sorter_v_box_container.get_child(i).hide()
 			player_with_higest_coin_id = ""
 			for j in players_list:
 				if not recorded_players_id.has(j):
@@ -62,10 +59,9 @@ func _process(delta: float) -> void:
 		if not recorded_players_id.has(GameHttpNetworkManager.get_current_player_id()):
 			recorded_players_id[recorded_players_id.size() - 1] = GameHttpNetworkManager.get_current_player_id()
 		for l in players_list.size():#leaderboard_item_sorter_v_box_container.get_child_count():
-			if l < leaderboard_item_sorter_v_box_container.get_child_count():
+			if l < leaderboard_item_sorter_v_box_container.get_child_count() and players_list.has(recorded_players_id[l]):
 				leaderboard_item_sorter_v_box_container.get_child(l).show()
 				leaderboard_item_sorter_v_box_container.get_child(l).set_data(str(leaderboard_position) + ". " + players_list[recorded_players_id[l]].current_name.left(7), str(players_list[recorded_players_id[l]].current_coin))
-				print("leaderboard setting data, player_id: %s, new character data id: %s" % [GameHttpNetworkManager.get_current_player_id(), recorded_players_id[l]])
 				if recorded_players_id[l] == GameHttpNetworkManager.get_current_player_id():
 					leaderboard_item_sorter_v_box_container.get_child(l).is_player_data(true)
 				else:

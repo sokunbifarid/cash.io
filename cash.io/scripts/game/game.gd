@@ -9,11 +9,13 @@ extends Node
 func _ready() -> void:
 	hide_game()
 	connect_signal()
+	set_process(false)
 
 func connect_signal() -> void:
 	SignalManager.prepare_game.connect(_on_prepare_game)
 	SignalManager.reset_game_signal.connect(_on_reset_game_signal)
 	SignalManager.signout_successful.connect(_on_signout_successful)
+
 
 func _on_signout_successful() -> void:
 	hide_game()

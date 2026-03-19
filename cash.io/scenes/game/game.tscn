@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://vhduy5yim2d6"]
+[gd_scene load_steps=40 format=3 uid="uid://vhduy5yim2d6"]
 
 [ext_resource type="PackedScene" uid="uid://ern6vtiujw1s" path="res://scenes/game/in_game_player_v_box_container.tscn" id="1_7h61r"]
 [ext_resource type="Script" uid="uid://ctcfy5x1aexsk" path="res://scripts/game/game.gd" id="1_kelw5"]
@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://ccqpku5e4ac1n" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="14_3xj4h"]
 [ext_resource type="Texture2D" uid="uid://4lbccp5v3h8g" path="res://assets/ui/Game_completion_you_win_screen_panel.png" id="14_8b66f"]
 [ext_resource type="Texture2D" uid="uid://cdmnx1w40wuws" path="res://assets/ui/Game_completion_data_slot.png" id="16_3jaai"]
-[ext_resource type="Texture2D" uid="uid://boysxpy25fcj" path="res://assets/ui/icons/Coin_gold_icon.png" id="17_1iff4"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="17_1iff4"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="19_4vuph"]
 [ext_resource type="Texture2D" uid="uid://c7yl0y2kojnxn" path="res://assets/ui/Game_completion_share_button.png" id="20_8b66f"]
 [ext_resource type="Texture2D" uid="uid://cp7j356pvi3u7" path="res://assets/game/Background_4.png" id="20_gc57s"]
@@ -31,6 +31,38 @@
 texture = ExtResource("7_pg2xm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ftsea"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_1iff4"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vuph"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_wdnak"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_h48ew"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_fty5b"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2dhg"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_firvq"]
+font = ExtResource("8_5jirj")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_8krtj"]
 font = ExtResource("8_5jirj")
 font_size = 8
 
@@ -167,14 +199,38 @@ layout_mode = 2
 [node name="LeaderboarditemHBoxContainer2" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer" instance=ExtResource("11_1iff4")]
 layout_mode = 2
 
+[node name="LeaderboardNameLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer2" index="0"]
+label_settings = SubResource("LabelSettings_1iff4")
+
+[node name="LeaderboardCoinLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer2/LeaderboardCoinHBoxContainer" index="1"]
+label_settings = SubResource("LabelSettings_4vuph")
+
 [node name="LeaderboarditemHBoxContainer3" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer" instance=ExtResource("11_1iff4")]
 layout_mode = 2
+
+[node name="LeaderboardNameLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer3" index="0"]
+label_settings = SubResource("LabelSettings_wdnak")
+
+[node name="LeaderboardCoinLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer3/LeaderboardCoinHBoxContainer" index="1"]
+label_settings = SubResource("LabelSettings_h48ew")
 
 [node name="LeaderboarditemHBoxContainer4" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer" instance=ExtResource("11_1iff4")]
 layout_mode = 2
 
+[node name="LeaderboardNameLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer4" index="0"]
+label_settings = SubResource("LabelSettings_fty5b")
+
+[node name="LeaderboardCoinLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer4/LeaderboardCoinHBoxContainer" index="1"]
+label_settings = SubResource("LabelSettings_l2dhg")
+
 [node name="LeaderboarditemHBoxContainer5" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer" instance=ExtResource("11_1iff4")]
 layout_mode = 2
+
+[node name="LeaderboardNameLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer5" index="0"]
+label_settings = SubResource("LabelSettings_firvq")
+
+[node name="LeaderboardCoinLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer5/LeaderboardCoinHBoxContainer" index="1"]
+label_settings = SubResource("LabelSettings_8krtj")
 
 [node name="Input" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
 layout_mode = 1
@@ -442,6 +498,7 @@ region_rect = Rect2(0, 0, 30000, 30000)
 
 [node name="GameMap" type="Sprite2D" parent="GameNodes"]
 texture_repeat = 2
+position = Vector2(400, 400)
 texture = ExtResource("20_gc57s")
 centered = false
 region_enabled = true
@@ -464,6 +521,11 @@ game_map = NodePath("../GameMap")
 [connection signal="pressed" from="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/ButtonSorterHBoxContainer/PlayAgainButtonTextured" to="InGameHUDCanvasLayer/InGameHUD/GameCompletion" method="_on_play_again_button_textured_pressed"]
 [connection signal="pressed" from="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/ButtonSorterHBoxContainer/ShareButtonTextured" to="InGameHUDCanvasLayer/InGameHUD/GameCompletion" method="_on_share_button_textured_pressed"]
 
+[editable path="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer"]
+[editable path="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer2"]
+[editable path="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer3"]
+[editable path="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer4"]
+[editable path="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer5"]
 [editable path="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/ButtonSorterHBoxContainer/MainMenuButtonTextured"]
 [editable path="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/ButtonSorterHBoxContainer/PlayAgainButtonTextured"]
 [editable path="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/ButtonSorterHBoxContainer/ShareButtonTextured"]

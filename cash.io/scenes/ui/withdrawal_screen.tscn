@@ -1051,11 +1051,14 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalFormAccountNameValueLineEdit" type="LineEdit" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/AccountNameVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_4ydwt")
+theme_override_styles/focus = SubResource("StyleBoxTexture_4ydwt")
 placeholder_text = "Account name.."
 max_length = 16
+caret_blink = true
 
 [node name="AccountNumberVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer"]
 layout_mode = 2
@@ -1068,12 +1071,15 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalFormAccountNumberValueLineEdit" type="LineEdit" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/AccountNumberVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontFile_nhauy")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_d1g4x")
+theme_override_styles/focus = SubResource("StyleBoxTexture_d1g4x")
 placeholder_text = "Account number..."
 max_length = 10
 virtual_keyboard_type = 2
+caret_blink = true
 
 [node name="BankNameVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer"]
 layout_mode = 2
@@ -1086,11 +1092,14 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalFormBankNameValueLineEdit" type="LineEdit" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/BankNameVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_3rv5q")
+theme_override_styles/focus = SubResource("StyleBoxTexture_3rv5q")
 placeholder_text = "Bank name..."
 max_length = 16
+caret_blink = true
 
 [node name="CryptoAddressVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer"]
 layout_mode = 2
@@ -1103,11 +1112,14 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalFormCryptoAddressValueLineEdit" type="LineEdit" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoAddressVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_wkij6")
+theme_override_styles/focus = SubResource("StyleBoxTexture_wkij6")
 placeholder_text = "Crypto address..."
 max_length = 16
+caret_blink = true
 
 [node name="WithdrawalAmountVBoxContainer" type="VBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer"]
 layout_mode = 2
@@ -1120,12 +1132,15 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalFormWithdrawalAmountValueLineEdit" type="LineEdit" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_frkc2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_frkc2")
 placeholder_text = "N1000"
 max_length = 16
 virtual_keyboard_type = 2
+caret_blink = true
 
 [node name="UIButtonsSorterHBoxContainer" type="HBoxContainer" parent="WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer"]
 layout_mode = 2
@@ -1262,12 +1277,15 @@ label_settings = SubResource("LabelSettings_w3me0")
 
 [node name="WithdrawalDataWithdrawalAmountValueLineEdit" type="LineEdit" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6v0bk")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_msspk")
+theme_override_styles/focus = SubResource("StyleBoxTexture_msspk")
 placeholder_text = "N1000"
 max_length = 16
 virtual_keyboard_type = 2
+caret_blink = true
 
 [node name="UIButtonsSorterHBoxContainer" type="HBoxContainer" parent="WithdrawalDataScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer"]
 layout_mode = 2

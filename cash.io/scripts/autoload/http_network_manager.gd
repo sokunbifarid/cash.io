@@ -221,25 +221,21 @@ func request_http_check_withdrawal() -> void:
 	if not withdrawal_check_http_request_node:
 		withdrawal_check_http_request_node = HTTPRequest.new()
 		add_child(withdrawal_check_http_request_node)
-		withdrawal_check_http_request_node.request_completed.connect(_on_withdrawal_check_http_request_node_request_completed)
+		withdrawal_check_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+			print("withdrawal response code: ", response_code)
+			print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
+			#SignalManager.emit_withdrawal_form_prompt_signal()
+			SignalManager.emit_open_loading_screen_signal(false)
+			if response_code == 404:
+				SignalManager.emit_withdrawal_form_prompt_signal()
+			elif response_code == 204:
+				SignalManager.emit_withdrawal_data_prompt_signal()
+			else:
+				SignalManager.emit_notice_signal("Error attempting withdrawal")
+	)
 	var url : String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + WITHDRAWAL_CHECK_ACCOUNT_API
 	var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	print("ceck withdrawal request: ", url)
-	var err: Error = withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
-	print("http check withdrawal request status: ", err)
-
-func _on_withdrawal_check_http_request_node_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	print("withdrawal check response header: ", headers)
-	print("withdrawal response code: ", response_code)
-	print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
-	#SignalManager.emit_withdrawal_form_prompt_signal()
-	SignalManager.emit_open_loading_screen_signal(false)
-	if response_code == 404:
-		SignalManager.emit_withdrawal_form_prompt_signal()
-	elif response_code == 204:
-		SignalManager.emit_withdrawal_data_prompt_signal()
-	else:
-		SignalManager.emit_notice_signal("Error attempting withdrawal")
+	withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
 
 func request_http_withdrawal(request_data: Dictionary) -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -265,7 +261,10 @@ func request_http_withdrawal(request_data: Dictionary) -> void:
 
 func request_payment() -> void:
 	var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + MAKE_PAYMENT_API
-	OS.shell_open(url)
+	if OS.get_name() == "iOS" or OS.get_name() == "macOS":
+		OS.execute("open", [url])
+	else:
+		OS.shell_open(url)
 
 func request_append_user_selected_skin(skin_id: String) -> void:
 	if skin_id != "":

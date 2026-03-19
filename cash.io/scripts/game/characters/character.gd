@@ -20,7 +20,7 @@ var direction: Vector2 = Vector2.ZERO
 var current_coin: int = 0
 var current_name: String = ""
 var next_pos: Vector2 = Vector2.ZERO
-const SPEED: float = 800#1000#1500#600
+const SPEED: float = 1000#1500#600
 var last_mouse_pressed_position: Vector2 = Vector2.ZERO
 var player_client_side_reconsilation_queue_input: Array = []
 var player_client_side_recosilation_sequence: int = 0
@@ -119,12 +119,12 @@ func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "
 		self.show()
 
 func set_camera_limit(bounds: Vector2 = Vector2.ZERO) -> void:
-	const LIMIT_OFFSET: float = 200
+	const LIMIT_OFFSET: float = 100
 	if bounds != Vector2.ZERO:
-		camera_2d.limit_bottom = bounds.x + LIMIT_OFFSET
+		camera_2d.limit_bottom = bounds.x + LIMIT_OFFSET/2
 		camera_2d.limit_right = bounds.y + LIMIT_OFFSET
 		camera_2d.limit_left = 0 - LIMIT_OFFSET
-		camera_2d.limit_top = 0 - LIMIT_OFFSET
+		camera_2d.limit_top = 0 - LIMIT_OFFSET/2
 
 func _process(delta: float) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:

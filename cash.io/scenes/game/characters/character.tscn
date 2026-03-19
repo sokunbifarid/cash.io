@@ -10,12 +10,12 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_2igd0"]
 font = ExtResource("4_gpchc")
-font_size = 25
+font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ybjje"]
 font = ExtResource("4_gpchc")
-font_size = 25
+font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="Character" type="Node2D"]
@@ -97,7 +97,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="CoinTextureRect" type="TextureRect" parent="CharacterDataHolderNode/CharacterOverHeadUI/CoinHBoxContainer"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("5_i1gcx")
 expand_mode = 1

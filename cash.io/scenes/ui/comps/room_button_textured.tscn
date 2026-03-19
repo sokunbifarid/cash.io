@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cl16sn85afgch" path="res://scripts/ui/comps/room_button_textured.gd" id="2_khp1v"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="2_l72bd"]
 [ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="3_l72bd"]
-[ext_resource type="Texture2D" uid="uid://boysxpy25fcj" path="res://assets/ui/icons/Coin_gold_icon.png" id="3_mxwsx"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="3_mxwsx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khp1v"]
 

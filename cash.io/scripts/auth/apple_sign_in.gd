@@ -11,7 +11,6 @@ func _ready() -> void:
 		auth_active_timer.one_shot = true
 		auth_active_timer.wait_time = AUTH_ACTIVE_DURATION
 		get_tree().root.add_child.call_deferred(auth_active_timer)
-		auth_active_timer.timeout.connect(_on_auth_active_timer_timeout)
 		#auth_controller = ASAuthorizationController.new()
 		connect_signal()
 

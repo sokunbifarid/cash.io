@@ -28,7 +28,7 @@ font = ExtResource("7_gcy7p")
 font_size = 12
 shadow_size = 0
 
-[node name="AuthScreen" type="Control" node_paths=PackedStringArray("google_sign_in", "google_web_sign_in", "apple_sign_in", "pc_google_auth")]
+[node name="AuthScreen" type="Control" node_paths=PackedStringArray("mobile_sign_in", "web_sign_in", "apple_sign_in", "pc_google_auth")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -37,8 +37,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_unbpt")
-google_sign_in = NodePath("AndroidMobileGoogleAuth")
-google_web_sign_in = NodePath("GoogleWebSignInOAuth2")
+mobile_sign_in = NodePath("MobileGoogleAuth")
+web_sign_in = NodePath("WebSignInOAuth")
 apple_sign_in = NodePath("AppleSignIn")
 pc_google_auth = NodePath("PCGoogleAuth")
 
@@ -147,18 +147,17 @@ expand_mode = 1
 text = "Sign In With Apple"
 label_settings = SubResource("LabelSettings_wdl3n")
 
-[node name="AndroidMobileGoogleAuth" type="Node" parent="."]
+[node name="MobileGoogleAuth" type="Node" parent="."]
 script = ExtResource("8_52ll0")
 
-[node name="Deeplink" type="Node" parent="AndroidMobileGoogleAuth"]
+[node name="Deeplink" type="Node" parent="MobileGoogleAuth"]
 script = ExtResource("10_doquh")
 scheme = "cashio"
 host = "auth"
 path_prefix = "/callback"
-enabled_platforms = 1
 metadata/_custom_type_script = "uid://s08w2rvr4gwu"
 
-[node name="GoogleWebSignInOAuth2" type="Node" parent="."]
+[node name="WebSignInOAuth" type="Node" parent="."]
 script = ExtResource("9_x864w")
 
 [node name="PCGoogleAuth" type="Node" parent="."]

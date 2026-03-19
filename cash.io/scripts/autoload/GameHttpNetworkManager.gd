@@ -6,11 +6,11 @@ var current_player_id: String = ""
 var player_starting_time: float = 0
 var player_running_time: float = 0
 var last_room_id: String = ""
+var room_bound: Vector2 = Vector2.ZERO
 const MAX_NUMBER_OF_RETRIES_TO_JOIN_ROOM: int = 3
 var can_auto_join_room_on_launch: bool = true
 var populate_pellets_list_basket_pellets: Array = []
 var populate_player_list_basket_players: Array = []
-var room_bound: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	SignalManager.reset_game_signal.connect(_on_reset_game_signal)
@@ -20,6 +20,7 @@ func _ready() -> void:
 func _on_match_over_signal() -> void:
 	player_starting_time = 0
 	player_running_time = 0
+	room_bound = Vector2.ZERO
 
 func _on_prepare_game_for_play_again_signal() -> void:
 	current_pellets_list = {}
@@ -75,17 +76,14 @@ func append_session_connected_data(_payload: Dictionary) -> void:
 		if can_auto_join_room_on_launch == false:
 			SignalManager.emit_startup_request_data_loaded_successfully()
 		else:
-			send_join_room(GlobalManager.get_last_match_room_id())
-	elif GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
-		print("can auto join room is true")
-		if GlobalManager.get_was_in_match():
-			print("detected player was in a match previously")
-			SignalManager.emit_websocket_reconnected_signal()
-			send_join_room(GlobalManager.get_last_match_room_id())
-			print("trying to join last match")
-		else:
-			print("detected player was not in match previously")
-			#SignalManager.emit_startup_request_data_loaded_successfully()
+			print("can auto join room is true")
+			if GlobalManager.get_was_in_match():
+				print("detected player was in a match previously")
+				send_join_room(GlobalManager.get_last_match_room_id())
+				print("trying to join last match")
+			else:
+				print("detected player was not in match previously")
+				SignalManager.emit_startup_request_data_loaded_successfully()
 	else:
 		SignalManager.emit_websocket_reconnected_signal()
 
@@ -128,9 +126,8 @@ func append_room_joined_data(payload: Dictionary) -> void:
 
 func append_snapshot_data(payload: Dictionary) -> void:
 	SignalManager.emit_open_loading_screen_signal(false)
+	print("update snapshot,: ", payload)
 	if payload.has("payload"):
-		if payload.payload.has("bounds"):
-			room_bound = Vector2(payload.bounds.width, payload.bounds.height)
 		if payload.payload.has("updated_players"):
 			if payload.payload.updated_players.size() > 0:
 				update_players(payload.payload.updated_players)
@@ -148,6 +145,8 @@ func append_snapshot_data(payload: Dictionary) -> void:
 				remove_eaten_pellets(payload.payload.removed_pellets)
 		if payload.payload.has("remaining_sec"):
 			player_running_time = payload.payload.remaining_sec
+		if payload.payload.has("bounds"):
+			room_bound = Vector2(payload.payload.bounds.width, payload.payload.bounds.height)
 
 func append_player_settled_data(payload: Dictionary) -> void:
 	#print("trying to append player_settled_data: ", payload)
@@ -186,9 +185,11 @@ func spawned_pellets(payload: Array) -> void:
 
 func populate_player_list(payload: Dictionary) -> void:
 	populate_player_list_basket_players = []
+	print("populate player payload: ", payload)
 	var temp_player_list: Array = []
 	if payload.has("bounds"):
 		room_bound = Vector2(payload.bounds.width, payload.bounds.height)
+		print("bounds set here")
 	if payload.has("players"):
 		temp_player_list = payload.players
 	elif payload.has("spawned_players"):

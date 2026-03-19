@@ -10,6 +10,7 @@ font_size = 30
 
 [node name="LoadingScreenControl" type="Control"]
 visible = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
