@@ -235,7 +235,7 @@ func request_http_check_withdrawal() -> void:
 				SignalManager.emit_notice_signal("Error attempting withdrawal")
 	)
 	var url : String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + WITHDRAWAL_CHECK_ACCOUNT_API
-	var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
+	var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token]
 	withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
 
 func request_http_withdrawal(request_data: Dictionary) -> void:
