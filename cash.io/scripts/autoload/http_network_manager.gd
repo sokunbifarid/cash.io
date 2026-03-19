@@ -221,7 +221,8 @@ func request_http_check_withdrawal() -> void:
 	if not withdrawal_check_http_request_node:
 		withdrawal_check_http_request_node = HTTPRequest.new()
 		add_child(withdrawal_check_http_request_node)
-		withdrawal_check_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+		withdrawal_check_http_request_node.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+			print("withdrawal check result: ", result)
 			print("withdrawal response code: ", response_code)
 			print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
 			#SignalManager.emit_withdrawal_form_prompt_signal()
