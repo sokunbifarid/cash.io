@@ -7,7 +7,7 @@ var recorded_players_id: Array = []
 var player_with_higest_coin_name: String = ""
 var player_with_higest_coin_id: String = ""
 var players_with_highest_coin_coin_count: int = 0
-const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/60.0
+const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/100#60.0
 var websocket_tick_count: float = 0
 
 func _ready() -> void:

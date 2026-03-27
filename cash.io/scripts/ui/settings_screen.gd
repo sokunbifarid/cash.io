@@ -10,8 +10,8 @@ var the_visibility_tween: Tween
 
 const TWEEN_DURATION: float = 0.25
 
-var music_value: int = 6
-var sound_effects_value: int = 6
+var music_value: float = 1.5
+var sound_effects_value: float = 1.5
 
 func _ready() -> void:
 	set_sound_settings_properties()
@@ -32,14 +32,16 @@ func set_sound_settings_properties() -> void:
 	music_h_slider.value = music_value
 	sound_effect_h_slider.value = sound_effects_value
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("music"), music_value)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("music"), sound_effects_value)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("sfx"), sound_effects_value)
 
 func prepare_to_save_settings() -> void:
 	music_value = music_h_slider.value
 	sound_effects_value = sound_effect_h_slider.value
+	GlobalManager.set_settings(music_value, sound_effects_value)
 
 func _on_settings_back_button_textured_pressed() -> void:
 	close_settings.emit()
+	prepare_to_save_settings()
 
 func _on_signout_button_textured_pressed() -> void:
 	SignalManager.emit_signout_successful_signal()
@@ -56,10 +58,11 @@ func _on_help_and_support_button_textured_pressed() -> void:
 
 func _on_music_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("music"), value)
+	SfxAudioManager.play_slider_tick_sfx()
 
 func _on_sound_effect_h_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("music"), value)
-
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("sfx"), value)
+	SfxAudioManager.play_slider_tick_sfx()
 
 func _on_music_h_slider_drag_started() -> void:
 	SfxAudioManager.play_button_pressed_sfx()

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bejbntcmb3nim"]
+
+[ext_resource type="Script" uid="uid://b0n17sehw1erd" path="res://scripts/ui/available_powerups_play_screen_data.gd" id="1_c5rig"]
+[ext_resource type="Texture2D" uid="uid://bnfs5vcyxrokp" path="res://assets/ui/Boost_powerup_ui.png" id="1_odtuq"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_c5rig"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="4_183ia"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_shxhf"]
+font = ExtResource("2_c5rig")
+font_size = 10
+font_color = Color(0.972549, 0.8352941, 0.30588236, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_183ia"]
+font = ExtResource("2_c5rig")
+font_size = 12
+
+[node name="AvailablePowerupsPlayScreenData" type="VBoxContainer"]
+theme_override_constants/separation = -5
+script = ExtResource("1_c5rig")
+
+[node name="PowerupTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_odtuq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinBoostHBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="CoinAmountLabel" type="Label" parent="CoinBoostHBoxContainer"]
+layout_mode = 2
+text = "+20%"
+label_settings = SubResource("LabelSettings_shxhf")
+
+[node name="CoinTextureRect" type="TextureRect" parent="CoinBoostHBoxContainer"]
+custom_minimum_size = Vector2(15, 17.5)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("4_183ia")
+expand_mode = 1
+
+[node name="PowerupQuantityLabel" type="Label" parent="."]
+layout_mode = 2
+text = "x2"
+label_settings = SubResource("LabelSettings_183ia")
+horizontal_alignment = 1

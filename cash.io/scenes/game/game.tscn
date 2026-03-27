@@ -1,6 +1,5 @@
-[gd_scene load_steps=40 format=3 uid="uid://vhduy5yim2d6"]
+[gd_scene load_steps=39 format=3 uid="uid://vhduy5yim2d6"]
 
-[ext_resource type="PackedScene" uid="uid://ern6vtiujw1s" path="res://scenes/game/in_game_player_v_box_container.tscn" id="1_7h61r"]
 [ext_resource type="Script" uid="uid://ctcfy5x1aexsk" path="res://scripts/game/game.gd" id="1_kelw5"]
 [ext_resource type="Script" uid="uid://b8ur6ow1pu5w1" path="res://scripts/game/in_game_hud.gd" id="2_5jirj"]
 [ext_resource type="Script" uid="uid://54vpju7ymnmg" path="res://scripts/game/in_game_network_manager.gd" id="2_kelw5"]
@@ -97,20 +96,15 @@ script = ExtResource("2_5jirj")
 
 [node name="InGameHUDSorterControl" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = 51.0
-offset_top = 8.0
-offset_right = -51.0
-offset_bottom = 115.0
+anchor_bottom = 1.0
+offset_left = 28.888855
+offset_top = 13.0
+offset_right = -28.888855
+offset_bottom = -13.0
 grow_horizontal = 2
-
-[node name="InGamePlayerVBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl" instance=ExtResource("1_7h61r")]
-visible = false
-layout_mode = 0
-offset_left = 104.0
-offset_right = 138.0
-offset_bottom = 48.0
+grow_vertical = 2
 
 [node name="InGameDataHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl"]
 layout_mode = 0
@@ -231,6 +225,19 @@ label_settings = SubResource("LabelSettings_firvq")
 
 [node name="LeaderboardCoinLabel" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl/InGameRightHBoxContainer/InGameLeaderboardPanel/LeaderboardVBoxContainer/LeaderboardItemSorterVBoxContainer/LeaderboarditemHBoxContainer5/LeaderboardCoinHBoxContainer" index="1"]
 label_settings = SubResource("LabelSettings_8krtj")
+
+[node name="PowerupSorterGridContainer" type="GridContainer" parent="InGameHUDCanvasLayer/InGameHUD/InGameHUDSorterControl"]
+custom_minimum_size = Vector2(64, 200)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Input" type="Control" parent="InGameHUDCanvasLayer/InGameHUD"]
 layout_mode = 1

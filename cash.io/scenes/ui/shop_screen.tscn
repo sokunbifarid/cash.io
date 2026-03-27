@@ -1,31 +1,44 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlaei2dvkb6wb"]
+[gd_scene load_steps=36 format=3 uid="uid://dlaei2dvkb6wb"]
 
-[ext_resource type="Texture2D" uid="uid://xpus7grgrspv" path="res://imports/ui/shop/Shop_Background_Blur.png" id="1_2vd2v"]
 [ext_resource type="Script" uid="uid://l100lggqyb2n" path="res://scripts/ui/shop_screen.gd" id="2_ust1g"]
+[ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="3_6c02i"]
 [ext_resource type="Texture2D" uid="uid://bsctbpy4blrm6" path="res://assets/ui/Shop_panel.png" id="3_d62vj"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_dlx3d"]
-[ext_resource type="Texture2D" uid="uid://bdpgfohxowdyr" path="res://assets/ui/Shop_group_1_selection_panel.png" id="5_dlx3d"]
+[ext_resource type="Texture2D" uid="uid://cibh8lyoe0srb" path="res://assets/ui/Shop_Category_Unselected.png" id="5_qv7ok"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="6_6c02i"]
+[ext_resource type="Texture2D" uid="uid://c200qewb1cs5y" path="res://assets/ui/Profile_character_scroll_grabber.png" id="7_qv7ok"]
+[ext_resource type="Texture2D" uid="uid://ccoqcpu88ufwk" path="res://assets/ui/Profile_character_scroll_background.png" id="8_6c02i"]
 [ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="8_dlx3d"]
-[ext_resource type="Texture2D" uid="uid://b32kf36wpi4b3" path="res://imports/ui/shop/Shop_scroll_panel.png" id="9_7iig3"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="9_d62vj"]
-[ext_resource type="Texture2D" uid="uid://b2uiwm0x8d1gd" path="res://imports/ui/shop/Shop_scroll_grabber.png" id="10_6ads7"]
+[ext_resource type="Texture2D" uid="uid://cp7j356pvi3u7" path="res://assets/game/Background_4.png" id="10_yitpt"]
+[ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="11_n8niw"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="12_k7vaa"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="13_yitpt"]
+[ext_resource type="Texture2D" uid="uid://bsfinjr5g6khe" path="res://assets/ui/comp/Background_3.png" id="14_qv7ok"]
+[ext_resource type="Texture2D" uid="uid://ktbaajn32c4i" path="res://assets/ui/comp/Comic_lines.png" id="15_6c02i"]
+[ext_resource type="Texture2D" uid="uid://do232q6tqbawc" path="res://assets/ui/Deposit_Payment_Successful_Screen.png" id="16_153ob"]
+[ext_resource type="Texture2D" uid="uid://byooer6ibiwk6" path="res://assets/ui/comp/Button_6.png" id="17_wt61e"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teqjh"]
-texture = ExtResource("1_2vd2v")
+texture = ExtResource("14_qv7ok")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7lon"]
 texture = ExtResource("3_d62vj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_153ob"]
+font = ExtResource("6_6c02i")
+font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_n8niw"]
 font = ExtResource("8_dlx3d")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7iig3"]
-texture = ExtResource("9_7iig3")
+texture = ExtResource("7_qv7ok")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ads7"]
-texture = ExtResource("10_6ads7")
+texture = ExtResource("8_6c02i")
 texture_margin_left = 3.0
 texture_margin_right = 3.0
 
@@ -34,18 +47,44 @@ VScrollBar/styles/grabber = SubResource("StyleBoxTexture_7iig3")
 VScrollBar/styles/scroll = SubResource("StyleBoxTexture_6ads7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yitpt"]
-texture = ExtResource("9_7iig3")
+texture = ExtResource("7_qv7ok")
 texture_margin_top = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8niw"]
-texture = ExtResource("10_6ads7")
+texture = ExtResource("8_6c02i")
 texture_margin_left = 3.0
 texture_margin_right = 3.0
 
 [sub_resource type="Theme" id="Theme_k7vaa"]
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_yitpt")
 VScrollBar/styles/scroll = SubResource("StyleBoxTexture_n8niw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6bj3"]
+texture = ExtResource("10_yitpt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_qv7ok"]
+font = ExtResource("12_k7vaa")
+
+[sub_resource type="LabelSettings" id="LabelSettings_m6bj3"]
+font = ExtResource("12_k7vaa")
+font_size = 32
+font_color = Color(0.972549, 0.8352941, 0.30588236, 1)
+outline_size = 10
+outline_color = Color(0.6653276, 0.55716115, 0.09444361, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qv7ok"]
+load_path = "res://.godot/imported/Coin_gold_icon.png-3515b87b8770ad6e3bc376ed1168ce7b.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_6c02i"]
+font = ExtResource("12_k7vaa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x57ts"]
+texture = ExtResource("14_qv7ok")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yte0o"]
+font = ExtResource("12_k7vaa")
+font_size = 24
 
 [node name="ShopScreen" type="Panel"]
 visible = false
@@ -57,6 +96,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_teqjh")
 script = ExtResource("2_ust1g")
+
+[node name="BuyCoinDetails" parent="." instance=ExtResource("3_6c02i")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -132.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
+[node name="BuyCoinButtonTextured" parent="BuyCoinDetails" index="0"]
+disabled = true
+
+[node name="Plus_ButtonSorterHBoxContainer_ButtonIconTextureRect#CoinValueLabel" parent="BuyCoinDetails/CoinAmountPanelTextureRect/HBoxContainer" index="2"]
+visible = false
 
 [node name="ShopPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -85,33 +141,82 @@ offset_right = 181.0
 offset_bottom = 272.0
 grow_horizontal = 2
 
-[node name="CoinsSkinsButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
-custom_minimum_size = Vector2(193, 30)
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsButtonTextured" parent="ShopPanel/VBoxContainer/HBoxContainer" instance=ExtResource("4_dlx3d")]
+visible = false
+custom_minimum_size = Vector2(97, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-toggle_mode = true
 
-[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" index="0"]
-custom_minimum_size = Vector2(193, 30)
+[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/HBoxContainer/CoinsButtonTextured" index="0"]
+custom_minimum_size = Vector2(97, 30)
 offset_right = 0.0
 offset_bottom = 0.0
-texture = ExtResource("5_dlx3d")
+texture = ExtResource("5_qv7ok")
 
-[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonTextureRect" index="0"]
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/HBoxContainer/CoinsButtonTextured/ButtonTextureRect" index="0"]
 offset_left = -72.5
 offset_top = -9.0
 offset_right = 72.5
 offset_bottom = 9.0
 
-[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
-text = "COINS              SKINS"
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/HBoxContainer/CoinsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "COINS"
+
+[node name="SkinsButtonTextured" parent="ShopPanel/VBoxContainer/HBoxContainer" instance=ExtResource("4_dlx3d")]
+visible = false
+custom_minimum_size = Vector2(97, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/HBoxContainer/SkinsButtonTextured" index="0"]
+custom_minimum_size = Vector2(97, 30)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_qv7ok")
+
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/HBoxContainer/SkinsButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -72.5
+offset_top = -9.0
+offset_right = 72.5
+offset_bottom = 9.0
+
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/HBoxContainer/SkinsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "SKINS"
+
+[node name="PowerupsButtonTextured" parent="ShopPanel/VBoxContainer/HBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(97, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="ShopPanel/VBoxContainer/HBoxContainer/PowerupsButtonTextured" index="0"]
+custom_minimum_size = Vector2(97, 30)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("5_qv7ok")
+
+[node name="ButtonSorterHBoxContainer" parent="ShopPanel/VBoxContainer/HBoxContainer/PowerupsButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -72.5
+offset_top = -9.0
+offset_right = 72.5
+offset_bottom = 9.0
+
+[node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/HBoxContainer/PowerupsButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "POWERUPS"
+label_settings = SubResource("LabelSettings_153ob")
 
 [node name="ShopItemCategory" type="Control" parent="ShopPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 210)
 layout_mode = 2
 
 [node name="CoinsItemsVBoxContainer" type="VBoxContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -166,6 +271,33 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 0
 columns = 4
 
+[node name="PowerupsItemsVBoxContainer" type="VBoxContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="PowerupsLabel" type="Label" parent="ShopPanel/VBoxContainer/ShopItemCategory/PowerupsItemsVBoxContainer"]
+layout_mode = 2
+text = "Powerups"
+label_settings = SubResource("LabelSettings_n8niw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/PowerupsItemsVBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+theme = SubResource("Theme_k7vaa")
+horizontal_scroll_mode = 0
+
+[node name="PowerupsItemsGridContainer" type="GridContainer" parent="ShopPanel/VBoxContainer/ShopItemCategory/PowerupsItemsVBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 0
+columns = 4
+
 [node name="CloseButtonTextured" parent="ShopPanel/VBoxContainer" instance=ExtResource("4_dlx3d")]
 custom_minimum_size = Vector2(105, 47)
 layout_mode = 2
@@ -190,8 +322,242 @@ visible = false
 [node name="ButtonTextLabel" parent="ShopPanel/VBoxContainer/CloseButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
 text = "Back"
 
-[connection signal="toggled" from="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured" to="." method="_on_coins_skins_button_textured_toggled"]
-[connection signal="pressed" from="ShopPanel/VBoxContainer/CloseButtonTextured" to="." method="_on_close_button_textured_pressed"]
+[node name="ConfirmShopPurchasePanel" type="Panel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.49803922)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m6bj3")
 
-[editable path="ShopPanel/VBoxContainer/CoinsSkinsButtonTextured"]
+[node name="ConfirmShopPanelTextureRect" type="TextureRect" parent="ConfirmShopPurchasePanel"]
+custom_minimum_size = Vector2(434, 269)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = -134.5
+offset_right = 217.0
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(217, 134)
+texture = ExtResource("11_n8niw")
+expand_mode = 1
+
+[node name="ConfirmPurchaseSorterVBoxContainer" type="VBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -30.0
+offset_right = 107.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ConfirmPurchaseLabel" type="Label" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer"]
+layout_mode = 2
+text = "Confirm Purchase"
+label_settings = SubResource("LabelSettings_qv7ok")
+horizontal_alignment = 1
+
+[node name="ConfirmPurchaseItemsVBoxContainer" type="VBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer"]
+layout_mode = 2
+
+[node name="ConfirmPurchaseTextureRect" type="TextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ConfirmPurchaseItemsVBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinBoostHBoxContainer" type="HBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ConfirmPurchaseItemsVBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CoinAmountLabel" type="Label" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ConfirmPurchaseItemsVBoxContainer/CoinBoostHBoxContainer"]
+layout_mode = 2
+text = "+20%"
+label_settings = SubResource("LabelSettings_m6bj3")
+
+[node name="CoinTextureRect" type="TextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ConfirmPurchaseItemsVBoxContainer/CoinBoostHBoxContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_qv7ok")
+expand_mode = 1
+
+[node name="ConfirmPurchaseLabel" type="Label" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ConfirmPurchaseItemsVBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "Buy x3 Shield"
+label_settings = SubResource("LabelSettings_6c02i")
+horizontal_alignment = 1
+text_overrun_behavior = 1
+
+[node name="ButtonsSorterHBoxContainer" type="HBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer"]
+layout_mode = 2
+
+[node name="ConfirmPurchasePurchaseButtonTextured_1" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(105.5, 40.5)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1" index="0"]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ButtonSorterHBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1/ButtonTextureRect" index="0"]
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+custom_minimum_size = Vector2(15, 17.5)
+texture = ExtResource("13_yitpt")
+expand_mode = 1
+
+[node name="ButtonTextLabel" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Purchase"
+
+[node name="ConfirmPurchaseBackButtonTextured_2" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(105.5, 40.5)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2" index="0"]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ButtonSorterHBoxContainer" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2/ButtonTextureRect" index="0"]
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
+
+[node name="PurchaseSuccessfulPanel" type="Panel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.5137255)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 180)
+theme_override_styles/panel = SubResource("StyleBoxTexture_x57ts")
+
+[node name="ComicEffect" type="TextureRect" parent="PurchaseSuccessfulPanel"]
+custom_minimum_size = Vector2(800, 360)
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 360.0
+pivot_offset = Vector2(400, 180)
+texture = ExtResource("15_6c02i")
+expand_mode = 1
+
+[node name="PurchaseSuccessfulTextureRect" type="TextureRect" parent="PurchaseSuccessfulPanel"]
+custom_minimum_size = Vector2(371, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.5
+offset_top = -90.0
+offset_right = 185.5
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(185, 90)
+texture = ExtResource("16_153ob")
+expand_mode = 1
+
+[node name="PurchaseSuccessfulVBoxContainer" type="VBoxContainer" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -16.5
+offset_right = 140.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="PurchaseSuccessfulLabel" type="Label" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer"]
+layout_mode = 2
+text = "Purchase
+Successful"
+label_settings = SubResource("LabelSettings_yte0o")
+horizontal_alignment = 1
+
+[node name="PurchaseSuccessfulBackButtonTextured" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer" instance=ExtResource("4_dlx3d")]
+custom_minimum_size = Vector2(64, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(64, 26)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = ExtResource("17_wt61e")
+
+[node name="ButtonSorterHBoxContainer" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 17.0
+offset_bottom = 9.0
+
+[node name="ButtonIconTextureRect" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Back"
+
+[connection signal="pressed" from="ShopPanel/VBoxContainer/HBoxContainer/CoinsButtonTextured" to="." method="_on_coins_button_textured_pressed"]
+[connection signal="pressed" from="ShopPanel/VBoxContainer/HBoxContainer/SkinsButtonTextured" to="." method="_on_skins_button_textured_pressed"]
+[connection signal="pressed" from="ShopPanel/VBoxContainer/HBoxContainer/PowerupsButtonTextured" to="." method="_on_powerups_button_textured_pressed"]
+[connection signal="pressed" from="ShopPanel/VBoxContainer/CloseButtonTextured" to="." method="_on_close_button_textured_pressed"]
+[connection signal="pressed" from="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1" to="." method="_on_confirm_purchase_purchase_button_textured_1_pressed"]
+[connection signal="pressed" from="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2" to="." method="_on_confirm_purchase_back_button_textured_2_pressed"]
+[connection signal="pressed" from="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured" to="." method="_on_purchase_successful_back_button_textured_pressed"]
+
+[editable path="BuyCoinDetails"]
+[editable path="BuyCoinDetails/BuyCoinButtonTextured"]
+[editable path="ShopPanel/VBoxContainer/HBoxContainer/CoinsButtonTextured"]
+[editable path="ShopPanel/VBoxContainer/HBoxContainer/SkinsButtonTextured"]
+[editable path="ShopPanel/VBoxContainer/HBoxContainer/PowerupsButtonTextured"]
 [editable path="ShopPanel/VBoxContainer/CloseButtonTextured"]
+[editable path="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchasePurchaseButtonTextured_1"]
+[editable path="ConfirmShopPurchasePanel/ConfirmShopPanelTextureRect/ConfirmPurchaseSorterVBoxContainer/ButtonsSorterHBoxContainer/ConfirmPurchaseBackButtonTextured_2"]
+[editable path="PurchaseSuccessfulPanel/PurchaseSuccessfulTextureRect/PurchaseSuccessfulVBoxContainer/PurchaseSuccessfulBackButtonTextured"]

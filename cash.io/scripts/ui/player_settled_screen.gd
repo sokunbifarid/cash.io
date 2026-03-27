@@ -21,6 +21,7 @@ func open_player_settled_screen() -> void:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
 	the_visibility_tween.tween_property(player_settled_texture_rect, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	SfxAudioManager.play_successful_sfx()
 
 func _on_match_over_signal(data: Dictionary, condition: bool) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_ROOMS:

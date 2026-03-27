@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_o5ckp"]
 [ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="3_qrviw"]
 [ext_resource type="Texture2D" uid="uid://c6kep4aii6fqc" path="res://assets/ui/comp/Screen_panel_3.png" id="3_xnyfk"]
-[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="4_mb21i"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="5_mb21i"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="6_3jkv5"]
 [ext_resource type="Texture2D" uid="uid://byooer6ibiwk6" path="res://assets/ui/comp/Button_6.png" id="8_o56fe"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ey4c1"]
@@ -109,8 +109,10 @@ text = "Coin Saved:"
 label_settings = SubResource("LabelSettings_o56fe")
 
 [node name="TextureRect" type="TextureRect" parent="PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/CoinDataHBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = ExtResource("4_mb21i")
+texture = ExtResource("6_3jkv5")
+expand_mode = 1
 
 [node name="CoinSavedAmountLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer/CoinDataHBoxContainer"]
 layout_mode = 2

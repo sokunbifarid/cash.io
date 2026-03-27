@@ -1,4 +1,4 @@
-extends Node
+extends ws_proto
 
 var current_player_list: Dictionary = {}
 var current_pellets_list: Dictionary = {}
@@ -11,6 +11,9 @@ const MAX_NUMBER_OF_RETRIES_TO_JOIN_ROOM: int = 3
 var can_auto_join_room_on_launch: bool = true
 var populate_pellets_list_basket_pellets: Array = []
 var populate_player_list_basket_players: Array = []
+const DEFAULT_PLAYER_TIME_IN_ROOM: float = 90.0 
+
+var ws_topics = Topic
 
 func _ready() -> void:
 	SignalManager.reset_game_signal.connect(_on_reset_game_signal)
@@ -36,7 +39,7 @@ func _on_reset_game_signal() -> void:
 	player_running_time = 0
 	last_room_id = ""
 
-func network_process(payload: Dictionary) -> void:
+func network_process(payload: Envelope) -> void:#(payload: Dictionary) -> void:
 	map_networked_payload(payload)
 	#print("websocket server reply payload: ", payload)
 
@@ -46,32 +49,197 @@ func get_current_player_id() -> String:
 func set_current_player_id(value: String) -> void:
 	current_player_id = value
 
-func map_networked_payload(payload: Dictionary) -> void:
-	if payload.has("topic"):
-		var payload_topic: String = payload.topic
+func map_networked_payload(payload: Envelope) -> void:#(payload: Dictionary) -> void:
+	var envelope_response = JSON.parse_string(payload.to_string())
+	if envelope_response.has("topic"):
+		var payload_topic: int = envelope_response.topic#payload.topic#: String = payload.topic
 		match payload_topic:
-			"session.connected":
-				append_session_connected_data(payload)
-			"gateway.error":
-				append_gateway_error_data(payload)
-			"rooms.joined":
-				append_room_joined_data(payload)
-			"rooms.snapshot":
-				append_snapshot_data(payload)
-			"rooms.player_settled":
-				append_player_settled_data(payload)
-			"rooms.player_eliminated":
-				append_player_eliminated_data(payload)
-			"rooms.cashout_rejected":
-				append_cashout_rejected_data(payload)
-			"wallet.updated":
-				append_wallet_updated_data(payload)
-			"wallet.settlement_failed":
-				append_wallet_settlement_failed_data(payload)
+			ws_topics.GET_ROOMS:
+				append_get_room(envelope_response)
+			ws_topics.ROOMS_JOIN:
+				print("room join called response obtained: ", envelope_response)
+			ws_topics.ROOMS_REJOIN:
+				append_rooms_rejoin_data(envelope_response)
+			ws_topics.ROOMS_JOINED:
+				append_room_joined_data(envelope_response)
+			ws_topics.ROOMS_PLAYER_SETTLED:
+				print("rooms player settled response obtained: ", envelope_response)
+				append_player_settled_data(envelope_response)
+			ws_topics.ROOMS_PLAYER_ELIMINATED:
+				print("rooms player eliminated response obtained: ", envelope_response)
+			ws_topics.WALLET_UPDATED:
+				append_wallet_updated_data(envelope_response)
+			ws_topics.ROOMS_CASHOUT_REJECTED:
+				print("room cashout rejected response obtained: ", envelope_response)
+			ws_topics.ROOMS_POWERUP_UPDATED:
+				print("room powerup updated response obtained: ", envelope_response)
+				append_powerup_used_data(envelope_response)
+			ws_topics.ROOMS_SNAPSHOT:
+				append_snapshot_data(envelope_response)
+			ws_topics.ROOMS_TIME_LEFT:
+				append_rooms_time_left_data(envelope_response)
+			ws_topics.ROOMS_INPUT:
+				append_room_input_data(envelope_response)
+				print("rooms input response obtained: ", envelope_response)
+			ws_topics.ROOMS_LEAVE:
+				print("room leave response obtained: ", envelope_response)
+			ws_topics.ROOMS_DISCONNECT:
+				print("room disconnected response obtained: ", envelope_response)
+			ws_topics.ROOMS_POWERUP_USE:
+				print("powerup used response obtained: ", envelope_response)
+				
+			ws_topics.DEPOSITS_CREATE:
+				append_deposits_create_data(envelope_response)
+				pass
+			ws_topics.WITHDRAWALS_CREATE:
+				append_withdrawals_create_data(envelope_response)
+			ws_topics.WITHDRAWALS_ACCOUNT_STATUS:
+				append_withdrawal_account_status_data(envelope_response)
+			ws_topics.GET_ME:
+				append_get_me(envelope_response)
+			ws_topics.SET_AVATAR:
+				print("set avatar")
+			ws_topics.GET_SHOP_CATALOG:
+				append_shop_catalog(envelope_response)
+			ws_topics.BUY_CATALOG_ITEM:
+				print("catalog item bought response obtained: ", envelope_response)
+				append_buy_catalog_item_response(envelope_response)
+			#"session.connected":
+				#append_session_connected_data(payload)
+			#"gateway.error":
+				#append_gateway_error_data(payload)
+			#"session.heartbeat":
+				#print(payload)
+			#"rooms.joined":
+				#append_room_joined_data(payload)
+			#"rooms.snapshot":
+				#append_snapshot_data(payload)
+			#"rooms.player_settled":
+				#append_player_settled_data(payload)
+			#"rooms.player_eliminated":
+				#append_player_eliminated_data(payload)
+			#"rooms.cashout_rejected":
+				#append_cashout_rejected_data(payload)
+			#"wallet.updated":
+				#append_wallet_updated_data(payload)
+			#"wallet.settlement_failed":
+				#append_wallet_settlement_failed_data(payload)
+			#"rooms.powerup.updated":
+				#append_powerup_used_data(payload)
+
+func append_room_input_data(payload: Dictionary) -> void:
+	#rooms input response obtained: { "error_body": { "message": "invalid_room_id" }, "room_id": "", "topic": 14.0 }
+	if payload.has("error_body"):
+		if payload.error_body.has("message"):
+			print("cannot send user input because, " + payload.error_body.message)
+
+func append_buy_catalog_item_response(payload: Dictionary) -> void:
+	SignalManager.emit_open_loading_screen_signal(false)
+	if payload.has("error_body"):
+		if payload.error_body.has("message"):
+			SignalManager.emit_notice_signal(payload.error_body.message)
+			return
+	if payload.has("buy_catalog_item_body"):
+		SignalManager.emit_shop_purchase_successful_signal()
+
+func append_rooms_time_left_data(payload: Dictionary) -> void:
+	if payload.has("number_body"):
+		if payload.number_body.has("value"):
+			if payload.number_body.value:
+				player_running_time = payload.number_body.value
+
+func append_rooms_rejoin_data(payload: Dictionary) -> void:
+	if payload.has("error_body"):
+		if payload.error_body.has("message"):
+			if payload.error_body.message == "rejoin_not_available":
+				GlobalManager.set_was_in_match(false, "")
+				send_join_room(last_room_id)
+
+func append_withdrawals_create_data(payload: Dictionary) -> void:
+	SignalManager.emit_open_loading_screen_signal(false)
+	if payload.has("error_body"):
+		if payload.error_body.has("message"):
+			SignalManager.emit_notice_signal(payload.error_body.message)
+			return
+
+func append_withdrawal_account_status_data(payload: Dictionary) -> void:
+	SignalManager.emit_open_loading_screen_signal(false)
+	if payload.has("withdrawal_account_status_body"):
+		if payload.withdrawal_account_status_body.has("value"):
+			if payload.withdrawal_account_status_body.value == false:
+				SignalManager.emit_withdrawal_form_prompt_signal()
+			elif payload.withdrawal_account_status_body.value == true:
+				SignalManager.emit_withdrawal_data_prompt_signal()
+			return
+	SignalManager.emit_notice_signal("Error attempting withdrawal")
+
+func append_deposits_create_data(envelope_response: Dictionary) -> void:
+	if envelope_response.has("deposit_created_body"):
+		if envelope_response.deposit_created_body.has("checkout_url"):
+			if OS.get_name() == "iOS" or OS.get_name() == "macOS":
+				OS.execute("open", [envelope_response.deposit_created_body.checkout_url])
+			else:
+				OS.shell_open(envelope_response.deposit_created_body.checkout_url)
+			return
+	SignalManager.emit_open_loading_screen_signal(false)
+	SignalManager.emit_notice_signal("Issue proceeding with deposit")
+
+func append_get_room(payload: Dictionary) -> void:
+	if payload.has("rooms"):
+		if payload.rooms.has("items"):
+			var response: Dictionary = {"rooms": []}
+			response.rooms = payload.rooms.items
+			SignalManager.emit_all_rooms_loaded_signal(response)
+			SignalManager.emit_open_loading_screen_signal(false)
+			HttpNetworkManager.request_http_shop()
+			return
+	SignalManager.emit_error_getting_user_data_signal()
+	SignalManager.emit_notice_signal("Issue Getting Room List")
+	SignalManager.emit_open_loading_screen_signal(false)
+
+func append_shop_catalog(payload: Dictionary) -> void:
+	if payload.has("shop_catalog"):
+		if payload.shop_catalog.has("items"):
+			var response: Dictionary = {"items": []}
+			response.items = payload.shop_catalog.items
+			SignalManager.emit_shop_data_loaded_signal(response)
+			SignalManager.emit_open_loading_screen_signal(false)
+			SignalManager.emit_startup_request_data_loaded_successfully()
+			return
+	SignalManager.emit_error_getting_user_data_signal()
+	SignalManager.emit_notice_signal("Issue Getting Shop Data")
+	SignalManager.emit_open_loading_screen_signal(false)
+
+func append_get_me(payload: Dictionary) -> void:
+	if payload.has("user_payload"):
+		var result_data: Dictionary = {
+			"username": "",
+			"wallet_balance": 0,
+			"active_avatar": "",
+			"owned_avatars": [],
+			"owned_powerups": []}
+		if payload.user_payload.has("username"):
+			result_data.username = payload.user_payload.username
+		if payload.user_payload.has("wallet_balance"):
+			result_data.wallet_balance = payload.user_payload.wallet_balance
+		if payload.user_payload.has("active_avatar"):
+			result_data.active_avatar = payload.user_payload.active_avatar
+		if payload.user_payload.has("owned_avatars"):
+			result_data.owned_avatars = payload.user_payload.owned_avatars
+		if payload.user_payload.has("inventory"):
+			result_data.owned_powerups = payload.user_payload.inventory
+		set_current_player_id(payload.user_payload.get("user_id"))
+		SignalManager.emit_player_data_loaded_successfully_signal(result_data)
+		HttpNetworkManager.request_http_room_list()
+		return
+	SignalManager.emit_notice_signal("Issue loading player data")
+	SignalManager.emit_error_getting_user_data_signal()
+	SignalManager.emit_open_loading_screen_signal(false)
 
 func append_session_connected_data(_payload: Dictionary) -> void:
 	SignalManager.emit_open_loading_screen_signal(false)
 	print("session connected")
+	send_heartbeat()
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.AUTH:
 		if can_auto_join_room_on_launch == false:
 			SignalManager.emit_startup_request_data_loaded_successfully()
@@ -87,11 +255,15 @@ func append_session_connected_data(_payload: Dictionary) -> void:
 	else:
 		SignalManager.emit_websocket_reconnected_signal()
 
+#not used
 func append_gateway_error_data(payload: Dictionary) -> void:
+	print("gateway payload: ", payload)
 	if payload.has("payload"):
 		if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_ROOMS:
 			if payload.payload.has("message"):
-				if payload.payload.message == "rejoin_not_available" or payload.payload.message == "room_not_joined":
+				if payload.payload.message == "rejoin_not_available":
+					SignalManager.emit_match_over_signal({}, true)
+				if payload.payload.message == "room_not_joined":
 					GlobalManager.set_was_in_match(false, "")
 					send_join_room(last_room_id)
 				elif payload.payload.message == "room_already_joined" or payload.payload.message == "use_rejoin":
@@ -106,56 +278,133 @@ func append_gateway_error_data(payload: Dictionary) -> void:
 					#print("appending gateway error, " + payload.payload.message)
 					SignalManager.emit_notice_signal(payload.payload.message)
 
-
 func append_room_joined_data(payload: Dictionary) -> void:
 	print("room joined data: ", payload)
-	if payload.has("payload"):
-		if payload.payload.has("remaining_sec"):
-			player_starting_time = payload.payload.remaining_sec
-		if payload.payload.has("pellets"):
-			if payload.payload.pellets.size() > 0:
-				populate_pellets_list(payload.payload.pellets)
-		if payload.payload.has("players"):
-			if payload.payload.players.size() > 0:
-				populate_player_list(payload.payload)
-		if payload.payload.has("remaining_sec") or payload.payload.has("pellets") or payload.payload.has("players"):
+
+	#if payload.has("payload"):
+		#if payload.payload.has("pellets"):
+			#if payload.payload.pellets.size() > 0:
+				#populate_pellets_list(payload.payload.pellets)
+		#if payload.payload.has("players"):
+			#if payload.payload.players.size() > 0:
+				#populate_player_list(payload.payload)
+		#if payload.payload.has("powerups"):
+			#if payload.payload.powerups.size() > 0:
+				#SignalManager.emit_load_in_game_powersups_signal(payload.payload.powerups)
+		#if payload.payload.has("remaining_sec"):
+			#player_starting_time = payload.payload.remaining_sec
+			#if payload.payload.remaining_sec == DEFAULT_PLAYER_TIME_IN_ROOM:
+				#if current_player_list.has(current_player_id):
+					#PowerupsManager.force_use_shield()
+		#if payload.payload.has("remaining_sec") or payload.payload.has("pellets") or payload.payload.has("players"):
+			#SignalManager.emit_open_loading_screen_signal(false)
+			#GlobalManager.set_was_in_match(true, last_room_id)
+			#SignalManager.emit_prepare_game_signal()
+		#GlobalManager.current_game_state = GlobalManager.GAME_STATE.BUBBLE_GAME
+	if payload.has("error_body"):
+		if payload.error_body.has("message"):
+			if payload.error_body.message == "use_rejoin":
+				send_join_room(GlobalManager.get_last_match_room_id())
+				return
+	if payload.has("initial_payload"):
+		if payload.initial_payload.has("pellets"):
+			if payload.initial_payload.pellets.size() > 0:
+				populate_pellets_list(payload.initial_payload.pellets)
+		if payload.initial_payload.has("players"):
+			if payload.initial_payload.players.size() > 0:
+				populate_player_list(payload.initial_payload)
+		if payload.initial_payload.has("powerups"):
+			if payload.initial_payload.powerups.size() > 0:
+				SignalManager.emit_load_in_game_powersups_signal(payload.initial_payload.powerups)
+		if payload.initial_payload.has("remaining_sec"):
+			player_starting_time = payload.initial_payload.remaining_sec
+			if payload.initial_payload.remaining_sec == DEFAULT_PLAYER_TIME_IN_ROOM:
+				if current_player_list.has(current_player_id):
+					PowerupsManager.force_use_shield()
+		if payload.initial_payload.has("bounds"):
+			room_bound = Vector2(payload.initial_payload.bounds.width, payload.initial_payload.bounds.height)
+
+		if payload.initial_payload.has("remaining_sec") or payload.initial_payload.has("pellets") or payload.initial_payload.has("players"):
 			SignalManager.emit_open_loading_screen_signal(false)
 			GlobalManager.set_was_in_match(true, last_room_id)
 			SignalManager.emit_prepare_game_signal()
+			print("this shit is buggling")
 		GlobalManager.current_game_state = GlobalManager.GAME_STATE.BUBBLE_GAME
 
+#"powerups": [{ "id": "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72", "name": "Turbo Booster", "quantity": 20.0 }, { "id": "2f8a9f3d-0f4c-4b9f-8d1d-2f6a7c1e5b13", "name": "Guardian Shield", "quantity": 11.0 }, { "id": "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90", "name": "Flash Speed", "quantity": 5.0 }], "remaining_sec": 90.0 } }
+
 func append_snapshot_data(payload: Dictionary) -> void:
+	#SignalManager.emit_open_loading_screen_signal(false)
+	#print("update snapshot,: ", payload)
+	#if payload.has("payload"):
+		#if payload.payload.has("updated_players"):
+			#if payload.payload.updated_players.size() > 0:
+				#update_players(payload.payload.updated_players)
+		#if payload.payload.has("spawned_players"):
+			#if payload.payload.spawned_players.size() > 0:
+				#populate_player_list(payload.payload)
+		#if payload.payload.has("removed_players"):
+			#if payload.payload.removed_players.size() > 0:
+				#remove_eaten_players(payload.payload.removed_players)
+		#if payload.payload.has("spawned_pellets"):
+			#if payload.payload.spawned_pellets.size() > 0:
+				#spawned_pellets(payload.payload.spawned_pellets)
+		#if payload.payload.has("removed_pellets"):
+			#if payload.payload.removed_pellets.size() > 0:
+				#remove_eaten_pellets(payload.payload.removed_pellets)
+		#if payload.payload.has("remaining_sec"):
+			#player_running_time = payload.payload.remaining_sec
+			##if payload.payloa
+		#if payload.payload.has("bounds"):
+			#room_bound = Vector2(payload.payload.bounds.width, payload.payload.bounds.height)
+
+
+#{"room_id":"","snapshot_payload":{"bounds":{"height":5000.0,"width":5000.0},"removed_pellets":[],"removed_players":[],"spawned_pellets":[],"spawned_players":[],"updated_players":[{"coins":1,"id":"google-oauth2|111573010780317288794","mass":100.0,"x":1828.98714174498,"y":371.024026117302}]},"topic":12}
+#envelope data: {"number_body":{"value":89},"room_id":"","topic":13}
+	#continue here
 	SignalManager.emit_open_loading_screen_signal(false)
 	print("update snapshot,: ", payload)
-	if payload.has("payload"):
-		if payload.payload.has("updated_players"):
-			if payload.payload.updated_players.size() > 0:
-				update_players(payload.payload.updated_players)
-		if payload.payload.has("spawned_players"):
-			if payload.payload.spawned_players.size() > 0:
-				populate_player_list(payload.payload)
-		if payload.payload.has("removed_players"):
-			if payload.payload.removed_players.size() > 0:
-				remove_eaten_players(payload.payload.removed_players)
-		if payload.payload.has("spawned_pellets"):
-			if payload.payload.spawned_pellets.size() > 0:
-				spawned_pellets(payload.payload.spawned_pellets)
-		if payload.payload.has("removed_pellets"):
-			if payload.payload.removed_pellets.size() > 0:
-				remove_eaten_pellets(payload.payload.removed_pellets)
-		if payload.payload.has("remaining_sec"):
-			player_running_time = payload.payload.remaining_sec
-		if payload.payload.has("bounds"):
-			room_bound = Vector2(payload.payload.bounds.width, payload.payload.bounds.height)
+	if payload.has("snapshot_payload"):
+		if payload.snapshot_payload.has("updated_players"):
+			if payload.snapshot_payload.updated_players.size() > 0:
+				update_players(payload.snapshot_payload.updated_players)
+		if payload.snapshot_payload.has("spawned_players"):
+			if payload.snapshot_payload.spawned_players.size() > 0:
+				populate_player_list(payload.snapshot_payload)
+		if payload.snapshot_payload.has("removed_players"):
+			if payload.snapshot_payload.removed_players.size() > 0:
+				remove_eaten_players(payload.snapshot_payload.removed_players)
+		if payload.snapshot_payload.has("spawned_pellets"):
+			if payload.snapshot_payload.spawned_pellets.size() > 0:
+				spawned_pellets(payload.snapshot_payload.spawned_pellets)
+		if payload.snapshot_payload.has("removed_pellets"):
+			if payload.snapshot_payload.removed_pellets.size() > 0:
+				remove_eaten_pellets(payload.snapshot_payload.removed_pellets)
+		if payload.snapshot_payload.has("remaining_sec"):
+			print("remaining time snap shot sent")
+			player_running_time = payload.snapshot_payload.remaining_sec
+			#if payload.payloa
+		if payload.snapshot_payload.has("bounds"):
+			room_bound = Vector2(payload.snapshot_payload.bounds.width, payload.snapshot_payload.bounds.height)
+
+
 
 func append_player_settled_data(payload: Dictionary) -> void:
 	#print("trying to append player_settled_data: ", payload)
-	var data: Dictionary = {"coins": 0}
+	#var data: Dictionary = {"coins": 0}
+	#GlobalManager.set_was_in_match(false, "")
+	#if payload.has("payload"):
+		#if payload.payload.has("coins"):
+			#data.coins = payload.payload.coins
+	#SignalManager.emit_match_over_signal(data, true)
+	var data: Dictionary = {"coin": 0}
+	print("player settled successfully")
 	GlobalManager.set_was_in_match(false, "")
-	if payload.has("payload"):
-		if payload.payload.has("coins"):
-			data.coins = payload.payload.coins
+	if payload.has("number_body"):
+		if payload.number_body.has("value"):
+			data.coin = int(payload.number_body.value)
 	SignalManager.emit_match_over_signal(data, true)
+
 
 func append_player_eliminated_data(_payload: Dictionary) -> void:
 	SignalManager.emit_match_over_signal({}, false)
@@ -168,16 +417,31 @@ func append_cashout_rejected_data(payload: Dictionary) -> void:
 
 func append_wallet_updated_data(payload: Dictionary) -> void:
 	#print("wallet updated: ", payload)
-	if payload.has("payload"):
-		if payload.payload.has("amount"):
-			#print("appending wallet updated data")
-			SignalManager.emit_wallet_updated_successfull_signal(int(payload.payload.amount))
-			SignalManager.emit_open_loading_screen_signal(false)
+	#if payload.has("payload"):
+		#if payload.payload.has("amount"):
+			##print("appending wallet updated data")
+			#SignalManager.emit_wallet_updated_successfull_signal(int(payload.payload.amount))
+			#SignalManager.emit_open_loading_screen_signal(false)
+	if payload.has("number_body"):
+		if payload.number_body.has("value"):
+			SignalManager.emit_wallet_updated_successfull_signal(int(payload.number_body.value))
+
 
 func append_wallet_settlement_failed_data(payload: Dictionary) -> void:
 	#print("wallet settlement failed: ", payload)
 	if payload.has("detail"):
 		SignalManager.emit_wallet_settlement_failed_signal(payload.detail)
+
+#"powerups": [{ "id": "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72", "name": "Turbo Booster", "quantity": 20.0 }, { "id": "2f8a9f3d-0f4c-4b9f-8d1d-2f6a7c1e5b13", "name": "Guardian Shield", "quantity": 11.0 }, { "id": "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90", "name": "Flash Speed", "quantity": 5.0 }], "remaining_sec": 90.0 } }
+
+func append_powerup_used_data(payload: Dictionary) -> void:
+	#print("powerup payload data received: ", payload.payload)
+	#if payload.has("payload"):
+		#SignalManager.emit_player_used_powerup_signal(payload.payload)
+		#print("powerups initiated")
+	if payload.has("powerup_body"):
+		SignalManager.emit_player_used_powerup_signal(payload.powerup_body)
+		print("powerups initiated")
 
 func spawned_pellets(payload: Array) -> void:
 	#print("spawned pellets: ", payload)
@@ -185,7 +449,7 @@ func spawned_pellets(payload: Array) -> void:
 
 func populate_player_list(payload: Dictionary) -> void:
 	populate_player_list_basket_players = []
-	print("populate player payload: ", payload)
+	#print("populate player payload: ", payload)
 	var temp_player_list: Array = []
 	if payload.has("bounds"):
 		room_bound = Vector2(payload.bounds.width, payload.bounds.height)
@@ -227,13 +491,11 @@ func update_players(payload: Array) -> void:
 						coin = i.coins
 					if i.has("mass"):
 						mass = i.mass
-					if i.has("input_sequence"):
-						input_sequence = i.input_sequence
-					current_player_list[i.id].set_data(new_pos, mass, coin, input_sequence)
+					current_player_list[i.id].set_data(new_pos, mass, coin)
 
 func remove_eaten_players(payload: Array) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
-		print("remove eaten players payload: ", payload)
+		#print("remove eaten players payload: ", payload)
 		for i: String in payload:
 			if current_player_list.has(i):
 				current_player_list[i].character_disabled()
@@ -241,11 +503,14 @@ func remove_eaten_players(payload: Array) -> void:
 
 func remove_eaten_pellets(payload: Array) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
-		print("remove eaten pellets payload: ", payload)
+		#print("remove eaten pellets payload: ", payload)
 		for i: String in payload:
 			if current_pellets_list.has(i):
 				current_pellets_list[i].queue_free()
 				current_pellets_list.erase(i)
+				if current_player_id.contains(current_player_id):
+					if current_pellets_list[i].position.distance_to(current_player_list[current_player_id].position) < 10:
+						SfxAudioManager.play_eat_pellets_sfx()
 
 func update_pellets_list(id: String, pellets: Sprite2D) -> void:
 	if not current_pellets_list.has(id):
@@ -255,37 +520,71 @@ func update_players_list(id: String, players: Node2D) -> void:
 	if not current_player_list.has(id):
 		current_player_list.set(id, players)
 
-func send_player_movement_input(x: float, y: float, _input_sequence: int = 0) -> void:
-	var data: Dictionary = {"topic": "rooms.input","payload": {"x": x,"y": y}}
-	WebsocketMultiplayerRouter.send_data_on_websocket(data)
+func send_player_movement_input(x: float, y: float) -> void:
+	#var data: Dictionary = {"topic": "rooms.input","payload": {"x": x,"y": y}}
+	print("attempting to send player movement input with room id: " + str(last_room_id))
+	var envelope: Envelope = Envelope.new()
+	envelope.topic = Topic.ROOMS_INPUT
+	var player_input_data: InputBody = InputBody.new()
+	player_input_data.dx = x
+	player_input_data.dy = y
+	envelope.input_body = player_input_data
+	envelope.room_id = last_room_id
+	WebsocketMultiplayerRouter.send_data_on_websocket(envelope)
+	#WebsocketMultiplayerRouter.send_data_on_websocket(data)
 
 func send_cashout_request() -> void:
-	var data: Dictionary = {"topic": "rooms.leave","payload": {}}
-	WebsocketMultiplayerRouter.send_important_data_on_websocket(data)
+	#var data: Dictionary = {"topic": "rooms.leave","payload": {}}
+	var envelope: Envelope = Envelope.new()
+	envelope.topic = Topic.ROOMS_LEAVE
+	envelope.room_id = last_room_id
+	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
+	print("cashout being called")
+	#WebsocketMultiplayerRouter.send_important_data_on_websocket(data)
+
+func send_use_powerup(id: String) -> void:
+	#var data: Dictionary = {"topic": "rooms.powerup.use","payload": {"id": id}}
+	var envelope: Envelope = Envelope.new()
+	envelope.topic = Topic.ROOMS_POWERUP_USE
+	var powerup_to_use: PowerupBody = PowerupBody.new()
+	powerup_to_use.id = id
+	envelope.powerup_body = powerup_to_use
+	envelope.room_id = last_room_id
+	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
+	print("powerups being called")
+	#WebsocketMultiplayerRouter.send_data_on_websocket(data)
 
 func send_join_room(room_id: String) -> void:
 	#print("room_id: ", room_id)
 	last_room_id = room_id
-	var data: Dictionary = {
-		"topic": "rooms.join",
-		"payload": {
-			"room_id": room_id,
-			}
-		}
+	var envelope: Envelope = Envelope.new()
+	#var data: Dictionary = {
+		#"topic": "rooms.join",
+		#"payload": {
+			#"room_id": room_id,
+			#}
+		#}
 	if GlobalManager.get_was_in_match() == false:
-		data.topic = "rooms.join"
-		data.payload.room_id = room_id
+		#data.topic = "rooms.join"
+		#data.payload.room_id = room_id
+		envelope.topic = Topic.ROOMS_JOIN
+		envelope.room_id = room_id
 	else:
-		data.topic = "rooms.rejoin"
-		data.payload.room_id = room_id
+		#data.topic = "rooms.rejoin"
+		#data.payload.room_id = room_id
+		envelope.topic = Topic.ROOMS_REJOIN
+		envelope.room_id = room_id
+		
 	#print("join room request data: ", data)
 	SignalManager.emit_open_loading_screen_signal(true)
-	WebsocketMultiplayerRouter.send_important_data_on_websocket(data)
+	#WebsocketMultiplayerRouter.send_important_data_on_websocket(data)
+	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
 	#print("send join room with rejoin as: ", GlobalManager.get_was_in_match())
 
-func send_ping() -> void:
-	var data: Dictionary =   {
-		"topic": "ping",
-		"payload": {}
-	}
-	WebsocketMultiplayerRouter.send_data_on_websocket(data)
+func send_heartbeat() -> void:
+	#var data: Dictionary = {"topic": "session.heartbeat","payload": {}}
+	#WebsocketMultiplayerRouter.send_data_on_websocket(data)
+	var envelope: Envelope = Envelope.new()
+	envelope.topic = Topic.PING
+	WebsocketMultiplayerRouter.send_data_on_websocket(envelope)
+	print("heartbeat sent to the server")

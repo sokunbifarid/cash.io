@@ -12,6 +12,7 @@ func _on_notice(value: String) -> void:
 	value = value.capitalize()
 	notice_label.text = value
 	visible_timer_node.start()
+	SfxAudioManager.play_notice_ticking_sfx()
 
 func _on_visible_timer_timeout() -> void:
 	self.hide()

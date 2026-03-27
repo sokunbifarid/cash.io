@@ -19,6 +19,7 @@ signal close_withdrawal_screen
 @onready var withdrawal_amount_v_box_container: VBoxContainer = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/WithdrawalAmountVBoxContainer
 @onready var withdrawal_form_crypto_address_value_line_edit: LineEdit = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer/WithdrawalDetailsVBoxContainer/CryptoAddressVBoxContainer/WithdrawalFormCryptoAddressValueLineEdit
 @onready var comic_effect: TextureRect = $WithdrawalInProgressScreenPanel/ComicEffect
+@onready var ui_buttons_v_box_container: VBoxContainer = $WithdrawalFormScreenPanel/WithdrawalTextureRect/UIButtonsVBoxContainer
 
 var the_visibility_tween: Tween
 
@@ -112,6 +113,7 @@ func open_withdrawal_in_progress() -> void:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
 	the_visibility_tween.tween_property(withdrawal_in_progress_screen_panel, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	SfxAudioManager.play_successful_sfx()
 
 func clear_all_text_fields() -> void:
 	withdrawal_form_bank_name_value_line_edit.text = ""
@@ -127,11 +129,13 @@ func set_visible_ui_based_on_payment_provider() -> void:
 		account_number_v_box_container.show()
 		bank_name_v_box_container.show()
 		crypto_address_v_box_container.hide()
+		ui_buttons_v_box_container.add_theme_constant_override("separation", 0)
 	elif HttpNetworkManager.check_if_payment_provider_is_coinremitter():
 		crypto_address_v_box_container.show()
 		account_name_v_box_container.hide()
 		account_number_v_box_container.hide()
 		bank_name_v_box_container.hide()
+		ui_buttons_v_box_container.add_theme_constant_override("separation", 50)
 	withdrawal_amount_v_box_container.show()
 
 func _on_withdrawal_form_submit_button_textured_pressed() -> void:
@@ -226,13 +230,13 @@ func _on_withdrawal_in_progress_back_button_textured_pressed() -> void:
 
 
 func _on_naira_withdrawal_method_button_textured_pressed() -> void:
-	HttpNetworkManager.request_http_check_withdrawal()
 	HttpNetworkManager.set_current_payment_provider_to_opay()
+	HttpNetworkManager.request_http_check_withdrawal()
 
 
 func _on_crypto_withdrawal_method_button_textured_pressed() -> void:
-	HttpNetworkManager.request_http_check_withdrawal()
 	HttpNetworkManager.set_current_payment_provider_to_coinremitter()
+	HttpNetworkManager.request_http_check_withdrawal()
 
 func _on_withdrawal_method_back_button_textured_pressed() -> void:
 	close_withdrawal_screen.emit()

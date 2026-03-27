@@ -8,8 +8,8 @@ var current_game_state: GAME_STATE = GAME_STATE.AUTH
 var player_selected_skin_id: String = ""
 
 var settings_data: Dictionary = {
-	"music_value": 6,
-	"sound_effects_value": 6
+	"music_value": 1.5,
+	"sound_effects_value": 1.5
 }
 
 var user_data: Dictionary = {
@@ -45,6 +45,7 @@ func _on_signout_successful() -> void:
 func set_settings(music_value: int, sound_effects_value: int) -> void:
 	settings_data.music_value = music_value
 	settings_data.sound_effets_value = sound_effects_value
+	save_settings()
 
 func set_can_silent_auth_user_data(can_silent_auth: bool) -> void:
 	user_data.can_silent_auth = can_silent_auth

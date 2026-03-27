@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dql4hudkwsmrv"]
+[gd_scene load_steps=19 format=3 uid="uid://dql4hudkwsmrv"]
 
 [ext_resource type="Script" uid="uid://lrovtg3hd5vi" path="res://scripts/ui/play_screen.gd" id="1_07qul"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_07qul"]
 [ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="2_v7a2d"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="3_xr71u"]
+[ext_resource type="PackedScene" uid="uid://b2dtkd1a8u6nj" path="res://scenes/ui/comps/room_button_textured.tscn" id="4_62q8l"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="5_07qul"]
 [ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="5_a3ih6"]
+[ext_resource type="Texture2D" uid="uid://1q67vkhx1g8y" path="res://assets/ui/comp/Screen_panel_5.png" id="7_d0qis"]
+[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="9_lowqs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07qul"]
 
@@ -24,9 +27,21 @@ region = Rect2(0, 292, 869, 246)
 texture = SubResource("AtlasTexture_d0qis")
 expand_margin_bottom = 14.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a3ih6"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xr71u"]
 atlas = ExtResource("5_07qul")
 region = Rect2(0, 0, 212, 94)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u8fy4"]
+font = ExtResource("2_07qul")
+font_size = 10
+outline_size = 5
+outline_color = Color(0.12941177, 0.50980395, 0.27450982, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yb3qo"]
+font = ExtResource("9_lowqs")
+font_size = 10
 
 [node name="PlayScreen" type="Control"]
 visible = false
@@ -53,15 +68,16 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -217.0
-offset_right = 217.0
-offset_bottom = 346.0
+offset_left = -220.0
+offset_top = -12.0
+offset_right = 220.0
+offset_bottom = 269.0
 grow_horizontal = 2
 pivot_offset = Vector2(217, 173)
 theme_override_constants/separation = 0
 
 [node name="PlayScreenTextureRect" type="TextureRect" parent="PlayScreenPanel/PlayScreenVBoxContainer"]
-custom_minimum_size = Vector2(434, 146)
+custom_minimum_size = Vector2(391, 131)
 layout_mode = 2
 texture = SubResource("AtlasTexture_62q8l")
 expand_mode = 1
@@ -83,52 +99,148 @@ label_settings = SubResource("LabelSettings_7mnah")
 horizontal_alignment = 1
 
 [node name="PlayerScreenPanelContainer" type="PanelContainer" parent="PlayScreenPanel/PlayScreenVBoxContainer"]
-custom_minimum_size = Vector2(434, 123)
+custom_minimum_size = Vector2(391, 111)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3bd3w")
 
-[node name="UIButtonsSorterVBoxContainer" type="GridContainer" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer"]
+custom_minimum_size = Vector2(225, 145)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/v_separation = 0
+size_flags_vertical = 4
+horizontal_scroll_mode = 0
+
+[node name="UiButtonsPanelContainer" type="PanelContainer" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/ScrollContainer"]
+custom_minimum_size = Vector2(220, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a3ih6")
+
+[node name="UIButtonsSorterVBoxContainer" type="GridContainer" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/ScrollContainer/UiButtonsPanelContainer"]
+custom_minimum_size = Vector2(170, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/v_separation = -1
 columns = 2
 
-[node name="BottomVBoxContainer" type="VBoxContainer" parent="PlayScreenPanel"]
+[node name="room_button_textured" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/ScrollContainer/UiButtonsPanelContainer/UIButtonsSorterVBoxContainer" instance=ExtResource("4_62q8l")]
+layout_mode = 2
+
+[node name="room_button_textured2" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/ScrollContainer/UiButtonsPanelContainer/UIButtonsSorterVBoxContainer" instance=ExtResource("4_62q8l")]
+layout_mode = 2
+
+[node name="room_button_textured3" parent="PlayScreenPanel/PlayScreenVBoxContainer/PlayerScreenPanelContainer/ScrollContainer/UiButtonsPanelContainer/UIButtonsSorterVBoxContainer" instance=ExtResource("4_62q8l")]
+layout_mode = 2
+
+[node name="PlayBackButtonTextured" parent="PlayScreenPanel" instance=ExtResource("3_xr71u")]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -120.0
+offset_right = -16.0
+offset_bottom = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+
+[node name="ButtonTextureRect" parent="PlayScreenPanel/PlayBackButtonTextured" index="0"]
+custom_minimum_size = Vector2(106, 47)
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_xr71u")
+
+[node name="ButtonSorterHBoxContainer" parent="PlayScreenPanel/PlayBackButtonTextured/ButtonTextureRect" index="0"]
+offset_left = -20.5
+offset_top = -12.0
+offset_right = 20.5
+offset_bottom = 6.0
+
+[node name="ButtonIconTextureRect" parent="PlayScreenPanel/PlayBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+visible = false
+
+[node name="ButtonTextLabel" parent="PlayScreenPanel/PlayBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "BACK"
+
+[node name="PowerupsAvailableVBoxContainer" type="VBoxContainer" parent="PlayScreenPanel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 17.0
-offset_top = -64.0
+offset_top = -69.0
 offset_right = -17.0
-offset_bottom = -24.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 
-[node name="PlayBackButtonTextured" parent="PlayScreenPanel/BottomVBoxContainer" instance=ExtResource("3_xr71u")]
-custom_minimum_size = Vector2(112, 40)
+[node name="AvailablePowerupsLabel" type="Label" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
+text = "Available Powerups"
+label_settings = SubResource("LabelSettings_u8fy4")
 
-[node name="ButtonTextureRect" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured" index="0"]
-custom_minimum_size = Vector2(106, 47)
+[node name="AvailablePowerupsSorterHBoxContainer" type="HBoxContainer" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="AvailablePowerupsTextureRect" type="TextureRect" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer"]
+custom_minimum_size = Vector2(350, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_d0qis")
+expand_mode = 1
+
+[node name="AvailalbePowerupsScrollContainer" type="ScrollContainer" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/AvailablePowerupsTextureRect"]
+custom_minimum_size = Vector2(328, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = -11.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+
+[node name="AvailablePowerupsHBoxContainer" type="HBoxContainer" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/AvailablePowerupsTextureRect/AvailalbePowerupsScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="BuyMorePowerupButtonTextured_1" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer" instance=ExtResource("3_xr71u")]
+custom_minimum_size = Vector2(79, 30.375)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonTextureRect" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1" index="0"]
 offset_right = 0.0
 offset_bottom = 0.0
-texture = SubResource("AtlasTexture_xr71u")
 
-[node name="ButtonSorterHBoxContainer" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured/ButtonTextureRect" index="0"]
-offset_left = -20.5
-offset_top = -12.0
-offset_right = 20.5
-offset_bottom = 6.0
+[node name="ButtonSorterHBoxContainer" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1/ButtonTextureRect" index="0"]
+offset_left = -23.5
+offset_top = -9.5
+offset_right = 23.5
+offset_bottom = 3.5
 
-[node name="ButtonIconTextureRect" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
+[node name="ButtonIconTextureRect" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1/ButtonTextureRect/ButtonSorterHBoxContainer" index="0"]
 visible = false
 
-[node name="ButtonTextLabel" parent="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
-text = "BACK"
+[node name="ButtonTextLabel" parent="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1/ButtonTextureRect/ButtonSorterHBoxContainer" index="1"]
+text = "Buy More"
+label_settings = SubResource("LabelSettings_yb3qo")
 
 [node name="BuyCoinDetails" parent="PlayScreenPanel" instance=ExtResource("5_a3ih6")]
 layout_mode = 1
@@ -141,8 +253,16 @@ offset_right = -16.0
 offset_bottom = 56.0
 grow_horizontal = 0
 
-[connection signal="pressed" from="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured" to="." method="_on_play_back_button_textured_pressed"]
+[node name="BuyCoinButtonTextured" parent="PlayScreenPanel/BuyCoinDetails" index="0"]
+disabled = true
 
-[editable path="PlayScreenPanel/BottomVBoxContainer/PlayBackButtonTextured"]
+[node name="Plus_ButtonSorterHBoxContainer_ButtonIconTextureRect#CoinValueLabel" parent="PlayScreenPanel/BuyCoinDetails/CoinAmountPanelTextureRect/HBoxContainer" index="2"]
+visible = false
+
+[connection signal="pressed" from="PlayScreenPanel/PlayBackButtonTextured" to="." method="_on_play_back_button_textured_pressed"]
+[connection signal="pressed" from="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1" to="." method="_on_buy_more_powerup_button_textured_1_pressed"]
+
+[editable path="PlayScreenPanel/PlayBackButtonTextured"]
+[editable path="PlayScreenPanel/PowerupsAvailableVBoxContainer/AvailablePowerupsSorterHBoxContainer/BuyMorePowerupButtonTextured_1"]
 [editable path="PlayScreenPanel/BuyCoinDetails"]
 [editable path="PlayScreenPanel/BuyCoinDetails/BuyCoinButtonTextured"]

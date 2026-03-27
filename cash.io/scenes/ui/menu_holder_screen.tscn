@@ -351,6 +351,7 @@ layout_mode = 1
 [connection signal="buy_coin_button" from="MainMenuScreen/TopButtonControl/BuyCoinDetails" to="." method="_on_buy_coin_details_buy_coin_button"]
 [connection signal="pressed" from="MainMenuScreen/BottomButtonsControl/SettingsButtonTextured" to="." method="_on_settings_button_textured_pressed"]
 [connection signal="pressed" from="MainMenuScreen/BottomButtonsControl/ShopButtonTextured" to="." method="_on_shop_button_textured_pressed"]
+[connection signal="buy_more_powerups" from="PlayScreen" to="." method="_on_play_screen_buy_more_powerups"]
 [connection signal="play_screen_closed" from="PlayScreen" to="." method="_on_play_screen_play_screen_closed"]
 [connection signal="close_settings" from="SettingsScreen" to="." method="_on_settings_screen_close_settings"]
 [connection signal="open_withdrawal" from="SettingsScreen" to="." method="_on_settings_screen_open_withdrawal"]

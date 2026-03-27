@@ -114,3 +114,8 @@ func _on_withdrawal_screen_close_withdrawal_screen() -> void:
 func _on_settings_screen_open_withdrawal() -> void:
 	hide_all_screen()
 	withdrawal_screen.open_withdrawal()
+
+
+func _on_play_screen_buy_more_powerups() -> void:
+	_on_shop_button_textured_pressed()
+	shop_screen._on_powerups_button_textured_pressed()

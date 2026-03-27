@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnntymquehaja"]
+[gd_scene load_steps=11 format=3 uid="uid://bnntymquehaja"]
 
 [ext_resource type="Texture2D" uid="uid://c3nkwhpfd6x2f" path="res://assets/game/character/character_1.png" id="1_j1xvx"]
 [ext_resource type="Script" uid="uid://1ws4rf7came7" path="res://scripts/game/characters/character.gd" id="1_j7kji"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bcy4n0ryy8m3c" path="res://assets/game/character/character_skin_clip_texture_1.png" id="3_i1gcx"]
 [ext_resource type="Texture2D" uid="uid://cl6k3cm54ovrm" path="res://assets/game/character/avatars/botttsNeutral-0.png" id="4_2igd0"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="4_gpchc"]
-[ext_resource type="Texture2D" uid="uid://bg21sm5pkri8l" path="res://imports/ui/comp/Coin-icon.png" id="5_i1gcx"]
+[ext_resource type="Texture2D" uid="uid://db5wc8s852fmw" path="res://assets/game/shield_player_body.png" id="4_ybjje"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="8_6rlvg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2igd0"]
 font = ExtResource("4_gpchc")
@@ -43,6 +44,9 @@ scale_amount_max = 0.25
 
 [node name="CharacterTexture" type="Sprite2D" parent="CharacterDataHolderNode"]
 texture = ExtResource("3_2igd0")
+
+[node name="CharacterShield" type="Sprite2D" parent="CharacterDataHolderNode"]
+texture = ExtResource("4_ybjje")
 
 [node name="SkinTextureClipTextureRect" type="TextureRect" parent="CharacterDataHolderNode"]
 clip_children = 1
@@ -99,7 +103,7 @@ alignment = 1
 [node name="CoinTextureRect" type="TextureRect" parent="CharacterDataHolderNode/CharacterOverHeadUI/CoinHBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("5_i1gcx")
+texture = ExtResource("8_6rlvg")
 expand_mode = 1
 stretch_mode = 5
 
@@ -107,5 +111,23 @@ stretch_mode = 5
 layout_mode = 2
 text = "000"
 label_settings = SubResource("LabelSettings_ybjje")
+
+[node name="CoinBonusHBoxContainer" type="HBoxContainer" parent="CharacterDataHolderNode/CharacterOverHeadUI"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="CoinBonusValueLabel" type="Label" parent="CharacterDataHolderNode/CharacterOverHeadUI/CoinBonusHBoxContainer"]
+layout_mode = 2
+text = "+20%"
+label_settings = SubResource("LabelSettings_ybjje")
+
+[node name="CoinBonusTextureRect" type="TextureRect" parent="CharacterDataHolderNode/CharacterOverHeadUI/CoinBonusHBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("8_6rlvg")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="finished" from="BurstCPUParticles2D" to="." method="_on_burst_cpu_particles_2d_finished"]

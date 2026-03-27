@@ -1,21 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbed714aqjing"]
+[gd_scene load_steps=13 format=3 uid="uid://dbed714aqjing"]
 
 [ext_resource type="Texture2D" uid="uid://b0lf5tgclflx0" path="res://assets/ui/shop_currency_purchase_panel.png" id="1_jol1k"]
 [ext_resource type="Script" uid="uid://bomhc85pyaxln" path="res://scripts/ui/shop_item.gd" id="2_aty2n"]
 [ext_resource type="FontFile" uid="uid://baholi5khdqgb" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Black.otf" id="2_jol1k"]
+[ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="4_p512t"]
+[ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="5_b8nro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jol1k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aty2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p512t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8nro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c1h1j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dlx3d"]
 font = ExtResource("2_jol1k")
+font_size = 14
 
-[node name="ShopItem" type="TextureRect"]
+[sub_resource type="LabelSettings" id="LabelSettings_c1h1j"]
+font = ExtResource("4_p512t")
+font_color = Color(0.972549, 0.8352941, 0.30588236, 1)
+outline_size = 6
+
+[node name="ShopItem" type="Button"]
 custom_minimum_size = Vector2(73, 75)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jol1k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_aty2n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_p512t")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b8nro")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c1h1j")
+flat = true
+script = ExtResource("2_aty2n")
+
+[node name="ShopItemTexture" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(73, 75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_jol1k")
 expand_mode = 1
-script = ExtResource("2_aty2n")
 
-[node name="ShopItemDisplay" type="TextureRect" parent="."]
+[node name="ShopItemDisplay" type="TextureRect" parent="ShopItemTexture"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 1
 anchors_preset = 5
@@ -26,20 +61,64 @@ offset_top = 8.0
 offset_right = 21.0
 offset_bottom = 50.0
 grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
 
-[node name="ShopItemCostLabel" type="Label" parent="."]
+[node name="CostDataHBoxContainer" type="HBoxContainer" parent="ShopItemTexture"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -17.0
-offset_top = -28.0
-offset_right = 17.0
-offset_bottom = -8.0
+offset_left = -25.0
+offset_top = -27.0
+offset_right = 25.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="ShopItemTexture/CostDataHBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_b8nro")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShopItemCostLabel" type="Label" parent="ShopItemTexture/CostDataHBoxContainer"]
+layout_mode = 2
 text = "500"
 label_settings = SubResource("LabelSettings_dlx3d")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinBoostHBoxContainer" type="HBoxContainer" parent="ShopItemTexture"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -20.0
+offset_right = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="CoinAmountLabel" type="Label" parent="ShopItemTexture/CoinBoostHBoxContainer"]
+layout_mode = 2
+text = "+20%"
+label_settings = SubResource("LabelSettings_c1h1j")
+
+[node name="CoinTextureRect" type="TextureRect" parent="ShopItemTexture/CoinBoostHBoxContainer"]
+custom_minimum_size = Vector2(15, 17.5)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_b8nro")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -25,16 +25,16 @@ buses/default_bus_layout="uid://c7sdf6tc2eiwg"
 SignalManager="*uid://dbhwm8dulxu7u"
 GlobalManager="*uid://bgpapce2jk7r1"
 Nakama="*uid://c0ckbvgqtch1m"
-HttpNetworkManager="*uid://cjad2ld7l1y3g"
 SfxAudioManager="*uid://6oh20lrc83nj"
 GameHttpNetworkManager="*uid://cgyk3bc1ika06"
 WebsocketMultiplayerRouter="*res://scripts/autoload/websocket_multiplayer_router.gd"
+PowerupsManager="*res://scripts/autoload/powerups_manager.gd"
+HttpNetworkManager="*res://scripts/autoload/http_network_manager.gd"
 
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=360
-window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"

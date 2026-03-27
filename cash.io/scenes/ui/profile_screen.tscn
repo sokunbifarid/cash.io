@@ -1,16 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1xqsjqstty6v"]
+[gd_scene load_steps=22 format=3 uid="uid://d1xqsjqstty6v"]
 
 [ext_resource type="Script" uid="uid://dun41t5ybg75h" path="res://scripts/ui/profile_screen.gd" id="1_uwfm8"]
 [ext_resource type="Texture2D" uid="uid://dk0uuxapgrowd" path="res://assets/ui/comp/Background_2.png" id="2_uwfm8"]
-[ext_resource type="Texture2D" uid="uid://cvnufi1cqsdq8" path="res://imports/ui/Profile/Profile_input_name_panel.png" id="3_3u5s0"]
 [ext_resource type="Texture2D" uid="uid://bi07nlio76k3q" path="res://assets/ui/comp/Screen_panel_2.png" id="3_uwfm8"]
+[ext_resource type="Texture2D" uid="uid://bpxw5jo3uvnlg" path="res://assets/ui/Profile_name_panel.png" id="4_7y07s"]
 [ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="5_blmyo"]
 [ext_resource type="PackedScene" uid="uid://dgmmmjgadl8of" path="res://scenes/ui/skin_texture_button.tscn" id="5_uwfm8"]
-[ext_resource type="Texture2D" uid="uid://cr3kj1qavhndg" path="res://imports/ui/Profile/Profile_input_panel.png" id="6_d3eat"]
-[ext_resource type="Texture2D" uid="uid://cgbo23ry0ubrx" path="res://imports/ui/Profile/Profile_input_name_pencil_ui.png" id="7_1vrdu"]
-[ext_resource type="Texture2D" uid="uid://5ivuwtsmrp6r" path="res://imports/ui/Profile/Profile_select_skin_panel.png" id="8_ruc0o"]
-[ext_resource type="Texture2D" uid="uid://dsbcmfvgp5obw" path="res://imports/ui/Profile/Profile_v_slider_top_panel.png" id="9_bjxst"]
-[ext_resource type="Texture2D" uid="uid://dyhtin5se1qk3" path="res://imports/ui/Profile/Profile_v_slider_back_panel.png" id="10_s40l1"]
+[ext_resource type="Texture2D" uid="uid://dudu0wcdhpm2a" path="res://assets/ui/comp/Inputfield_panel.png" id="7_3u5s0"]
+[ext_resource type="Texture2D" uid="uid://hni1hsa70c8r" path="res://assets/ui/Profile_characters_panel.png" id="8_3u5s0"]
+[ext_resource type="Texture2D" uid="uid://c200qewb1cs5y" path="res://assets/ui/Profile_character_scroll_grabber.png" id="9_7y07s"]
+[ext_resource type="Texture2D" uid="uid://ccoqcpu88ufwk" path="res://assets/ui/Profile_character_scroll_background.png" id="10_3u5s0"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="11_bqyh1"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="12_3u5s0"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="13_7y07s"]
@@ -22,23 +21,23 @@ texture = ExtResource("2_uwfm8")
 texture = ExtResource("3_uwfm8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htoyf"]
-texture = ExtResource("6_d3eat")
+texture = ExtResource("7_3u5s0")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
 
 [sub_resource type="ImageTexture" id="ImageTexture_htoyf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olvqu"]
-texture = ExtResource("9_bjxst")
+texture = ExtResource("9_7y07s")
 texture_margin_left = 3.0
-texture_margin_top = 20.0
+texture_margin_top = 25.0
 texture_margin_right = 3.0
-texture_margin_bottom = 20.0
+texture_margin_bottom = 25.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nudmm"]
-texture = ExtResource("10_s40l1")
-texture_margin_left = 2.0
-texture_margin_right = 2.0
+texture = ExtResource("10_3u5s0")
+texture_margin_left = 3.0
+texture_margin_right = 3.0
 
 [sub_resource type="Theme" id="Theme_7ni2c"]
 VScrollBar/icons/decrement = SubResource("ImageTexture_htoyf")
@@ -109,8 +108,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProfilePanel1TextureRect" type="TextureRect" parent="ProfilePanel/ProfileSorterVBoxContainer"]
+custom_minimum_size = Vector2(296, 52)
 layout_mode = 2
-texture = ExtResource("3_3u5s0")
+texture = ExtResource("4_7y07s")
+expand_mode = 1
 
 [node name="ProfileDataHBoxContainer" type="HBoxContainer" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel1TextureRect"]
 layout_mode = 1
@@ -145,12 +146,12 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_htoyf")
 placeholder_text = "Nickname..."
 editable = false
-right_icon = ExtResource("7_1vrdu")
 
 [node name="ProfilePanel2TextureRect" type="TextureRect" parent="ProfilePanel/ProfileSorterVBoxContainer"]
-custom_minimum_size = Vector2(0, 95)
+custom_minimum_size = Vector2(296, 95)
 layout_mode = 2
-texture = ExtResource("8_ruc0o")
+texture = ExtResource("8_3u5s0")
+expand_mode = 1
 
 [node name="ProfilePanel2ScrollContainer" type="ScrollContainer" parent="ProfilePanel/ProfileSorterVBoxContainer/ProfilePanel2TextureRect"]
 custom_minimum_size = Vector2(206, 66)

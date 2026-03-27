@@ -1,15 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjdctoi3rtpsx"]
+[gd_scene load_steps=21 format=3 uid="uid://cjdctoi3rtpsx"]
 
 [ext_resource type="Script" uid="uid://bugeb5vkfynek" path="res://scripts/ui/deposit_screen.gd" id="1_s3pvw"]
 [ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="2_dc32x"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="3_1nb1i"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="4_pop38"]
-[ext_resource type="FontFile" uid="uid://b2e45ljej638h" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Book.otf" id="4_xtjk7"]
 [ext_resource type="Texture2D" uid="uid://dqo8qifowio5p" path="res://assets/ui/comp/Button_1.png" id="5_xtjk7"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="6_1nb1i"]
 [ext_resource type="PackedScene" uid="uid://cnmduy11opw1g" path="res://scenes/ui/comps/buy_coin_details.tscn" id="7_nrv1f"]
 [ext_resource type="Texture2D" uid="uid://bsfinjr5g6khe" path="res://assets/ui/comp/Background_3.png" id="9_dc32x"]
-[ext_resource type="Texture2D" uid="uid://cr3kj1qavhndg" path="res://imports/ui/Profile/Profile_input_panel.png" id="9_nrv1f"]
 [ext_resource type="Texture2D" uid="uid://ktbaajn32c4i" path="res://assets/ui/comp/Comic_lines.png" id="10_nrv1f"]
 [ext_resource type="Texture2D" uid="uid://do232q6tqbawc" path="res://assets/ui/Deposit_Payment_Successful_Screen.png" id="11_kxhjl"]
 [ext_resource type="Texture2D" uid="uid://byooer6ibiwk6" path="res://assets/ui/comp/Button_6.png" id="12_fx7rm"]
@@ -25,17 +23,36 @@ font = ExtResource("3_1nb1i")
 font = ExtResource("3_1nb1i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pop38"]
+font = ExtResource("3_1nb1i")
 font_size = 12
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxhjl"]
-content_margin_left = 1.0
-texture = ExtResource("9_nrv1f")
-texture_margin_left = 93.0
-texture_margin_top = 10.0
-texture_margin_right = 120.0
-texture_margin_bottom = 10.0
-expand_margin_left = 10.0
-expand_margin_right = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gp48"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.110254474, 0.4633708, 0.23925003, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dc32x"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.110254474, 0.4633708, 0.23925003, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 5.0
+expand_margin_right = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dc1qf"]
 texture = ExtResource("9_dc32x")
@@ -239,10 +256,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -105.5
-offset_top = -13.5
-offset_right = 105.5
-offset_bottom = 109.5
+offset_left = -91.5
+offset_top = -28.0
+offset_right = 91.5
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -262,16 +279,19 @@ text = "Enter Amount:"
 label_settings = SubResource("LabelSettings_pop38")
 
 [node name="EnterAmountValueLineEdit" type="LineEdit" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer/EnterAmountVBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.39688867, 0.3968896, 0.39688885, 1)
-theme_override_fonts/font = ExtResource("4_xtjk7")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxTexture_kxhjl")
-theme_override_styles/focus = SubResource("StyleBoxTexture_kxhjl")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.58506155, 0.58506244, 0.58506167, 0.6)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("3_1nb1i")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_3gp48")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dc32x")
 placeholder_text = "Amount..."
 max_length = 16
+caret_blink = true
 
 [node name="DepositSubmissionButtonTextured" parent="DepositScreenPanel/DepositTextureRect/UIButtonsVBoxContainer" instance=ExtResource("4_pop38")]
 custom_minimum_size = Vector2(105, 47)

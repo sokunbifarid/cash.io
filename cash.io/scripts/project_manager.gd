@@ -26,6 +26,7 @@ func _on_prepare_game() -> void:
 
 func _on_reset_game_signal() -> void:
 	open_menu()
+	HttpNetworkManager.request_http_user_data()
 
 func _on_startup_request_data_loaded_successfully() -> void:
 	open_menu()

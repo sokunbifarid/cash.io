@@ -1,16 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://k0hxrsngxkh1"]
+[gd_scene load_steps=29 format=3 uid="uid://k0hxrsngxkh1"]
 
 [ext_resource type="Script" uid="uid://eqnsagauhvx1" path="res://scripts/ui/settings_screen.gd" id="1_03o02"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_03o02"]
 [ext_resource type="Texture2D" uid="uid://bi07nlio76k3q" path="res://assets/ui/comp/Screen_panel_2.png" id="2_5ghpo"]
-[ext_resource type="Texture2D" uid="uid://cun3tmjk8v5wm" path="res://assets/ui/slider/slider_1/Slider_grabber.png" id="5_p84si"]
+[ext_resource type="Texture2D" uid="uid://8145nl2ho5iw" path="res://assets/ui/Settings_top_panel.png" id="4_p84si"]
 [ext_resource type="Texture2D" uid="uid://dmrgkk4y64p0" path="res://assets/ui/slider/slider_1/Sider_under.png" id="6_qerx8"]
-[ext_resource type="Texture2D" uid="uid://4n202fgc6roo" path="res://imports/ui/Settings/Settings_slider_fill.png" id="7_lx43f"]
 [ext_resource type="Texture2D" uid="uid://d2r7tr528xh0" path="res://assets/ui/slider/slider_1/Slider_progress.png" id="7_sghad"]
 [ext_resource type="Texture2D" uid="uid://q6o5hfer1yhw" path="res://assets/ui/slider/slider_1/Slider_icon.png" id="8_rix0b"]
 [ext_resource type="PackedScene" uid="uid://bu6xa070exske" path="res://scenes/ui/comps/button_textured_1.tscn" id="9_5ghpo"]
-[ext_resource type="Texture2D" uid="uid://dc42rb7f83776" path="res://imports/ui/Settings/Settings_item_panel_1.png" id="9_6vgmg"]
-[ext_resource type="Texture2D" uid="uid://m2ybo60yh8os" path="res://imports/ui/Settings/Settings_slider_grabber.png" id="10_m7mh0"]
+[ext_resource type="Texture2D" uid="uid://cun3tmjk8v5wm" path="res://assets/ui/slider/slider_1/Slider_grabber.png" id="10_m7mh0"]
+[ext_resource type="Texture2D" uid="uid://b07g5hci2gd3s" path="res://assets/ui/Settings_bottom_panel.png" id="11_qerx8"]
 [ext_resource type="Texture2D" uid="uid://b6v7mt08tw52s" path="res://assets/ui/comp/Settings_button_1.png" id="12_1qs1h"]
 [ext_resource type="Texture2D" uid="uid://bvjsdjtgdq5rb" path="res://assets/ui/icons/Exit_white_icon.png" id="13_y3pst"]
 [ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="14_phi4b"]
@@ -26,14 +25,14 @@ outline_size = 15
 outline_color = Color(0.88573813, 0.63960785, 0.23444167, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ghpo"]
-texture = ExtResource("9_6vgmg")
+texture = ExtResource("4_p84si")
 
 [sub_resource type="LabelSettings" id="LabelSettings_p84si"]
 font = ExtResource("2_03o02")
 font_size = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4wvya"]
-atlas = ExtResource("5_p84si")
+atlas = ExtResource("10_m7mh0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qerx8"]
 texture = ExtResource("6_qerx8")
@@ -45,24 +44,8 @@ texture = ExtResource("7_sghad")
 texture_margin_top = 5.0
 texture_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8osj"]
-texture = ExtResource("7_sghad")
-texture_margin_top = 5.0
-texture_margin_bottom = 11.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k8osj"]
-atlas = ExtResource("7_lx43f")
-region = Rect2(0, 0, 106, 15)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6vgmg"]
-texture = SubResource("AtlasTexture_k8osj")
-texture_margin_left = 53.0
-texture_margin_top = 7.0
-texture_margin_right = 53.0
-texture_margin_bottom = 7.0
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lx43f"]
-texture = ExtResource("9_6vgmg")
+texture = ExtResource("11_qerx8")
 
 [sub_resource type="LabelSettings" id="LabelSettings_5crou"]
 font = ExtResource("14_phi4b")
@@ -168,29 +151,29 @@ label_settings = SubResource("LabelSettings_p84si")
 horizontal_alignment = 1
 
 [node name="MusicSliderControl" type="Control" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer"]
-custom_minimum_size = Vector2(144, 30)
+custom_minimum_size = Vector2(135, 30)
 layout_mode = 2
 
 [node name="MusicHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
-custom_minimum_size = Vector2(130, 12)
+custom_minimum_size = Vector2(110, 12)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -130.0
+offset_left = -110.0
 offset_top = -25.0
 offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_icons/grabber = SubResource("AtlasTexture_4wvya")
-theme_override_icons/grabber_highlight = ExtResource("5_p84si")
+theme_override_icons/grabber_highlight = ExtResource("10_m7mh0")
 theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_k8osj")
-max_value = 6.0
-value = 4.0
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p84si")
+max_value = 1.5
+step = 0.3
 
 [node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/MusicVBoxContainer/MusicSliderControl"]
 custom_minimum_size = Vector2(30, 29)
@@ -217,18 +200,18 @@ label_settings = SubResource("LabelSettings_p84si")
 horizontal_alignment = 1
 
 [node name="SoundEffectSliderControl" type="Control" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer"]
-custom_minimum_size = Vector2(140, 30)
+custom_minimum_size = Vector2(135, 30)
 layout_mode = 2
 
 [node name="SoundEffectHSlider" type="HSlider" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
-custom_minimum_size = Vector2(117, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -117.0
+offset_left = -110.0
 offset_top = -12.5
 offset_bottom = 12.5
 grow_horizontal = 0
@@ -237,9 +220,9 @@ theme_override_icons/grabber = ExtResource("10_m7mh0")
 theme_override_icons/grabber_highlight = ExtResource("10_m7mh0")
 theme_override_styles/slider = SubResource("StyleBoxTexture_qerx8")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_p84si")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_6vgmg")
-max_value = 6.0
-value = 4.0
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p84si")
+max_value = 1.5
+step = 0.3
 
 [node name="CircleStarTextureRect" type="TextureRect" parent="SettingsPanelTextureRect/SettingsItemsVBoxContainer/SettingsItem1/SettingsItem1HBoxContainer/SoundEffectVBoxContainer/SoundEffectSliderControl"]
 custom_minimum_size = Vector2(30, 29)

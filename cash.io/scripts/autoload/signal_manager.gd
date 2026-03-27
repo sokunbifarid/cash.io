@@ -44,7 +44,20 @@ signal websocket_connection_is_poor_signal(condition: bool)
 
 signal prepare_game_for_play_again_signal
 
-signal player_change_skin_successful(condition: bool)
+#signal player_change_skin_successful(condition: bool)
+
+signal player_used_powerup_signal(value_left: Dictionary)
+
+signal powerup_timeout_signal(id: String)
+
+signal shop_data_loaded_signal(payload: Array)
+
+signal shop_purchase_successful_signal
+
+signal player_shield_protection_on_join_match_firstime_signal
+
+signal load_in_game_powersups_signal(payload: Array)
+
 
 func emit_open_loading_screen_signal(value: bool) -> void:
 	open_loading_screen.emit(value)
@@ -134,5 +147,23 @@ func emit_websocket_connection_is_poor_signal(condition: bool) -> void:
 func emit_prepare_game_for_play_again_signal() -> void:
 	prepare_game_for_play_again_signal.emit()
 
-func emit_player_change_skin_successful(condition: bool) -> void:
-	player_change_skin_successful.emit(condition)
+#func emit_player_change_skin_successful(condition: bool) -> void:
+	#player_change_skin_successful.emit(condition)
+
+func emit_player_used_powerup_signal(value: Dictionary) -> void:
+	player_used_powerup_signal.emit(value)
+
+func emit_powerup_timeout_signal(id: String) -> void:
+	powerup_timeout_signal.emit(id)
+
+func emit_shop_data_loaded_signal(payload: Dictionary) -> void:
+	shop_data_loaded_signal.emit(payload)
+
+func emit_player_shield_protection_on_join_match_firstime_signal() -> void:
+	player_shield_protection_on_join_match_firstime_signal.emit()
+
+func emit_load_in_game_powersups_signal(payload: Array) -> void:
+	load_in_game_powersups_signal.emit(payload)
+
+func emit_shop_purchase_successful_signal() -> void:
+	shop_purchase_successful_signal.emit()

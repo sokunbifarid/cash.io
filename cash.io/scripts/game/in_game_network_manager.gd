@@ -10,6 +10,7 @@ const PELLETS = preload("uid://v2js4x2t6odi")
 
 const PELLETS_POSSIBLE_COLORS: Array = [Color(0.922, 0.349, 0.349),Color(0.35, 0.483, 0.92),]
 
+
 func _ready() -> void:
 	randomize()
 	connect_signal()
@@ -50,9 +51,9 @@ func _on_match_over_signal(_payload: Dictionary, condition: bool) -> void:
 	set_process(false)
 
 func _process(delta: float) -> void:
+	set_players_z_index_based_on_distance()
 	if GameHttpNetworkManager.room_bound != Vector2.ZERO:
 		set_bounds(GameHttpNetworkManager.room_bound)
-		print("mapper bounds: ", GameHttpNetworkManager.room_bound)
 
 func set_bounds(bounds: Vector2) -> void:
 	if game_map:
@@ -62,6 +63,26 @@ func set_bounds(bounds: Vector2) -> void:
 			game_map.region_rect = Rect2(0,0, bounds.x, bounds.y)
 			game_map.position = Vector2(LIMIT_OFFSET, LIMIT_OFFSET)
 
+func set_players_z_index_based_on_distance() -> void:
+	var players: Dictionary = GameHttpNetworkManager.current_player_list
+	if players.size() > 0:
+		for i: String in players:
+			for j: String in players:
+				if i != j:
+					if players[i] and players[j]:
+						if players[i].position.distance_to(players[j].position) <= ((players[i].scale + players[j].scale).length()/2):
+							if players[i].scale.length() > players[j].scale.length():
+								players[i].z_index = 1
+								players[j].z_index = 0
+							elif players[j].scale.length() > players[i].scale.length():
+								players[i].z_index = 0
+								players[j].z_index = 1
+							else:
+								players[i].z_index = 0
+								players[j].z_index = 0
+							if players[j].is_character_enabled == false:
+								if players[i].is_character_enabled == true:
+									players[j].death_tween_to_player(players[i])
 
 #use this when a game ends
 func remove_all_old_players() -> void:

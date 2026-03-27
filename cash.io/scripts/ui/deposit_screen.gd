@@ -74,6 +74,7 @@ func open_deposit_successful() -> void:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
 	the_visibility_tween.tween_property(deposit_successful_texture_rect.get_child(0), "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	SfxAudioManager.play_successful_sfx()
 
 func _on_deposit_back_button_textured_pressed() -> void:
 	hide_all_screens()

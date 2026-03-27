@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2dtkd1a8u6nj"]
+[gd_scene load_steps=9 format=3 uid="uid://b2dtkd1a8u6nj"]
 
 [ext_resource type="Script" uid="uid://cl16sn85afgch" path="res://scripts/ui/comps/room_button_textured.gd" id="2_khp1v"]
 [ext_resource type="Texture2D" uid="uid://bqsm631k1oacx" path="res://assets/ui/comp/Button_5.png" id="2_l72bd"]
-[ext_resource type="FontFile" uid="uid://dnub16afs8ag7" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Medium.otf" id="3_l72bd"]
 [ext_resource type="Texture2D" uid="uid://b81k56c2jv2qf" path="res://assets/ui/icons/Coin_gold_icon.png" id="3_mxwsx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khp1v"]
@@ -15,13 +14,9 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rk5o6"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_870o2"]
-font = ExtResource("3_l72bd")
-font_size = 12
-
 [node name="room_button_textured" type="Button"]
-custom_minimum_size = Vector2(108, 50)
-offset_right = 108.0
+custom_minimum_size = Vector2(94.5, 42.3)
+offset_right = 94.5
 offset_bottom = 44.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_khp1v")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_l72bd")
@@ -32,7 +27,7 @@ flat = true
 script = ExtResource("2_khp1v")
 
 [node name="RoomButtonTextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(105, 47)
+custom_minimum_size = Vector2(94.5, 42.3)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -52,6 +47,7 @@ offset_right = 49.5
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="ButtonIconTextureRect" type="TextureRect" parent="RoomButtonTextureRect/ButtonSorterHBoxContainer"]
@@ -64,7 +60,6 @@ expand_mode = 1
 [node name="ButtonTextLabel" type="Label" parent="RoomButtonTextureRect/ButtonSorterHBoxContainer"]
 layout_mode = 2
 text = "1 Room"
-label_settings = SubResource("LabelSettings_870o2")
 horizontal_alignment = 1
 vertical_alignment = 1
 

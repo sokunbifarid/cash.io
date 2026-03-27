@@ -21,6 +21,9 @@ func _on_prepare_game_for_play_again_signal() -> void:
 
 func _on_prepare_game() -> void:
 	disable_cashout_button()
+	enable_texture_progress_bar.max_value = duration_to_activate_cashout
+	enable_texture_progress_bar.value = 0
+	await get_tree().create_timer(0.5).timeout
 	set_process(true)
 
 func _on_match_over_signal(_value: Dictionary, _condition: bool) -> void:
@@ -37,9 +40,6 @@ func _on_cashout_rejected_signal(wait_value: float) -> void:
 func _process(delta: float) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
 		var time_left: float = GameHttpNetworkManager.player_starting_time - GameHttpNetworkManager.player_running_time
-		if enable_texture_progress_bar.max_value != duration_to_activate_cashout:
-			enable_texture_progress_bar.max_value = duration_to_activate_cashout
-			enable_texture_progress_bar.value = duration_to_activate_cashout
 		if time_left < duration_to_activate_cashout:
 			if enable_texture_progress_bar.value != time_left:
 				enable_texture_progress_bar.value = time_left

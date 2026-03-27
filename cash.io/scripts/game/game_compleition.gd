@@ -64,7 +64,7 @@ func open_game_completion() -> void:
 		the_visibility_tween.kill()
 	the_visibility_tween = create_tween()
 	the_visibility_tween.tween_property(game_completion_panel, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
-
+	SfxAudioManager.play_successful_sfx()
 
 func _on_share_button_textured_pressed() -> void:
 	print("share button pressed")
