@@ -13,8 +13,9 @@ config_version=5
 config/name="cash.io"
 run/main_scene="uid://baeaydjdl102c"
 config/features=PackedStringArray("4.5", "Mobile")
-boot_splash/image="uid://chxtqushv0one"
-config/icon="res://icon.svg"
+boot_splash/image="uid://brgp0kbnv67bk"
+config/icon="uid://cscva5xd7h6jd"
+boot_splash/icon=""
 
 [audio]
 
@@ -41,7 +42,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/DeeplinkPlugin/plugin.cfg", "res://addons/GodotGoogleSignIn/plugin.cfg")
+enabled=PackedStringArray("res://addons/DeeplinkPlugin/plugin.cfg", "res://addons/GodotGoogleSignIn/plugin.cfg", "res://addons/protobuf/plugin.cfg")
 
 [input]
 

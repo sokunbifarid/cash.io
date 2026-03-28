@@ -1,6 +1,7 @@
 # Package: cashio.ws
-extends Node
-class_name ws_proto
+#extends Node
+#class_name ws_proto
+# Package: cashio.ws
 # Package: cashio.ws
 
 const GDScriptUtils = preload("res://addons/protobuf/proto/GDScriptUtils.gd")
@@ -347,11 +348,11 @@ class InputBody extends Message:
  
 	func SerializeToBytes(buffer: PackedByteArray = PackedByteArray()) -> PackedByteArray:
 		if self.dx != 0:
-			GDScriptUtils.encode_tag(buffer, 1, 3)
-			GDScriptUtils.encode_varint(buffer, self.dx)
+			GDScriptUtils.encode_tag(buffer, 1, 17)
+			GDScriptUtils.encode_zigzag32(buffer, self.dx)
 		if self.dy != 0:
-			GDScriptUtils.encode_tag(buffer, 2, 3)
-			GDScriptUtils.encode_varint(buffer, self.dy)
+			GDScriptUtils.encode_tag(buffer, 2, 17)
+			GDScriptUtils.encode_zigzag32(buffer, self.dy)
 		return buffer
  
 	func ParseFromBytes(data: PackedByteArray) -> int:
@@ -365,11 +366,11 @@ class InputBody extends Message:
  
 			match field_number:
 				1:
-					var field_value = GDScriptUtils.decode_varint(data, pos, self)
+					var field_value = GDScriptUtils.decode_zigzag32(data, pos, self)
 					self.dx = field_value[GDScriptUtils.VALUE_KEY]
 					pos += field_value[GDScriptUtils.SIZE_KEY]
 				2:
-					var field_value = GDScriptUtils.decode_varint(data, pos, self)
+					var field_value = GDScriptUtils.decode_zigzag32(data, pos, self)
 					self.dy = field_value[GDScriptUtils.VALUE_KEY]
 					pos += field_value[GDScriptUtils.SIZE_KEY]
 				_:

@@ -106,6 +106,7 @@ func load_settings() -> void:
 	if FileAccess.file_exists(SETTINGS_SAVE_PATH):
 		var file = FileAccess.open(SETTINGS_SAVE_PATH, FileAccess.READ)
 		var data = file.get_var()
+		print("setings data: ", data)
 		file.close()
 		append_loaded_settings(data)
 	else:
@@ -116,6 +117,7 @@ func append_loaded_settings(loaded_settings: Dictionary) -> void:
 		settings_data.music_value = loaded_settings.music_value
 	if loaded_settings.has("sound_effects_value"):
 		settings_data.sound_effects_value = loaded_settings.sound_effects_value
+	print("appeneded loaded settings: ", settings_data)
 
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_PAUSED:

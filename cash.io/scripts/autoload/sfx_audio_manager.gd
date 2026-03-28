@@ -23,13 +23,14 @@ func _ready() -> void:
 	configure_eat_pellets_audio_stream_player()
 	configure_notice_audio_stream_player()
 	configure_successful_audio_stream_player()
+	configure_slider_tick_audio_stream_player()
 	configure_character_burst_audio_stream_player()
 
 
 func configure_button_pressed_audio_stream_player() -> void:
 	button_pressed_audio_stream_player.bus = "sfx"
 	button_pressed_audio_stream_player.stream = BUTTON_PRESSED_SFX
-	button_pressed_audio_stream_player.volume_db = -30
+	button_pressed_audio_stream_player.volume_db = -50
 	get_tree().root.add_child.call_deferred(button_pressed_audio_stream_player)
 	print("button sfx properties set")
 
@@ -63,8 +64,8 @@ func configure_successful_audio_stream_player() -> void:
 
 func configure_slider_tick_audio_stream_player() -> void:
 	slider_tick_sfx_audio_stream_player.bus = "sfx"
-	slider_tick_sfx_audio_stream_player.stream = SUCCESSFUL_SFX
-	slider_tick_sfx_audio_stream_player.volume_db = -30
+	slider_tick_sfx_audio_stream_player.stream = SLIDER_TICK_SFX
+	slider_tick_sfx_audio_stream_player.volume_db = -40
 	get_tree().root.add_child.call_deferred(slider_tick_sfx_audio_stream_player)
 	print("slider tick sfx properties set")
 

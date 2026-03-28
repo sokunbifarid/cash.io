@@ -1,4 +1,4 @@
-extends ws_proto
+extends ws_schema
 
 const SERVER_IP: String = "simplyludo.com"
 const SERVER_PORT: int = 443
@@ -12,8 +12,9 @@ var websocket_speed_configured: bool = false
 var started_game: bool = false
 var websocket_can_function: bool = false
 var websocket_connection_is_poor: bool = false
+var websocket_connected: bool = false
 
-const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/80.0#1.0/30.0
+const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/40.0#80.0#1.0/30.0
 const WEBSOCKET_SERVER_PING_FRAME_TICK: float = 1.0/5.0
 var websocket_tick_count: float = 0
 var websocket_ping_count: float = 0
@@ -25,7 +26,6 @@ var websocket_count_to_detect_no_data_from_server: float = 0
 
 var websocket_disconnected: bool = false
 var authenticate_access_token: String = ""
-
 
 func _ready() -> void:
 	SignalManager.reset_game_signal.connect(_on_reset_game_signal)
@@ -75,12 +75,13 @@ func set_websocket_speed() -> void:
 		#print("first connection detected in websocket")
 	pass
 
-func check_first_message_on_websocket(message: Envelope) -> void:#Dictionary) -> void:
-	var message_response: Dictionary = JSON.parse_string(message.to_string())
-	if message_response != {}:#2:#message:
+func check_first_message_on_websocket(message: Dictionary) -> void:
+	#var message_response: Dictionary = JSON.parse_string(message.to_string())
+	if message != {}:#2:#message:
 		if started_game == false:
 			started_game = true
 			HttpNetworkManager.request_http_user_data()
+			print("user data request")
 			#SignalManager.emit_open_loading_screen_signal(false)
 			#SignalManager.emit_startup_request_data_loaded_successfully()
 
@@ -113,10 +114,15 @@ func _process(delta: float) -> void:
 				websocket_send_server_ping(delta)
 				websocket_connection_check(delta)
 				websocket_read_data()
+				if websocket_connected == false:
+					websocket_connected = true
+					GameHttpNetworkManager.append_session_connected_data({})
 		elif socket_state == WebSocketPeer.STATE_CLOSED:
 			#print("websocket connection closed")
 			#print("websocket connection is closed at: ", Time.get_unix_time_from_system())
 			if current_websocket_server_state == WEBSOCKET_SERVER_STATE.CONNECTION:
+				if websocket_connected == true:
+					websocket_connected = false
 				var code: int = websocket_client.get_close_code()
 				var reason: String = websocket_client.get_close_reason()
 				#print("websocket client disconnected from server with code: " + str(code) + " and reason: " + reason)
@@ -157,16 +163,21 @@ func websocket_connection_check(delta: float) -> void:
 				#SignalManager.emit_open_loading_screen_signal(false)
 				#websocket_disconnected = true
 
-
 func websocket_read_data() -> void:
 	while  websocket_client.get_available_packet_count() > 0:
 		var packet: PackedByteArray = websocket_client.get_packet()
 		#var message: String = packet.get_string_from_utf8()
 		if packet.size() > 0:#message != "":
-			var envelope: Envelope = Envelope.new()
-			envelope.ParseFromBytes(packet)
-			var readable_message: Envelope = envelope#: Dictionary = JSON.parse_string(message)
+			#print("websocket packet: ", packet)
+			#var envelope: Envelope = Envelope.new()
+			#envelope.ParseFromBytes(packet)
+			#var readable_message: Envelope = envelope#: Dictionary = JSON.parse_string(message)
 			#print("envelope data: ", envelope)
+			var decode: Dictionary = Messagepack.decode(packet)
+			#print("decoded packages value: ", decode.value)
+			#print("decoded packages value data type: ", typeof(decode.value))
+			var readable_message: Dictionary = decode.value
+			#print("readable message dict: ", readable_message)
 			if websocket_disconnected:
 				websocket_disconnected = false
 				SignalManager.emit_open_loading_screen_signal(false)
@@ -183,8 +194,9 @@ func send_important_data_on_websocket(envelope_data: Envelope) -> void:#(payload
 		#var data: PackedByteArray = JSON.stringify(payload).to_utf8_buffer()
 		#var data_sent_status: Error = websocket_client.send(data, WebSocketPeer.WRITE_MODE_TEXT)
 		#websocket_client.send(data)
-		var bytes: PackedByteArray = envelope_data.SerializeToBytes()
-		websocket_client.send(bytes, WebSocketPeer.WRITE_MODE_BINARY)
+		#var bytes: PackedByteKArray = envelope_data.SerializeToBytes()
+		var bytes: Dictionary = Messagepack.encode(envelope_data.to_dict())
+		websocket_client.send(bytes.value)
 
 func send_data_on_websocket(envelope_data: Envelope) -> void:#(payload: Dictionary) -> void:
 	if websocket_can_function:
@@ -192,8 +204,9 @@ func send_data_on_websocket(envelope_data: Envelope) -> void:#(payload: Dictiona
 			#var data: PackedByteArray = JSON.stringify(payload).to_utf8_buffer()
 			#var data_sent_status: Error = websocket_client.send(data, WebSocketPeer.WRITE_MODE_TEXT)
 			#websocket_client.send(data)
-			var bytes: PackedByteArray = envelope_data.SerializeToBytes()
-			websocket_client.send(bytes, WebSocketPeer.WRITE_MODE_BINARY)
+			#var bytes: PackedByteArray = envelope_data.SerializeToBytes()
+			var bytes: Dictionary = Messagepack.encode(envelope_data.to_dict())
+			websocket_client.send(bytes.value)
 			#print("data sent on websocket")
 
 func _on_reset_game_signal() -> void:

@@ -43,7 +43,7 @@ func _on_match_over_signal(data: Dictionary, condition: bool) -> void:
 			game_completion_panel.add_theme_stylebox_override("panel", style_box)
 			game_state_label.text = "YOU SURVIVED"
 			time_used_label.text = "Time Used: " + str(calculate_time_used()) + "s"
-			coin_stats_label.text = "Coin Won: "
+			coin_stats_label.text = "Coin Saved: "
 			coin_amount_value_label.text = str(coin)
 			total_coin_data_texture_rect.show()
 		else:

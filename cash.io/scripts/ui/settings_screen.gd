@@ -58,11 +58,13 @@ func _on_help_and_support_button_textured_pressed() -> void:
 
 func _on_music_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("music"), value)
-	SfxAudioManager.play_slider_tick_sfx()
+	if self.visible:
+		SfxAudioManager.play_slider_tick_sfx()
 
 func _on_sound_effect_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("sfx"), value)
-	SfxAudioManager.play_slider_tick_sfx()
+	if self.visible:
+		SfxAudioManager.play_slider_tick_sfx()
 
 func _on_music_h_slider_drag_started() -> void:
 	SfxAudioManager.play_button_pressed_sfx()

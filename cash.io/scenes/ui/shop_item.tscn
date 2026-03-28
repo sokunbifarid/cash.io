@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbed714aqjing"]
+[gd_scene load_steps=14 format=3 uid="uid://dbed714aqjing"]
 
 [ext_resource type="Texture2D" uid="uid://b0lf5tgclflx0" path="res://assets/ui/shop_currency_purchase_panel.png" id="1_jol1k"]
 [ext_resource type="Script" uid="uid://bomhc85pyaxln" path="res://scripts/ui/shop_item.gd" id="2_aty2n"]
@@ -15,6 +15,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8nro"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c1h1j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p512t"]
+font = ExtResource("2_jol1k")
+font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_dlx3d"]
 font = ExtResource("2_jol1k")
@@ -63,6 +67,26 @@ offset_bottom = 50.0
 grow_horizontal = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ShopItemNameLabel" type="Label" parent="ShopItemTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 2.0
+offset_right = 32.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Guardian"
+label_settings = SubResource("LabelSettings_p512t")
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 1
+uppercase = true
 
 [node name="CostDataHBoxContainer" type="HBoxContainer" parent="ShopItemTexture"]
 layout_mode = 1

@@ -19,6 +19,7 @@ script = ExtResource("1_o327q")
 [node name="MenuHolderScreen" parent="UI" instance=ExtResource("3_blf6u")]
 
 [node name="LoadingScreenControl" parent="UI" instance=ExtResource("2_5xv6o")]
+visible = true
 
 [node name="NoticePanel" parent="UI" instance=ExtResource("6_rt21r")]
 anchors_preset = 0

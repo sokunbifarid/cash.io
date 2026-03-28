@@ -12,6 +12,7 @@ const SHIELD_POWERUP_UI = preload("uid://crbo16c1nu43q")
 @onready var shop_item_cost_label: Label = $ShopItemTexture/CostDataHBoxContainer/ShopItemCostLabel
 @onready var shop_item_display: TextureRect = $ShopItemTexture/ShopItemDisplay
 @onready var coin_boost_h_box_container: HBoxContainer = $ShopItemTexture/CoinBoostHBoxContainer
+@onready var shop_item_name_label: Label = $ShopItemTexture/ShopItemNameLabel
 
 
 var item_id: String = ""
@@ -31,6 +32,7 @@ func set_item_data(id: String, the_name: String, cost: int = 0) -> void:
 		shop_item_display.hide()
 		coin_boost_h_box_container.show()
 	shop_item_cost_label.text = str(cost)
+	shop_item_name_label.text = the_name.split(" ")[0]
 	item_id = id
 	item_name = the_name
 	item_cost = cost

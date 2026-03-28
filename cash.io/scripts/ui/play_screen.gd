@@ -22,19 +22,18 @@ func _on_all_rooms_loaded_signal(value: Dictionary) -> void:
 	populate_all_rooms_ui_button(value)
 
 func _on_player_data_loaded_successfully_signal(payload: Dictionary) -> void:
-	print("laoded powerups mapped")
 	if payload.has("owned_powerups"):
-		print("powerups foundd in pocket")
 		populate_available_powerups(payload.owned_powerups)
 
 func open_play_screen() -> void:
-	GlobalManager.current_game_state = GlobalManager.GAME_STATE.BUBBLE_ROOMS
-	self.show()
-	self.scale = Vector2.ZERO
-	if the_visibility_tween:
-		the_visibility_tween.kill()
-	the_visibility_tween = create_tween()
-	the_visibility_tween.tween_property(self, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
+	if not self.visible:
+		GlobalManager.current_game_state = GlobalManager.GAME_STATE.BUBBLE_ROOMS
+		self.show()
+		self.scale = Vector2.ZERO
+		if the_visibility_tween:
+			the_visibility_tween.kill()
+		the_visibility_tween = create_tween()
+		the_visibility_tween.tween_property(self, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func remove_old_rooms_ui_button() -> void:
 	if ui_buttons_sorter_v_box_container.get_child_count() > 0:
@@ -47,7 +46,6 @@ func populate_all_rooms_ui_button(payload: Dictionary) -> void:
 		var rooms: Array = payload.rooms
 		if rooms.size() > 0:
 			for i: int in range (rooms.size()):
-				print("room count not active: ", i)
 				var button: Button = ROOM_BUTTON_TEXTURED.instantiate()
 				ui_buttons_sorter_v_box_container.add_child(button)
 				button.set_button_data("", str(int(rooms[i].min_stake)) + " Room", rooms[i].id)
@@ -62,7 +60,6 @@ func populate_available_powerups(owned_powerups: Array) -> void:
 		var powerup: VBoxContainer = AVAILABLE_POWERUPS_PLAY_SCREEN_DATA.instantiate()
 		available_powerups_h_box_container.add_child(powerup)
 		powerup.set_data(owned_powerups[i].id, owned_powerups[i].quantity)
-		print("adding powerups to list")
 
 func _on_play_back_button_textured_pressed() -> void:
 	play_screen_closed.emit()

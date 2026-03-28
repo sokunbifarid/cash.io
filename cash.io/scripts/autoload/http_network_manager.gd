@@ -1,4 +1,4 @@
-extends ws_proto
+extends ws_schema
 
 var firebase_auth_http_request_node: HTTPRequest
 var device_id_auth_http_request_node:HTTPRequest

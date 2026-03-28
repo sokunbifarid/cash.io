@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		var time_left: float = GameHttpNetworkManager.player_starting_time - GameHttpNetworkManager.player_running_time
 		if time_left < duration_to_activate_cashout:
 			if enable_texture_progress_bar.value != time_left:
-				enable_texture_progress_bar.value = time_left
+				enable_texture_progress_bar.value = lerp(enable_texture_progress_bar.value, time_left, TWEEN_DURATION/10)
 				disable_cashout_button()
 		else:
 			set_process(false)

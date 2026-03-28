@@ -38,6 +38,7 @@ const STANDARD_LERP_SPEED: float = 1
 const SKIN_PATH: String = "res://assets/game/character/avatars/"
 const SKIN_DOMAIN: String = ".png"
 
+
 var data_record: Dictionary = {
 	"starting_coin": 0,
 	"starting_mass": 0,
@@ -67,25 +68,17 @@ func _input(event: InputEvent) -> void:
 			direction.y = 1
 		else:
 			direction.y = 0
+		#print("direction being mapped based on input: ", direction)
 
 func set_data(pos: Vector2, mass: float, coin: int) -> void:
 	if is_character_enabled:
-		print("new pos is settings")
 		if skin_texture_clip_texture_rect.visible:
 			if next_skin_texture_scale != Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y):
 				next_skin_texture_scale = Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y)
-			#if skin_texture_clip_texture_rect.scale != Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y):
-				#skin_texture_clip_texture_rect.scale = Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y)
-		#if character_texture.scale != Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y):
-			#character_texture.scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
-		#if character_shield.scale != Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5:
-			#character_shield.scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
 		if next_character_texture_scale != Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y):
 			next_character_texture_scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
 		if next_shield_scale != Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5:
 			next_shield_scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
-		#if next_mass_scale != Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y):
-			#next_mass_scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y)
 
 		if current_coin != coin:
 			coin_value_label.text = str(int(coin))
@@ -93,10 +86,7 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 		if not using_client_side_prediction:
 			if next_pos != pos:
 				next_pos = pos
-				print("player next_pos is different from previous value")
-			#self.global_position = self.global_position.move_toward(next_pos, current_speed * delta_frame)
 		else:
-			print("measure between current new pos and server pos, ", next_pos.distance_to(pos))
 			if next_pos.distance_to(pos) < POSITION_CLIENT_SERVER_RECONSILATION_MARGIN:
 				if next_pos != pos:
 					next_pos = pos
@@ -104,13 +94,6 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 
 
 func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "", player_name: String = "") -> void:
-	if skin_texture_clip_texture_rect.visible:
-		if skin_texture_clip_texture_rect.scale != Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y):
-			skin_texture_clip_texture_rect.scale = Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y)
-	if character_texture.scale != Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y):
-		character_texture.scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
-	character_shield.scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
-	coin_value_label.text = str(int(coin))
 	current_coin = coin
 	current_name = player_name
 	name_label.text = player_name
@@ -127,6 +110,15 @@ func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "
 		coin_value_label.label_settings.font_color = Color.BLACK
 		coin_bonus_value_label.label_settings.font_color = Color.WHITE
 		name_label.label_settings.font_color = Color.BLACK
+	if skin_texture_clip_texture_rect.visible:
+		skin_texture_clip_texture_rect.scale = Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y)
+	character_texture.scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
+	character_shield.scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
+	character_shield.scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
+	next_skin_texture_scale = Vector2(mass/skin_texture_clip_texture_rect.size.x,mass/skin_texture_clip_texture_rect.size.y)
+	next_character_texture_scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
+	next_shield_scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
+	coin_value_label.text = str(int(coin))
 	self.global_position = pos
 	if not self.visible:
 		self.show()
@@ -177,7 +169,10 @@ func touch_input() -> void:
 			direction = Vector2.ZERO
 		if last_mouse_pressed_position != Vector2.ZERO:
 			var next_mouse_pressed_position: Vector2 = get_local_mouse_position()
-			direction = ((next_mouse_pressed_position - last_mouse_pressed_position) * last_mouse_pressed_position.distance_to(next_mouse_pressed_position)).normalized()
+			#direction = ((next_mouse_pressed_position - last_mouse_pressed_position) * last_mouse_pressed_position.distance_to(next_mouse_pressed_position))#.normalized()
+			direction = ((next_mouse_pressed_position - last_mouse_pressed_position)).normalized()# * last_mouse_pressed_position.distance_to(next_mouse_pressed_position))#.normalized()
+			direction = direction.sign()
+			#print("direction being mapped based on input: ", direction)
 
 func client_side_reconsilation() -> void:
 	if direction != Vector2.ZERO:
