@@ -6,6 +6,7 @@ const TURBO_BOOSTER_ID: String = "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72"
 const FLASH_SPEED_ID: String = "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90"
 
 const POWERUPS_DELAY: float = 3.0
+const SHIELD_POWERUP_DELAY: float = 5.0
 var speed_powerups_delay_timer: Timer = Timer.new()
 var boost_powerups_delay_timer: Timer = Timer.new()
 var shield_powerups_delay_timer: Timer = Timer.new()
@@ -28,7 +29,7 @@ func configure_timers() -> void:
 	boost_powerups_delay_timer.autostart = false
 	boost_powerups_delay_timer.one_shot = true
 	boost_powerups_delay_timer.timeout.connect(_on_boost_powerups_delay_timer)
-	shield_powerups_delay_timer.wait_time = POWERUPS_DELAY
+	shield_powerups_delay_timer.wait_time = SHIELD_POWERUP_DELAY
 	shield_powerups_delay_timer.autostart = false
 	shield_powerups_delay_timer.one_shot = true
 	shield_powerups_delay_timer.timeout.connect(_on_shield_powerups_delay_timer)

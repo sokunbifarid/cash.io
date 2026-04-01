@@ -9,7 +9,7 @@ const OAUTH_DOMAIN: String =  "dev-nwibq0byvol7tlrj.us.auth0.com"
 const OAUTH_CLIENT_ID: String = "Rcw5Sgav4iJ0vYTIA9UTUXKEXZvDeMOs"
 const API_AUDIENCE: String = "urn:cashio:api"
 const MOBILE_REDIRECT_URI: String = "cashio://auth/callback"
-const FRONTEND_DOMAIN: String = "cashio-web.vercel.app"
+const FRONTEND_DOMAIN: String = "playcash.io"#"cashio-web.vercel.app"
 const AUTHORIZATION_URL: String = "https://%s/authorize" % OAUTH_DOMAIN
 const GOOGLE_CONNECTION_NAME: String = "google-oauth2"
 const APPLE_CONNECTION_NAME: String = "apple"
@@ -67,7 +67,7 @@ func google_sign_in() -> void:
 
 	var post_load : String = AUTHORIZATION_URL + "?" + \
 	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + MOBILE_REDIRECT_URI + \
-	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	"&audience=" + API_AUDIENCE + "&scope=openid%20profile%20email" + "&code_challenge=" + \
 	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=" + current_connection_name
 	if OS.get_name() == "Android":
 		OS.shell_open(post_load)
@@ -90,7 +90,7 @@ func ios_sign_in() -> void:
 
 	var post_load : String = AUTHORIZATION_URL + "?" + \
 	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + MOBILE_REDIRECT_URI + \
-	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	"&audience=" + API_AUDIENCE + "&scope=openid%20profile%20email" + "&code_challenge=" + \
 	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=" + current_connection_name
 	if OS.get_name() == "Android":
 		OS.shell_open(post_load)

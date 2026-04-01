@@ -413,9 +413,11 @@ texture = ExtResource("17_1iff4")
 expand_mode = 1
 
 [node name="TotalCoinAmountValueLabel" type="Label" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer/GameCompletionDataSorterVBoxContainer/TotalCoinDataTextureRect/TotalCoinAmountHBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 text = "1"
 label_settings = SubResource("LabelSettings_gc57s")
+text_overrun_behavior = 1
 
 [node name="ButtonSorterHBoxContainer" type="HBoxContainer" parent="InGameHUDCanvasLayer/InGameHUD/GameCompletion/GameCompletionPanel/GameCompletionDataVBoxContainer"]
 layout_mode = 2

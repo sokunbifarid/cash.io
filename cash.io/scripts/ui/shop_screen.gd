@@ -116,12 +116,15 @@ func set_visible_shop_category() -> void:
 			coins_items_v_box_container.hide()
 			powerups_items_v_box_container.show()
 
+var active_shop_items: Array = []
 func populate_shop(items: Array = []) -> void:
 	for i: Dictionary in items:
-		var item: Button = SHOP_ITEM.instantiate()
-		powerups_items_grid_container.add_child(item)
-		item.set_item_data(i.id, i.name, i.price)
-		item.shop_item_pressed.connect(_on_shop_item_pressed)
+		if not active_shop_items.has(i):
+			var item: Button = SHOP_ITEM.instantiate()
+			powerups_items_grid_container.add_child(item)
+			item.set_item_data(i.id, i.name, i.price)
+			item.shop_item_pressed.connect(_on_shop_item_pressed)
+			active_shop_items.append(i)
 
 func item_to_purchase(data: Dictionary) -> void:
 	print("data: ", data)

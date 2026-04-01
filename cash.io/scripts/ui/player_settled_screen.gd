@@ -40,7 +40,8 @@ func _on_match_over_signal(data: Dictionary, condition: bool) -> void:
 				coin_status_label.text = "Coin Lost:"
 				coin_saved_amount_label.text = str(int(data.coins))
 		else:
-			match_state_label.hide()
+			match_state_label.show()
+			match_state_label.text = "Try to stay in a match till the end"
 			coin_data_h_box_container.hide()
 
 

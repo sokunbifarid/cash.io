@@ -62,10 +62,12 @@ class PowerupBody:
 class InputBody:
 	var dx: int = 0
 	var dy: int = 0
+	var input_seq: int = 0
 	func to_dict():
 		return {
 			"dx": dx,
-			"dy": dy
+			"dy": dy,
+			"input_seq": input_seq
 		}
 
 class GetMeBody:

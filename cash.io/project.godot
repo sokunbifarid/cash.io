@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="cash.io"
+config/version="1.0"
 run/main_scene="uid://baeaydjdl102c"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0.57254905, 0.8156863, 0.5647059, 1)
 boot_splash/image="uid://brgp0kbnv67bk"
 config/icon="uid://cscva5xd7h6jd"
 boot_splash/icon=""

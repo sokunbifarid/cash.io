@@ -8,7 +8,7 @@ signal buy_more_powerups
 
 const ROOM_BUTTON_TEXTURED = preload("uid://b2dtkd1a8u6nj")
 const AVAILABLE_POWERUPS_PLAY_SCREEN_DATA = preload("uid://bejbntcmb3nim")
-
+const MIN_NUMBER_OF_POWERUPS_AVAILABLE: int = 8
 var the_visibility_tween: Tween
 
 const TWEEN_DURATION: float = 0.25
@@ -48,7 +48,7 @@ func populate_all_rooms_ui_button(payload: Dictionary) -> void:
 			for i: int in range (rooms.size()):
 				var button: Button = ROOM_BUTTON_TEXTURED.instantiate()
 				ui_buttons_sorter_v_box_container.add_child(button)
-				button.set_button_data("", str(int(rooms[i].min_stake)) + " Room", rooms[i].id)
+				button.set_button_data("", str(int(rooms[i].min_stake)) + " Room", rooms[i].id, int(rooms[i].min_stake))
 				button.room_button_pressed.connect(_on_room_button_pressed)
 
 #"powerups": [{ "id": "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72", "name": "Turbo Booster", "quantity": 20.0 }, { "id": "2f8a9f3d-0f4c-4b9f-8d1d-2f6a7c1e5b13", "name": "Guardian Shield", "quantity": 11.0 }, { "id": "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90", "name": "Flash Speed", "quantity": 5.0 }], "remaining_sec": 90.0 } }
@@ -60,15 +60,21 @@ func populate_available_powerups(owned_powerups: Array) -> void:
 		var powerup: VBoxContainer = AVAILABLE_POWERUPS_PLAY_SCREEN_DATA.instantiate()
 		available_powerups_h_box_container.add_child(powerup)
 		powerup.set_data(owned_powerups[i].id, owned_powerups[i].quantity)
+	if available_powerups_h_box_container.get_child_count() < MIN_NUMBER_OF_POWERUPS_AVAILABLE:
+		for i in range(MIN_NUMBER_OF_POWERUPS_AVAILABLE - available_powerups_h_box_container.get_child_count()):
+			var powerup: VBoxContainer = AVAILABLE_POWERUPS_PLAY_SCREEN_DATA.instantiate()
+			available_powerups_h_box_container.add_child(powerup)
+			powerup.set_data("", 0)
 
 func _on_play_back_button_textured_pressed() -> void:
 	play_screen_closed.emit()
 	self.hide()
 
-func _on_room_button_pressed(room_id: String) -> void:
+func _on_room_button_pressed(room_id: String, room_cost: int) -> void:
 	print("room button pressed to join room")
 	#WebsocketMultiplayerRouter.start_websocket_server(room_id)
 	GameHttpNetworkManager.send_join_room(room_id)
+	GameHttpNetworkManager.set_current_room_coin_cost(room_cost)
 
 func _on_buy_more_powerup_button_textured_1_pressed() -> void:
 	buy_more_powerups.emit()

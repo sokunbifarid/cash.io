@@ -4,7 +4,7 @@ extends Node
 const OAUTH_DOMAIN: String =  "dev-nwibq0byvol7tlrj.us.auth0.com"
 const OAUTH_CLIENT_ID: String = "Rcw5Sgav4iJ0vYTIA9UTUXKEXZvDeMOs"
 const API_AUDIENCE: String = "urn:cashio:api"
-const FRONTEND_DOMAIN: String = "cashio-web.vercel.app"
+const FRONTEND_DOMAIN: String = "playcash.io"#"cashio-web.vercel.app"
 const WEB_REDIRECT_URI: String = "https://%s/callback.html" % FRONTEND_DOMAIN
 const AUTHORIZATION_URL: String = "https://%s/authorize" % OAUTH_DOMAIN
 const FIREBASE_API_KEY: String = "AIzaSyCmCi8oEnYyaih1ElMMGuIDiIzzVQQTyoI"
@@ -68,7 +68,7 @@ func google_web_sign_in() -> void:
 
 	var post_load : String = AUTHORIZATION_URL + "?" + \
 	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + WEB_REDIRECT_URI + \
-	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	"&audience=" + API_AUDIENCE + "&scope=openid%20profile%20email" + "&code_challenge=" + \
 	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=google-oauth2"
 		
 	if OS.get_name() == "Web":
@@ -106,7 +106,7 @@ func apple_web_sign_in() -> void:
 
 	var post_load : String = AUTHORIZATION_URL + "?" + \
 	"client_id=" + OAUTH_CLIENT_ID + "&response_type=code" + "&redirect_uri=" + WEB_REDIRECT_URI + \
-	"&audience=urn:cashio:api" + "&scope=openid%20profile%20email" + "&code_challenge=" + \
+	"&audience=" + API_AUDIENCE + "&scope=openid%20profile%20email" + "&code_challenge=" + \
 	code_challenge + "&code_challenge_method=S256" + "&state=" + STATE + "&connection=apple"
 		
 	if OS.get_name() == "Web":

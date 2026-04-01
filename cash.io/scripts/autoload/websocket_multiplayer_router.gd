@@ -1,6 +1,6 @@
 extends ws_schema
 
-const SERVER_IP: String = "simplyludo.com"
+const SERVER_IP: String = "playcash.io"#"simplyludo.com"
 const SERVER_PORT: int = 443
 
 const WEBSOCKET_ONLINE_API: String = "/ws-session"
@@ -15,7 +15,7 @@ var websocket_connection_is_poor: bool = false
 var websocket_connected: bool = false
 
 const WEBSOCKET_SERVER_FRAME_TICK: float = 1.0/40.0#80.0#1.0/30.0
-const WEBSOCKET_SERVER_PING_FRAME_TICK: float = 1.0/5.0
+const WEBSOCKET_SERVER_PING_FRAME_TICK: float = 1.0/20.0#1.0/5.0
 var websocket_tick_count: float = 0
 var websocket_ping_count: float = 0
 var last_websocket_room_id: String = ""

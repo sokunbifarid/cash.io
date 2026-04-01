@@ -54,8 +54,6 @@ signal shop_data_loaded_signal(payload: Array)
 
 signal shop_purchase_successful_signal
 
-signal player_shield_protection_on_join_match_firstime_signal
-
 signal load_in_game_powersups_signal(payload: Array)
 
 
@@ -158,9 +156,6 @@ func emit_powerup_timeout_signal(id: String) -> void:
 
 func emit_shop_data_loaded_signal(payload: Dictionary) -> void:
 	shop_data_loaded_signal.emit(payload)
-
-func emit_player_shield_protection_on_join_match_firstime_signal() -> void:
-	player_shield_protection_on_join_match_firstime_signal.emit()
 
 func emit_load_in_game_powersups_signal(payload: Array) -> void:
 	load_in_game_powersups_signal.emit(payload)

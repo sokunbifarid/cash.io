@@ -15,7 +15,9 @@ font = ExtResource("2_c5rig")
 font_size = 12
 
 [node name="AvailablePowerupsPlayScreenData" type="VBoxContainer"]
+custom_minimum_size = Vector2(28, 38)
 theme_override_constants/separation = -5
+alignment = 1
 script = ExtResource("1_c5rig")
 
 [node name="PowerupTextureRect" type="TextureRect" parent="."]

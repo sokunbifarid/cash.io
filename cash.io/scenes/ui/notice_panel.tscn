@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://d1yu56grq3etg"]
+[gd_scene load_steps=4 format=3 uid="uid://d1yu56grq3etg"]
 
 [ext_resource type="Script" uid="uid://dt4gjq5eqbxcs" path="res://scripts/ui/notice_panel.gd" id="1_2ioce"]
 [ext_resource type="FontFile" uid="uid://b8rkdk37wxds1" path="res://assets/font/Gotham-font-family/Gotham/Gotham-Bold.otf" id="2_2ioce"]
@@ -7,7 +7,7 @@
 font = ExtResource("2_2ioce")
 font_size = 15
 
-[node name="NoticePanel" type="Panel" unique_id=577526210]
+[node name="NoticePanel" type="Panel"]
 visible = false
 z_index = 1
 custom_minimum_size = Vector2(800, 30)
@@ -17,7 +17,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 script = ExtResource("1_2ioce")
 
-[node name="NoticeLabel" type="Label" parent="." unique_id=466266899]
+[node name="NoticeLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ label_settings = SubResource("LabelSettings_b770b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VisibleTimer" type="Timer" parent="." unique_id=224821016]
+[node name="VisibleTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 

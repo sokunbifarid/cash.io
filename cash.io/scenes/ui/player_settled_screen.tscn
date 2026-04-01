@@ -85,7 +85,7 @@ offset_right = 111.5
 offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 19
+theme_override_constants/separation = 10
 
 [node name="LastMatchEndedLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer"]
 layout_mode = 2
@@ -94,10 +94,13 @@ label_settings = SubResource("LabelSettings_3jkv5")
 horizontal_alignment = 1
 
 [node name="MatchStateLabel" type="Label" parent="PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer"]
+custom_minimum_size = Vector2(223, 41)
 layout_mode = 2
 text = "YOU SURVIVED LAST MATCH"
 label_settings = SubResource("LabelSettings_xnyfk")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="CoinDataHBoxContainer" type="HBoxContainer" parent="PlayerSettledPanel/PlayerSettledTextureRect/PlayerSettledVBoxContainer"]
 layout_mode = 2

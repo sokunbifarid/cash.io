@@ -51,7 +51,7 @@ func _on_match_over_signal(_payload: Dictionary, condition: bool) -> void:
 	set_process(false)
 
 func _process(delta: float) -> void:
-	set_players_z_index_based_on_distance()
+	#set_players_z_index_based_on_distance()
 	if GameHttpNetworkManager.room_bound != Vector2.ZERO:
 		set_bounds(GameHttpNetworkManager.room_bound)
 
@@ -70,7 +70,7 @@ func set_players_z_index_based_on_distance() -> void:
 			for j: String in players:
 				if i != j:
 					if players[i] and players[j]:
-						if players[i].position.distance_to(players[j].position) <= ((players[i].scale + players[j].scale).length()/2):
+						if players[i].position.distance_to(players[j].position) <= (players[i].get_mass()):
 							if players[i].scale.length() > players[j].scale.length():
 								players[i].z_index = 1
 								players[j].z_index = 0
@@ -132,6 +132,50 @@ func spawn_networked_player(players: Array, bound: Vector2) -> void:
 			GameHttpNetworkManager.update_players_list(id, new_player)
 	else:
 		print("character holder not set in game IngameNetworkManager")
+
+ # use to test player shadow for movement
+	#if character_holder:
+		#for i: Dictionary in players:
+			#var new_player: Node2D = CHARACTER.instantiate()
+			#var id: String = ""
+			#var new_position: Vector2 = Vector2.ZERO
+			#var character_name: String = ""
+			#var coins: int = 0
+			#var mass: float = 0
+			#var appearance: String = ""
+			#if i.has("x") and i.has("y"):
+				#new_position = Vector2(i.x, i.y)
+			#if i.has("id"):
+				#id = i.id + "1"
+			#if i.has("coins"):
+				#coins = i.coins
+			#if i.has("mass"):
+				#mass = i.mass/5
+			#if i.has("appearance"):
+				#appearance = i.appearance
+			#if i.has("username"):
+				#character_name = i.username
+				#print("character name: ", character_name)
+			#print("player id: ", id)
+			#print("master player id: ", id)
+			#character_holder.add_child(new_player)
+			#new_player.set_force_data(new_position, mass, coins, appearance, character_name)
+			#new_player.name = character_name
+			#new_player.show()
+			#new_player.modulate = Color.DIM_GRAY
+			#new_player.using_client_side_prediction = false
+			#print("player is spawned")
+			#if GameHttpNetworkManager.get_current_player_id() == id:
+				#print("this player is the authority")
+				#new_player.character_enabled(true, bound)
+			#else:
+				#print("this player is not authority")
+				#new_player.character_enabled(false, bound)
+			#GameHttpNetworkManager.update_players_list(id, new_player)
+	#else:
+		#print("character holder not set in game IngameNetworkManager")
+
+
 
 func spawn_networked_pellets( pellets: Array) -> void:
 	if pellets_holder:

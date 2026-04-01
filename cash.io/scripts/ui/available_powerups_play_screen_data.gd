@@ -6,9 +6,11 @@ extends VBoxContainer
 
 const BOOST_UI = preload("uid://bnfs5vcyxrokp")
 const SHIELD_UI = preload("uid://crbo16c1nu43q")
+const UNACTIVE_POWERUP_SLOT = preload("uid://bp0us4lkf17u7")
 
 func set_data(id: String, powerup_quantity: int) -> void:
 	powerup_quantity_label.text = "x" + str(powerup_quantity)
+	powerup_quantity_label.show()
 	match id:
 		PowerupsManager.FLASH_SPEED_ID:
 			powerup_texture_rect.texture = BOOST_UI
@@ -24,3 +26,6 @@ func set_data(id: String, powerup_quantity: int) -> void:
 			coin_boost_h_box_container.hide()
 			powerup_texture_rect.show()
 			#self.add_theme_constant_override("separation", -10)
+		"":
+			powerup_quantity_label.hide()
+			powerup_texture_rect.texture = UNACTIVE_POWERUP_SLOT

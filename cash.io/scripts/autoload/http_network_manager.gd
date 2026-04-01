@@ -10,7 +10,7 @@ var withdrawal_http_request_node: HTTPRequest
 var set_skin_http_request_node: HTTPRequest
 var shop_http_request_node: HTTPRequest
 
-const SERVER_IP: String = "simplyludo.com"
+const SERVER_IP: String = "playcash.io"#"simplyludo.com"
 const SERVER_PORT: int = 443
 const DEVICE_ID_AUTH_API: String = "/auth/device/authenticate"
 const FIREBASE_AUTH_API: String = "/auth/firebase/authenticate"

@@ -21,6 +21,8 @@ var current_player_is_authority: bool = false
 var superior_killing_character: CharacterBody2D = null
 var delta_frame: float = 0
 var direction: Vector2 = Vector2.ZERO
+var local_pos: Vector2 = Vector2.ZERO
+var current_mass: float = 20
 var current_coin: int = 0
 var current_name: String = ""
 var next_pos: Vector2 = Vector2.ZERO
@@ -31,28 +33,30 @@ var current_speed: float = 1000
 const DEFAULT_SPEED: float = 1000#1500#600
 const HIGH_SPEED: float = 2000
 var last_mouse_pressed_position: Vector2 = Vector2.ZERO
-var using_client_side_prediction: bool = false#true
+var using_client_side_prediction: bool = true
 const POSITION_CLIENT_SERVER_RECONSILATION_MARGIN: float = 1500.0
+var pending_inputs: Array = []
+var last_direction: Vector2 = Vector2.ZERO
+var local_input_sequence: int = 0
+var last_server_position: Vector2 = Vector2.ZERO
 
-const STANDARD_LERP_SPEED: float = 1
+
+const STANDARD_LERP_SPEED: float = 0.1
 const SKIN_PATH: String = "res://assets/game/character/avatars/"
 const SKIN_DOMAIN: String = ".png"
 
-
-var data_record: Dictionary = {
-	"starting_coin": 0,
-	"starting_mass": 0,
-	}
 
 func _ready() -> void:
 	set_process(false)
 	set_process_input(false)
 	disable_powerups()
-	#SignalManager.player_shield_protection_on_join_match_firstime_signal.connect(_on_player_shield_protection_on_join_match_firstime_signal)
-#
-#func _on_player_shield_protection_on_join_match_firstime_signal() -> void:
-	#if current_player_is_authority:
-		#enable_shield()
+	connect_signal()
+
+func connect_signal() -> void:
+	SignalManager.websocket_reconnected.connect(_on_websocket_reconnected)
+
+func _on_websocket_reconnected() -> void:
+	pending_inputs.clear()
 
 func _input(event: InputEvent) -> void:
 	if is_character_enabled and current_player_is_authority:
@@ -83,21 +87,23 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 		if current_coin != coin:
 			coin_value_label.text = str(int(coin))
 			current_coin = coin
+		if current_mass != mass:
+			current_mass = mass
 		if not using_client_side_prediction:
 			if next_pos != pos:
 				next_pos = pos
 		else:
-			if next_pos.distance_to(pos) < POSITION_CLIENT_SERVER_RECONSILATION_MARGIN:
-				if next_pos != pos:
-					next_pos = pos
-					self.global_position = self.global_position.move_toward(next_pos, current_speed * 10 * delta_frame)
+			client_side_prediction_data_mapper_new(pos)
+			#client_side_prediction_data_mapper_newest(pos)
 
 
 func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "", player_name: String = "") -> void:
 	current_coin = coin
 	current_name = player_name
 	name_label.text = player_name
+	local_pos = pos
 	next_pos = pos
+	current_mass = mass
 	appearance = GlobalManager.player_selected_skin_id
 	if appearance != "":
 		coin_value_label.label_settings.font_color = Color.WHITE
@@ -123,6 +129,48 @@ func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "
 	if not self.visible:
 		self.show()
 
+func client_side_prediction_data_mapper(pos: Vector2) -> void:
+	var local_last_pos_count: int = 0
+	if pending_inputs.size() > 0:
+		for i in range (pending_inputs.size()):
+			if next_pos.length() <= pending_inputs[0].length() + current_speed / 60 and next_pos.length() > pending_inputs[0].length() - current_speed / 60:
+				if local_last_pos_count == 0:
+					pending_inputs[0] = pos
+					print("input found but at 0 location")
+				else:
+					for j in range (local_last_pos_count):
+						pending_inputs.pop_at(j)
+						print("input found but at location not 0")
+				break
+			local_last_pos_count += 1
+	else:
+		pending_inputs.append(pos)
+
+func client_side_prediction_data_mapper_new(pos: Vector2) -> void:
+	next_pos = pos
+	pass
+
+func client_side_prediction_data_mapper_newest(pos: Vector2) -> void:
+	var error = pos - local_pos
+	var error_distance = error.length()
+
+	var RECONCILE_THRESHOLD = 20.0
+	if error_distance > RECONCILE_THRESHOLD:
+		local_pos = pos
+	#next_pos = pos
+	var remaining_input: Array = []
+	for input in pending_inputs:
+		if input.input_seq > GameHttpNetworkManager.server_last_input_sequence:
+			remaining_input.append(input)
+	
+	pending_inputs = remaining_input
+	for input in pending_inputs:
+		#self.global_position += Vector2(input.dx, input.dy)
+		local_pos += Vector2(input.dx, input.dy) * current_speed * delta_frame
+	local_pos = local_pos.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
+	#self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
+	#self.global_position = local_pos
+
 func set_camera_limit(bounds: Vector2 = Vector2.ZERO) -> void:
 	if bounds != Vector2.ZERO:
 		const LIMIT_OFFSET: float = 100
@@ -135,6 +183,9 @@ func set_camera_limit(bounds: Vector2 = Vector2.ZERO) -> void:
 		if camera_2d.limit_top != 0 - LIMIT_OFFSET/2:
 			camera_2d.limit_top = 0 - LIMIT_OFFSET/2
 
+func get_mass() -> float:
+	return current_mass
+
 func _process(delta: float) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
 		if is_character_enabled:
@@ -142,26 +193,27 @@ func _process(delta: float) -> void:
 			delta_frame = delta
 			touch_input()
 			if using_client_side_prediction:
-				client_side_reconsilation()
+				client_side_prediction()
+				#client_side_prediction_2()
 			else:
 				if direction != Vector2.ZERO:
 					GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y)
-			self.global_position = self.global_position.move_toward(next_pos, current_speed * delta_frame)
+				self.global_position = self.global_position.move_toward(next_pos, current_speed * delta_frame)
 			character_texture.scale = lerp(character_texture.scale, next_character_texture_scale, STANDARD_LERP_SPEED)
 			character_shield.scale = lerp(character_shield.scale, next_shield_scale, STANDARD_LERP_SPEED)
 			if skin_texture_clip_texture_rect.visible:
 				skin_texture_clip_texture_rect.scale = lerp(skin_texture_clip_texture_rect.scale, next_skin_texture_scale, STANDARD_LERP_SPEED)
-		else:
-			if superior_killing_character:
-				self.position = lerp(self.position, superior_killing_character.position, current_speed * 10)
-				if self.position.distance_to(superior_killing_character.position) <= current_speed * 10:
-					self.position = superior_killing_character.position
-					character_disable_initializer()
+		#else:
+			#if superior_killing_character:
+				#self.global_position = lerp(self.global_position, superior_killing_character.global_position, current_speed * 100)
+				#if self.global_position.distance_to(superior_killing_character.global_position) <= current_speed * 100:
+					#self.global_position = superior_killing_character.global_position
+					#character_disable_initializer()
 
 func touch_input() -> void:
 	if current_player_is_authority:
 		if Input.is_action_just_pressed("mouse_left"):
-			if get_local_mouse_position() < Vector2(get_window().size.x - get_window().size.x / 10, get_window().size.y - get_window().size.y / 8):
+			if get_local_mouse_position() < Vector2(get_viewport_rect().size.x - get_viewport_rect().size.x / 10, get_viewport_rect().size.y - get_viewport_rect().size.y / 10):
 				if last_mouse_pressed_position == Vector2.ZERO:
 					last_mouse_pressed_position = get_local_mouse_position()
 		elif Input.is_action_just_released("mouse_left"):
@@ -169,15 +221,49 @@ func touch_input() -> void:
 			direction = Vector2.ZERO
 		if last_mouse_pressed_position != Vector2.ZERO:
 			var next_mouse_pressed_position: Vector2 = get_local_mouse_position()
-			#direction = ((next_mouse_pressed_position - last_mouse_pressed_position) * last_mouse_pressed_position.distance_to(next_mouse_pressed_position))#.normalized()
 			direction = ((next_mouse_pressed_position - last_mouse_pressed_position)).normalized()# * last_mouse_pressed_position.distance_to(next_mouse_pressed_position))#.normalized()
 			direction = direction.sign()
-			#print("direction being mapped based on input: ", direction)
 
-func client_side_reconsilation() -> void:
+
+func client_side_prediction() -> void:
 	if direction != Vector2.ZERO:
-		next_pos = self.global_position + (direction * current_speed)
-		self.global_position.move_toward(next_pos, current_speed * delta_frame)
+		last_direction = direction
+		local_pos += direction * current_speed * delta_frame#(direction * current_speed * delta_frame)
+		GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y)
+		
+		if direction != Vector2.ZERO:
+			var error: Vector2 = next_pos - local_pos
+			var distance: float = error.length()
+			var correction_threshold := 5.0
+			var snap_threshold := 500.0
+			if distance > snap_threshold:
+				local_pos = next_pos
+				print("position distance is snapping: ", distance)
+			elif distance > correction_threshold:
+				local_pos += error * 0.1  # smooth correction
+				pass
+	else:
+		local_pos = next_pos
+	local_pos = local_pos.clamp(
+		Vector2(current_mass, current_mass),
+		GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2)
+	)
+	#NOTICE: do not touch this value to increase speed, instead increase the speed being addedd after the new position on the server then increase the speed here
+	self.global_position = lerp(self.global_position, local_pos, current_speed * delta_frame / 200)
+
+func client_side_prediction_2() -> void:
+	if direction != Vector2.ZERO:
+		local_input_sequence += 1
+		local_pos += direction * (current_speed/50) * delta_frame
+		pending_inputs.append({"dx": direction.x, "dy": direction.y, "input_seq": local_input_sequence})
+		if pending_inputs.size() > 100:
+			pending_inputs.pop_front()
+		GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y, local_input_sequence)
+		
+	#self.global_position = local_pos
+	self.global_position = self.global_position.lerp(local_pos, (current_speed/80) * delta_frame)
+	self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
+
 
 func character_enabled(is_authority_player: bool = false,  bounds: Vector2 = Vector2.ZERO) -> void:
 	is_character_enabled = true

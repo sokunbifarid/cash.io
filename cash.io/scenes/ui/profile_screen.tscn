@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1xqsjqstty6v"]
+[gd_scene load_steps=23 format=3 uid="uid://d1xqsjqstty6v"]
 
 [ext_resource type="Script" uid="uid://dun41t5ybg75h" path="res://scripts/ui/profile_screen.gd" id="1_uwfm8"]
 [ext_resource type="Texture2D" uid="uid://dk0uuxapgrowd" path="res://assets/ui/comp/Background_2.png" id="2_uwfm8"]
@@ -24,6 +24,8 @@ texture = ExtResource("3_uwfm8")
 texture = ExtResource("7_3u5s0")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y07s"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_htoyf"]
 
@@ -144,6 +146,7 @@ theme_override_colors/font_color = Color(0.35156232, 0.35156316, 0.35156256, 1)
 theme_override_fonts/font = ExtResource("5_blmyo")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_htoyf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7y07s")
 placeholder_text = "Nickname..."
 editable = false
 
