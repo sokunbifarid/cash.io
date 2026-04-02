@@ -51,7 +51,7 @@ func _on_match_over_signal(_payload: Dictionary, condition: bool) -> void:
 	set_process(false)
 
 func _process(delta: float) -> void:
-	#set_players_z_index_based_on_distance()
+	set_players_z_index_based_on_distance()
 	if GameHttpNetworkManager.room_bound != Vector2.ZERO:
 		set_bounds(GameHttpNetworkManager.room_bound)
 
@@ -70,7 +70,7 @@ func set_players_z_index_based_on_distance() -> void:
 			for j: String in players:
 				if i != j:
 					if players[i] and players[j]:
-						if players[i].position.distance_to(players[j].position) <= (players[i].get_mass()):
+						if players[i].position.distance_to(players[j].position) <= (players[i].get_mass() *  2):
 							if players[i].scale.length() > players[j].scale.length():
 								players[i].z_index = 1
 								players[j].z_index = 0
@@ -80,9 +80,6 @@ func set_players_z_index_based_on_distance() -> void:
 							else:
 								players[i].z_index = 0
 								players[j].z_index = 0
-							if players[j].is_character_enabled == false:
-								if players[i].is_character_enabled == true:
-									players[j].death_tween_to_player(players[i])
 
 #use this when a game ends
 func remove_all_old_players() -> void:

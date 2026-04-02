@@ -18,7 +18,6 @@ var mouse_in_use_by_character: bool = false
 var is_character_enabled: bool = false
 
 var current_player_is_authority: bool = false
-var superior_killing_character: CharacterBody2D = null
 var delta_frame: float = 0
 var direction: Vector2 = Vector2.ZERO
 var local_pos: Vector2 = Vector2.ZERO
@@ -33,7 +32,7 @@ var current_speed: float = 1000
 const DEFAULT_SPEED: float = 1000#1500#600
 const HIGH_SPEED: float = 2000
 var last_mouse_pressed_position: Vector2 = Vector2.ZERO
-var using_client_side_prediction: bool = true
+var using_client_side_prediction: bool = false#true
 const POSITION_CLIENT_SERVER_RECONSILATION_MARGIN: float = 1500.0
 var pending_inputs: Array = []
 var last_direction: Vector2 = Vector2.ZERO
@@ -95,7 +94,6 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 		else:
 			client_side_prediction_data_mapper_new(pos)
 			#client_side_prediction_data_mapper_newest(pos)
-
 
 func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "", player_name: String = "") -> void:
 	current_coin = coin
@@ -166,7 +164,7 @@ func client_side_prediction_data_mapper_newest(pos: Vector2) -> void:
 	pending_inputs = remaining_input
 	for input in pending_inputs:
 		#self.global_position += Vector2(input.dx, input.dy)
-		local_pos += Vector2(input.dx, input.dy) * current_speed * delta_frame
+		local_pos += Vector2(input.dx, input.dy) * current_speed/50 * delta_frame
 	local_pos = local_pos.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
 	#self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
 	#self.global_position = local_pos
@@ -193,8 +191,8 @@ func _process(delta: float) -> void:
 			delta_frame = delta
 			touch_input()
 			if using_client_side_prediction:
-				client_side_prediction()
-				#client_side_prediction_2()
+				#client_side_prediction()
+				client_side_prediction_2()
 			else:
 				if direction != Vector2.ZERO:
 					GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y)
@@ -203,12 +201,6 @@ func _process(delta: float) -> void:
 			character_shield.scale = lerp(character_shield.scale, next_shield_scale, STANDARD_LERP_SPEED)
 			if skin_texture_clip_texture_rect.visible:
 				skin_texture_clip_texture_rect.scale = lerp(skin_texture_clip_texture_rect.scale, next_skin_texture_scale, STANDARD_LERP_SPEED)
-		#else:
-			#if superior_killing_character:
-				#self.global_position = lerp(self.global_position, superior_killing_character.global_position, current_speed * 100)
-				#if self.global_position.distance_to(superior_killing_character.global_position) <= current_speed * 100:
-					#self.global_position = superior_killing_character.global_position
-					#character_disable_initializer()
 
 func touch_input() -> void:
 	if current_player_is_authority:
@@ -282,9 +274,7 @@ func character_enabled(is_authority_player: bool = false,  bounds: Vector2 = Vec
 func character_disabled() -> void:
 	#print("character disabled")
 	is_character_enabled = false
-	await get_tree().create_timer(0.5).timeout
-	if superior_killing_character == null:
-		character_disable_initializer()
+	character_disable_initializer()
 
 func character_disable_initializer() -> void:
 	burst_cpu_particles_2d.emitting = true
@@ -292,10 +282,6 @@ func character_disable_initializer() -> void:
 	disable_powerups()
 	if current_player_is_authority:
 		SfxAudioManager.play_character_burst_sfx()
-
-func death_tween_to_player(the_character: CharacterBody2D) -> void:
-	if the_character.is_character_enabled:
-		superior_killing_character = the_character
 
 func disable_powerups() -> void:
 	coin_bonus_h_box_container.hide()

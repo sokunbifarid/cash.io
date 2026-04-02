@@ -58,6 +58,9 @@ func set_active_skin(skin: String) -> void:
 		GlobalManager.player_selected_skin_id = skin
 
 func populate_skins(avatars: Array) -> void:
+	if profile_skin_panel_grid_container.get_child_count() > 0:
+		for j in profile_skin_panel_grid_container.get_children():
+			j.queue_free()
 	for i in avatars:
 		var skin: TextureButton = SKIN_TEXTURE_BUTTON.instantiate()
 		profile_skin_panel_grid_container.add_child(skin)

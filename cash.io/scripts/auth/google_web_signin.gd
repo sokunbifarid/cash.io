@@ -4,7 +4,7 @@ extends Node
 const OAUTH_DOMAIN: String =  "dev-nwibq0byvol7tlrj.us.auth0.com"
 const OAUTH_CLIENT_ID: String = "Rcw5Sgav4iJ0vYTIA9UTUXKEXZvDeMOs"
 const API_AUDIENCE: String = "urn:cashio:api"
-const FRONTEND_DOMAIN: String = "playcash.io"#"cashio-web.vercel.app"
+const FRONTEND_DOMAIN: String = "cashio-web.vercel.app"
 const WEB_REDIRECT_URI: String = "https://%s/callback.html" % FRONTEND_DOMAIN
 const AUTHORIZATION_URL: String = "https://%s/authorize" % OAUTH_DOMAIN
 const FIREBASE_API_KEY: String = "AIzaSyCmCi8oEnYyaih1ElMMGuIDiIzzVQQTyoI"

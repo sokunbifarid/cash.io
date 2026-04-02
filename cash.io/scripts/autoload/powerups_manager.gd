@@ -1,9 +1,9 @@
 extends Node
 
 
-const GUARDIAN_SHIELD_ID: String = "2f8a9f3d-0f4c-4b9f-8d1d-2f6a7c1e5b13"
-const TURBO_BOOSTER_ID: String = "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72"
-const FLASH_SPEED_ID: String = "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90"
+const GUARDIAN_SHIELD_ID: String = "e46a0bfe-44dc-4c03-8890-2acacd70576d"
+const TURBO_BOOSTER_ID: String = "ccd5a7ad-52a2-40c5-9c3d-212d72a3af12"
+const FLASH_SPEED_ID: String = "fe0e96ee-eb73-4666-9f88-b178e3440955"
 
 const POWERUPS_DELAY: float = 3.0
 const SHIELD_POWERUP_DELAY: float = 5.0

@@ -261,17 +261,17 @@ func append_session_connected_data(_payload: Dictionary) -> void:
 	send_heartbeat()
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.AUTH:
 		pass
-		#if can_auto_join_room_on_launch == false:
-			#SignalManager.emit_startup_request_data_loaded_successfully()
-		#if can_auto_join_room_on_launch:#else:
-			#print("can auto join room is true")
-			#if GlobalManager.get_was_in_match():
-				#print("detected player was in a match previously")
-				#send_join_room(GlobalManager.get_last_match_room_id())
-				#print("trying to join last match")
-			#else:
-				#print("detected player was not in match previously")
-				#SignalManager.emit_startup_request_data_loaded_successfully()
+		if can_auto_join_room_on_launch == false:
+			SignalManager.emit_startup_request_data_loaded_successfully()
+		if can_auto_join_room_on_launch:#else:
+			print("can auto join room is true")
+			if GlobalManager.get_was_in_match():
+				print("detected player was in a match previously")
+				send_join_room(GlobalManager.get_last_match_room_id())
+				print("trying to join last match")
+			else:
+				print("detected player was not in match previously")
+				SignalManager.emit_startup_request_data_loaded_successfully()
 	else:
 		SignalManager.emit_websocket_reconnected_signal()
 
