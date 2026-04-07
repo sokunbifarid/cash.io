@@ -4,6 +4,8 @@ const OAUTH_DOMAIN: String = "dev-nwibq0byvol7tlrj.us.auth0.com"
 const OAUTH_CLIENT_ID: String = "Rcw5Sgav4iJ0vYTIA9UTUXKEXZvDeMOs"
 const API_AUDIENCE: String = "urn:cashio:api"
 const REDIRECT_URI: String = "http://localhost:8000/callback"
+const GOOGLE_CONNECTION_NAME: String = "google-oauth2"
+const APPLE_CONNECTION_NAME: String = "apple"
 
 var code_verifier: String = ""
 var code_challenge: String = ""
@@ -28,17 +30,29 @@ func generate_code_challenge(verifier:String) -> String:
 	var hash = ctx.finish()
 	return Marshalls.raw_to_base64(hash).replace("+","-").replace("/","_").replace("=","")
 
-func sign_in() -> void:
+func google_sign_in() -> void:
 	print("signin clicked")
 	SignalManager.emit_open_loading_screen_signal(true)
-	code_verifier = generate_code_verifier()
-	code_challenge = generate_code_challenge(code_verifier)
 
 	var state = str(randi()) + str(Time.get_ticks_usec())
-	var auth_url = "https://%s/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=openid profile email&audience=%s&code_challenge=%s&code_challenge_method=S256&state=%s&connection=google-oauth2" % [
-		OAUTH_DOMAIN, OAUTH_CLIENT_ID, REDIRECT_URI, API_AUDIENCE, code_challenge, state
+	var auth_url = "https://%s/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=openid profile email&audience=%s&code_challenge=%s&code_challenge_method=S256&state=%s&connection=%s" % [
+		OAUTH_DOMAIN, OAUTH_CLIENT_ID, REDIRECT_URI, API_AUDIENCE, code_challenge, state, GOOGLE_CONNECTION_NAME
 	]
+	start_signin_process(auth_url)
 
+func apple_sign_in() -> void:
+	print("signin clicked")
+	SignalManager.emit_open_loading_screen_signal(true)
+
+	var state = str(randi()) + str(Time.get_ticks_usec())
+	var auth_url = "https://%s/authorize?client_id=%s&response_type=code&redirect_uri=%s&scope=openid profile email&audience=%s&code_challenge=%s&code_challenge_method=S256&state=%s&connection=%s" % [
+		OAUTH_DOMAIN, OAUTH_CLIENT_ID, REDIRECT_URI, API_AUDIENCE, code_challenge, state, APPLE_CONNECTION_NAME
+	]
+	start_signin_process(auth_url)
+
+func start_signin_process(auth_url: String) -> void:
+	code_verifier = generate_code_verifier()
+	code_challenge = generate_code_challenge(code_verifier)
 	server.listen(SERVER_PORT)
 	if not OS.get_name() == "macOS":
 		OS.shell_open(auth_url)
@@ -53,7 +67,6 @@ func sign_in() -> void:
 	timeout_timer.wait_time = AUTH_ACTIVE_DURATION
 	timeout_timer.start()
 	print("this dae buffer")
-
 
 func _process(delta: float) -> void:
 	if auth_is_active and server.is_connection_available():

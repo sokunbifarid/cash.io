@@ -59,5 +59,4 @@ func check_coin_last_amount(value: int) -> void:
 		last_coin_amount = value
 
 func _on_buy_coin_button_textured_pressed() -> void:
-	#HttpNetworkManager.request_payment()
 	buy_coin_button.emit()

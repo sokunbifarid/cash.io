@@ -49,12 +49,16 @@ class NumberBody:
 		}
 
 class PowerupBody:
-	var id: String = ""
+	var user_id: String = ""
+	var powerup_id: String = ""
+	var code: String = ""
 	var name: String = ""
 	var quantity: int = 0
 	func to_dict():
 		return {
-			"id": id,
+			"userid": user_id,
+			"powerupid": powerup_id,
+			"code": code,
 			"name": name,
 			"quantity": quantity,
 		}

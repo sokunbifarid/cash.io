@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brgp0kbnv67bk"
-path="res://.godot/imported/cash_io_splash_screen.png-310b58b2b1cabaa098768b4c86ca3cd2.ctex"
+uid="uid://yepq2gpeu0ij"
+path="res://.godot/imported/cash_io_favicon.png-0f4f70b999a1945e6b821e3ad04cf7af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cash_io_splash_screen.png"
-dest_files=["res://.godot/imported/cash_io_splash_screen.png-310b58b2b1cabaa098768b4c86ca3cd2.ctex"]
+source_file="res://cash_io_favicon.png"
+dest_files=["res://.godot/imported/cash_io_favicon.png-0f4f70b999a1945e6b821e3ad04cf7af.ctex"]
 
 [params]
 

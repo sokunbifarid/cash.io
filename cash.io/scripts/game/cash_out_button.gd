@@ -40,7 +40,6 @@ func _on_cashout_rejected_signal(wait_value: float) -> void:
 func _process(delta: float) -> void:
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.BUBBLE_GAME:
 		var time_left: float = GameHttpNetworkManager.player_starting_time - GameHttpNetworkManager.player_running_time
-		print("this is timeleft: ", time_left)
 		if time_left < duration_to_activate_cashout:
 			if enable_texture_progress_bar.value != time_left:
 				enable_texture_progress_bar.value = lerp(enable_texture_progress_bar.value, time_left, TWEEN_DURATION)

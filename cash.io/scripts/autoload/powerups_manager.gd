@@ -1,8 +1,8 @@
 extends Node
 
 
-const GUARDIAN_SHIELD_ID: String = "e46a0bfe-44dc-4c03-8890-2acacd70576d"
-const TURBO_BOOSTER_ID: String = "ccd5a7ad-52a2-40c5-9c3d-212d72a3af12"
+const GUARDIAN_SHIELD_ID: String = "d757e55c-75af-46ac-b541-91965f85692a"
+const TURBO_BOOSTER_ID: String = "f96b5944-0896-4041-83d3-e51a5da18ff8"
 const FLASH_SPEED_ID: String = "fe0e96ee-eb73-4666-9f88-b178e3440955"
 
 const POWERUPS_DELAY: float = 3.0

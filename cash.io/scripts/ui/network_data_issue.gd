@@ -17,3 +17,4 @@ func _on_reload_button_textured_pressed() -> void:
 
 func _on_error_getting_user_data_signal() -> void:
 	self.show()
+	SignalManager.emit_open_loading_screen_signal(false)

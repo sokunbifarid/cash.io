@@ -48,17 +48,14 @@ func hide_all_screen() -> void:
 	clear_all_text_fields()
 
 func _on_withdrawal_form_prompt_signal() -> void:
-	#open_withdrawal_screen.emit()
 	self.show()
 	open_withdrawal_form()
 
 func _on_withdrawal_data_prompt_signal() -> void:
-	#open_withdrawal_screen.emit()
 	self.show()
 	open_withdrawal_data()
 
 func _on_wallet_updated_successfull_signal(_value: int) -> void:
-	print("wallet updated successfully")
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.WITHDRAWAL:
 		open_withdrawal_in_progress()
 		SignalManager.emit_open_loading_screen_signal(false)
@@ -68,11 +65,6 @@ func _on_wallet_settlement_failed_signal(status: String) -> void:
 		SignalManager.emit_notice_signal("Withdrawal couldn't be processed, try again")
 		SignalManager.emit_notice_signal(status)
 		SignalManager.emit_open_loading_screen_signal(false)
-
-#func _on_withdrawal_successful_signal() -> void:
-	#if self.visible:
-		#open_withdrawal_in_progress()
-		#SignalManager.emit_open_loading_screen_signal(false)
 
 func open_withdrawal() -> void:
 	GlobalManager.current_game_state = GlobalManager.GAME_STATE.WITHDRAWAL
@@ -223,7 +215,6 @@ func _on_withdrawal_data_back_button_textured_pressed() -> void:
 func _on_withdrawal_form_back_button_textured_pressed() -> void:
 	close_withdrawal_screen.emit()
 	self.hide()
-
 
 func _on_withdrawal_in_progress_back_button_textured_pressed() -> void:
 	withdrawal_in_progress_screen_panel.hide()

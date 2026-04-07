@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cscva5xd7h6jd"
-path="res://.godot/imported/cash_io_logo.png-fa9502bfe1f94b1a306c7b719224bca9.ctex"
+uid="uid://cqwrp561l73qu"
+path="res://.godot/imported/cash_io_16_9.png-4f1b5b945cd3ea6e9e70ff718857be46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cash_io_logo.png"
-dest_files=["res://.godot/imported/cash_io_logo.png-fa9502bfe1f94b1a306c7b719224bca9.ctex"]
+source_file="res://cash_io_16_9.png"
+dest_files=["res://.godot/imported/cash_io_16_9.png-4f1b5b945cd3ea6e9e70ff718857be46.ctex"]
 
 [params]
 

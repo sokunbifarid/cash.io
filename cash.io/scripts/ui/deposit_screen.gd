@@ -21,9 +21,7 @@ func _ready() -> void:
 	hide_all_screens()
 
 func _on_wallet_updated_successfull_signal(_value: int) -> void:
-	print("wallet updated: ", self.visible)
 	if GlobalManager.current_game_state == GlobalManager.GAME_STATE.DEPOSIT:
-		print("wallet updated passed here for deposit")
 		open_deposit_successful()
 		SignalManager.emit_open_loading_screen_signal(false)
 		enter_amount_value_line_edit.text = ""

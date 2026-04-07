@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://f8aa8b6kkmf"]
+[gd_scene load_steps=24 format=3 uid="uid://f8aa8b6kkmf"]
 
 [ext_resource type="Script" uid="uid://deajjk3y5bosi" path="res://scripts/ui/withdrawal_screen.gd" id="1_h3aen"]
 [ext_resource type="Texture2D" uid="uid://ceps2spbhgq87" path="res://assets/ui/comp/Screen_panel_1.png" id="2_ey370"]
@@ -51,22 +51,6 @@ corner_radius_bottom_left = 12
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w3me0"]
-load_path = "res://.godot/imported/Inputfield_panel.png-bc919386104009eecf044059bdc8564c.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2pu2u"]
-content_margin_right = 1.0
-texture = SubResource("CompressedTexture2D_w3me0")
-texture_margin_left = 110.0
-texture_margin_top = 15.0
-texture_margin_right = 300.0
-texture_margin_bottom = 20.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 406, 72)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uosmo"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_0gmwe"]
 font = ExtResource("10_ey370")
 font_size = 11
@@ -93,6 +77,7 @@ font = ExtResource("9_6v0bk")
 font_size = 24
 
 [node name="WithdrawalScreen" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +87,6 @@ grow_vertical = 2
 script = ExtResource("1_h3aen")
 
 [node name="WithdrawalMethodScreenPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,7 +288,8 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.40069714, 0.40069807, 0.4006973, 0.6)
-theme_override_constants/caret_width = 5
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_w3me0")
@@ -326,7 +311,8 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.38170326, 0.38170323, 0.38170323, 0.6)
-theme_override_constants/caret_width = 5
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_xgbb3")
@@ -350,11 +336,12 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.3854919, 0.38549277, 0.38549218, 0.6)
-theme_override_constants/caret_width = 5
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_w3me0")
-theme_override_styles/focus = SubResource("StyleBoxTexture_2pu2u")
+theme_override_styles/focus = SubResource("StyleBoxFlat_w3me0")
 placeholder_text = "Bank name..."
 max_length = 16
 caret_blink = true
@@ -373,7 +360,8 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.45840454, 0.45840532, 0.45840466, 0.6)
-theme_override_constants/caret_width = 5
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_w3me0")
@@ -396,11 +384,12 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.47787952, 0.47788054, 0.4778797, 0.6)
-theme_override_constants/caret_width = 5
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleBoxFlat_w3me0")
-theme_override_styles/focus = SubResource("StyleBoxFlat_uosmo")
+theme_override_styles/focus = SubResource("StyleBoxFlat_w3me0")
 placeholder_text = "N1000"
 max_length = 16
 virtual_keyboard_type = 2
@@ -551,7 +540,8 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.51323235, 0.51323324, 0.5132324, 0.6)
-theme_override_constants/caret_width = 10
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/caret_width = 2
 theme_override_fonts/font = ExtResource("2_h3aen")
 theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_nhauy")

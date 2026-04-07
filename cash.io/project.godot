@@ -14,9 +14,9 @@ config/name="cash.io"
 config/version="1.0"
 run/main_scene="uid://baeaydjdl102c"
 config/features=PackedStringArray("4.5", "Mobile")
-boot_splash/bg_color=Color(0.57254905, 0.8156863, 0.5647059, 1)
-boot_splash/image="uid://brgp0kbnv67bk"
-config/icon="uid://cscva5xd7h6jd"
+boot_splash/bg_color=Color(0.21568628, 0.42745098, 0.30980393, 1)
+boot_splash/image="uid://cqwrp561l73qu"
+config/icon="uid://yepq2gpeu0ij"
 boot_splash/icon=""
 
 [audio]
@@ -27,7 +27,6 @@ buses/default_bus_layout="uid://c7sdf6tc2eiwg"
 
 SignalManager="*uid://dbhwm8dulxu7u"
 GlobalManager="*uid://bgpapce2jk7r1"
-Nakama="*uid://c0ckbvgqtch1m"
 SfxAudioManager="*uid://6oh20lrc83nj"
 GameHttpNetworkManager="*uid://cgyk3bc1ika06"
 WebsocketMultiplayerRouter="*res://scripts/autoload/websocket_multiplayer_router.gd"

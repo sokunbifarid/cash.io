@@ -37,17 +37,15 @@ func hide_all_screen() -> void:
 	player_settled_screen.hide()
 
 func open_menu() -> void:
-	#if GlobalManager.current_game_state != GlobalManager.GAME_STATE.MAINMENU:
-		hide_all_screen()
-		GlobalManager.current_game_state = GlobalManager.GAME_STATE.MAINMENU
-		self.show()
-		main_menu_screen.show()
-		main_menu_screen.scale = Vector2.ZERO
-		if the_visibility_tween:
-			the_visibility_tween.kill()
-		the_visibility_tween = create_tween()
-		the_visibility_tween.tween_property(main_menu_screen, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
-
+	hide_all_screen()
+	GlobalManager.current_game_state = GlobalManager.GAME_STATE.MAINMENU
+	self.show()
+	main_menu_screen.show()
+	main_menu_screen.scale = Vector2.ZERO
+	if the_visibility_tween:
+		the_visibility_tween.kill()
+	the_visibility_tween = create_tween()
+	the_visibility_tween.tween_property(main_menu_screen, "scale", Vector2(1,1), TWEEN_DURATION).set_trans(Tween.TRANS_ELASTIC)
 
 func _on_settings_button_textured_pressed() -> void:
 	hide_all_screen()
@@ -85,6 +83,7 @@ func _on_shop_button_textured_pressed() -> void:
 func _on_shop_screen_close_shop() -> void:
 	hide_all_screen()
 	open_menu()
+	HttpNetworkManager.request_http_user_data()
 
 func _on_profile_button_textured_pressed() -> void:
 	hide_all_screen()

@@ -2,27 +2,27 @@ extends ws_schema
 
 var firebase_auth_http_request_node: HTTPRequest
 var device_id_auth_http_request_node:HTTPRequest
-var user_data_http_request_node: HTTPRequest
-var list_rooms_http_request_node: HTTPRequest
-var deposit_http_request_node: HTTPRequest
-var withdrawal_check_http_request_node: HTTPRequest
-var withdrawal_http_request_node: HTTPRequest
-var set_skin_http_request_node: HTTPRequest
-var shop_http_request_node: HTTPRequest
+#var user_data_http_request_node: HTTPRequest
+#var list_rooms_http_request_node: HTTPRequest
+#var deposit_http_request_node: HTTPRequest
+#var withdrawal_check_http_request_node: HTTPRequest
+#var withdrawal_http_request_node: HTTPRequest
+#var set_skin_http_request_node: HTTPRequest
+#var shop_http_request_node: HTTPRequest
 
 const SERVER_IP: String = "playcash.io"#"simplyludo.com"
 const SERVER_PORT: int = 443
 const DEVICE_ID_AUTH_API: String = "/auth/device/authenticate"
 const FIREBASE_AUTH_API: String = "/auth/firebase/authenticate"
 const SOCIAL_AUTHENTICATE_API: String = "/auth/social/authenticate"
-const GET_ROOMS_API: String = "/rooms"
-const GET_USER_DATA_API: String = "/users/me?fields=username,email,wallet,userid,active_avatar,owned_avatars"
-const MAKE_PAYMENT_API: String = "/payments/deposit"
-const CREATE_DEPOSIT_API: String = "/payments/deposits/create"
-const WITHDRAWAL_REQUEST_API: String = "/payments/withdrawals/create"
-const WITHDRAWAL_CHECK_ACCOUNT_API: String = "/payments/withdrawals/account-status"
-const SET_SKIN_API: String = "/users/avatar"
-const SHOP_API: String = "/shop/catalog"
+#const GET_ROOMS_API: String = "/rooms"
+#const GET_USER_DATA_API: String = "/users/me?fields=username,email,wallet,userid,active_avatar,owned_avatars"
+#const MAKE_PAYMENT_API: String = "/payments/deposit"
+#const CREATE_DEPOSIT_API: String = "/payments/deposits/create"
+#const WITHDRAWAL_REQUEST_API: String = "/payments/withdrawals/create"
+#const WITHDRAWAL_CHECK_ACCOUNT_API: String = "/payments/withdrawals/account-status"
+#const SET_SKIN_API: String = "/users/avatar"
+#const SHOP_API: String = "/shop/catalog"
 
 var device_id: String = ""
 var authenticate_access_token: String = ""
@@ -85,12 +85,7 @@ func try_silent_auth() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
 	request_http_device_id_auth()
 	attempted_silent_auth = true
-
-#func set_request_token(token: String) -> void:
-	#authenticate_access_token = token
-	#print("auth successful")
-	#request_http_user_data()
-
+#
 func request_social_auth(access_token: String) -> void:
 	print("trying social auth, here is the trial id: ", access_token)
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -116,21 +111,21 @@ func request_social_auth(access_token: String) -> void:
 	var headers : PackedStringArray = ["Content-Type: application/json"]
 	firebase_auth_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(request_body))
 
-func request_http_firebase_auth(id_token: String, username: String) -> void:
-	print("trying firebase auth, here is the trial id: ", id_token)
-	SignalManager.emit_open_loading_screen_signal(true)
-	if not firebase_auth_http_request_node:
-		firebase_auth_http_request_node = HTTPRequest.new()
-		add_child(firebase_auth_http_request_node)
-		firebase_auth_http_request_node.request_completed.connect(_on_auth_http_request_node_request_completed)
-	var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT)  + FIREBASE_AUTH_API
-	var request_body: Dictionary = {
-		"token": id_token,
-		"username": username,
-		"device_id": device_id
-	}
-	var headers : PackedStringArray = ["Content-Type: application/json"]
-	firebase_auth_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(request_body))
+#func request_http_firebase_auth(id_token: String, username: String) -> void:
+	#print("trying firebase auth, here is the trial id: ", id_token)
+	#SignalManager.emit_open_loading_screen_signal(true)
+	#if not firebase_auth_http_request_node:
+		#firebase_auth_http_request_node = HTTPRequest.new()
+		#add_child(firebase_auth_http_request_node)
+		#firebase_auth_http_request_node.request_completed.connect(_on_auth_http_request_node_request_completed)
+	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT)  + FIREBASE_AUTH_API
+	#var request_body: Dictionary = {
+		#"token": id_token,
+		#"username": username,
+		#"device_id": device_id
+	#}
+	#var headers : PackedStringArray = ["Content-Type: application/json"]
+	#firebase_auth_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(request_body))
 
 func request_http_device_id_auth() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -145,120 +140,21 @@ func request_http_device_id_auth() -> void:
 
 func request_http_user_data() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
-	print("making request for user data, token is: ", authenticate_access_token)
 	var envelope: Envelope = Envelope.new()
 	envelope.topic = Topic.GET_ME
-	#var body_message: StringBody = StringBody.new()
-	#body_message.value = ""
-	#envelope.string_body = body_message
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-	#if not user_data_http_request_node:
-		#user_data_http_request_node = HTTPRequest.new()
-		#add_child(user_data_http_request_node)
-		#user_data_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#if response_code == 200:
-				#var response: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-				#print("user http request data: ", response)
-				#var result_data: Dictionary = {
-					#"username": "",
-					#"wallet_balance": 0,
-					#"active_avatar": "",
-					#"owned_avatars": [],
-					#"owned_powerups": []
-				#}
-				#if response.has("username"):
-					#result_data.username = response.username
-				#if response.has("wallet_balance"):
-					#result_data.wallet_balance = response.wallet_balance
-				#if response.has("user_id"):
-					#GameHttpNetworkManager.set_current_player_id(response.user_id)
-				#if response.has("active_avatar"):
-					#result_data.active_avatar = response.active_avatar
-				#if response.has("owned_avatars"):
-					#result_data.owned_avatars = response.owned_avatars
-				#if response.has("owned_powerups"):
-					#result_data.owned_powerups = response.owned_powerups
-				#SignalManager.emit_player_data_loaded_successfully_signal(result_data)
-				#user_data_request_timeout_timer.stop()
-				#request_http_room_list()
-			#else:
-				#SignalManager.emit_notice_signal("Issue loading player data")
-				#SignalManager.emit_error_getting_user_data_signal()
-				#SignalManager.emit_open_loading_screen_signal(false)
-	#)
-	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + GET_USER_DATA_API
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	#user_data_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
-	#user_data_request_timeout_timer.start()
 
 func request_http_room_list() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
 	var envelope: Envelope = Envelope.new()
 	envelope.topic = Topic.GET_ROOMS
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-	#if not list_rooms_http_request_node:
-		#list_rooms_http_request_node = HTTPRequest.new()
-		#add_child(list_rooms_http_request_node)
-		#list_rooms_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#list_room_request_timeout_timer.stop()
-			#if response_code == 200:
-				#var response: Array = JSON.parse_string(body.get_string_from_utf8())
-				#var response_data: Dictionary = {
-					#"rooms": []
-				#}
-				#print("rooms loaded: ", response)
-				#response_data.rooms = response
-				#SignalManager.emit_all_rooms_loaded_signal(response_data)
-				#
-				#SignalManager.emit_open_loading_screen_signal(false)
-				##request_http_shop()
-				##request_http_check_withdrawal()
-				#if first_game_launch == false:
-					#SignalManager.emit_open_loading_screen_signal(false)
-				#else:
-					#first_game_launch = false
-					#WebsocketMultiplayerRouter.connect_to_online_websocket_server(authenticate_access_token)
-			#else:
-				#SignalManager.emit_error_getting_user_data_signal()
-				#SignalManager.emit_notice_signal("Issue Getting Room List")
-				#SignalManager.emit_open_loading_screen_signal(false)
-		#)
-	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + GET_ROOMS_API
-	#print("room request url: ", url)
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	#list_rooms_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
-	#list_room_request_timeout_timer.start()
 
 func request_http_shop() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
 	var envelope: Envelope = Envelope.new()
 	envelope.topic = Topic.GET_SHOP_CATALOG
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-	#if not shop_http_request_node:
-		#shop_http_request_node = HTTPRequest.new()
-		#add_child(shop_http_request_node)
-		#shop_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#print("shop response code: ", response_code)
-			#print("shop response body: ", JSON.parse_string(body.get_string_from_utf8()))
-			#shop_request_timeout_timer.stop()
-			#if response_code == 200:
-				#var response: Array = JSON.parse_string(body.get_string_from_utf8())
-				#if first_game_launch == false:
-					#SignalManager.emit_shop_data_loaded_signal(response)
-					#SignalManager.emit_open_loading_screen_signal(false)
-				#else:
-					#first_game_launch = false
-					#WebsocketMultiplayerRouter.connect_to_online_websocket_server(authenticate_access_token)
-			#else:
-				#SignalManager.emit_error_getting_user_data_signal()
-				#SignalManager.emit_notice_signal("Issue Getting Shop Data")
-				#SignalManager.emit_open_loading_screen_signal(false)
-		#)
-	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + SHOP_API
-	#print("shop request url: ", url)
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	#shop_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
-	#shop_request_timeout_timer.start()
 
 func request_http_deposit() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -269,26 +165,7 @@ func request_http_deposit() -> void:
 	create_deposit.amount_minor = current_payment_amount
 	envelope.create_deposit_body = create_deposit
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-	#if not deposit_http_request_node:
-		#deposit_http_request_node = HTTPRequest.new()
-		#add_child(deposit_http_request_node)
-		#deposit_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#if response_code == 200:
-				#var response: Dictionary = JSON.parse_string(body.get_string_from_utf8())
-				#if response.has("checkout_url"):
-					#OS.shell_open(response.checkout_url)
-			#else:
-				##SignalManager.emit_deposit_request_failed_signal()
-				#SignalManager.emit_open_loading_screen_signal(false)
-		#)
-	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + CREATE_DEPOSIT_API
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	#var request_body: Dictionary =   {
-		#"provider": current_payment_provider,
-		#"amount_minor": current_payment_amount,
-		#}
-	#print("making http deposit request")
-	#deposit_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(request_body))
+
 
 func request_http_check_withdrawal() -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -300,29 +177,6 @@ func request_http_check_withdrawal() -> void:
 	envelope.string_body = check_body
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
 	print("checking withdrawal")
-	#if not withdrawal_check_http_request_node:
-		#withdrawal_check_http_request_node = HTTPRequest.new()
-		#add_child(withdrawal_check_http_request_node)
-		#withdrawal_check_http_request_node.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#print("withdrawal check result: ", result)
-			#print("withdrawal response code: ", response_code)
-			#print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf8())))
-			#print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_ascii())))
-			#print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf16())))
-			#print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_utf32())))
-			#print("withdrawal response body: " + str(JSON.parse_string(body.get_string_from_wchar())))
-			##SignalManager.emit_withdrawal_form_prompt_signal()
-			#SignalManager.emit_open_loading_screen_signal(false)
-			#if response_code == 404:
-				#SignalManager.emit_withdrawal_form_prompt_signal()
-			#elif response_code == 204:
-				#SignalManager.emit_withdrawal_data_prompt_signal()
-			#else:
-				#SignalManager.emit_notice_signal("Error attempting withdrawal")
-	#)
-	#var url : String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + WITHDRAWAL_CHECK_ACCOUNT_API
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token]
-	#withdrawal_check_http_request_node.request(url, headers, HTTPClient.METHOD_GET)
 
 func request_http_withdrawal(request_data: Dictionary) -> void:
 	SignalManager.emit_open_loading_screen_signal(true)
@@ -348,31 +202,13 @@ func request_http_withdrawal(request_data: Dictionary) -> void:
 		create_withdrawal.bank_details = create_withdrawal_bank_details
 	envelope.create_withdrawal_body = create_withdrawal
 	WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-	#if not withdrawal_http_request_node:
-		#withdrawal_http_request_node = HTTPRequest.new()
-		#add_child(withdrawal_http_request_node)
-		#withdrawal_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-			#print("withdrawal response code: ", response_code)
-			#print("withdrawal response body: ", JSON.parse_string(body.get_string_from_utf8()))
-			#SignalManager.emit_open_loading_screen_signal(false)
-			#if response_code == 204:
-				#SignalManager.emit_notice_signal("Withdrawal Successful")
-				##SignalManager.emit_withdrawal_successful_signal()
-				##request_http_user_data()
-				###emit the signal to open withdrawal in progress here
-			#else:
-				#SignalManager.emit_notice_signal("Issue with withdrawal, try again")
-		#)
-	#var url : String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + WITHDRAWAL_REQUEST_API
-	#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-	#withdrawal_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(request_data))
 
-func request_payment() -> void:
-	var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + MAKE_PAYMENT_API
-	if OS.get_name() == "iOS" or OS.get_name() == "macOS":
-		OS.execute("open", [url])
-	else:
-		OS.shell_open(url)
+#func request_payment() -> void:
+	#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + MAKE_PAYMENT_API
+	#if OS.get_name() == "iOS" or OS.get_name() == "macOS":
+		#OS.execute("open", [url])
+	#else:
+		#OS.shell_open(url)
 
 func request_append_user_selected_skin(skin_id: String) -> void:
 	if skin_id != "":
@@ -384,22 +220,6 @@ func request_append_user_selected_skin(skin_id: String) -> void:
 		avatar_to_select_body.avatar = skin_id
 		envelope.set_avatar_body = avatar_to_select_body
 		WebsocketMultiplayerRouter.send_important_data_on_websocket(envelope)
-		#if not set_skin_http_request_node:
-			#set_skin_http_request_node = HTTPRequest.new()
-			#add_child(set_skin_http_request_node)
-			#set_skin_http_request_node.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-				#print("withdrawal response code: ", response_code)
-				#print("withdrawal response body: ", JSON.parse_string(body.get_string_from_utf8()))
-				#SignalManager.emit_open_loading_screen_signal(false)
-				#if response_code == 204:
-					#SignalManager.emit_player_change_skin_successful(true)
-				#else:
-					#SignalManager.emit_player_change_skin_successful(false)
-				#)
-		#var post_body: Dictionary = {"avatar": skin_id}
-		#var url: String = "https://" + SERVER_IP + ":" + str(SERVER_PORT) + SET_SKIN_API
-		#var headers : PackedStringArray = ["Authorization: Bearer " + authenticate_access_token, "Content-Type: application/json"]
-		#set_skin_http_request_node.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(post_body))
 	else:
 		SignalManager.emit_notice_signal("Issue with selected skin")
 
@@ -453,11 +273,8 @@ func _on_auth_http_request_node_request_completed(result: int, response_code: in
 		var response: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		if response.has("access_token"):
 			authenticate_access_token = response.access_token
-			
-			#WebsocketMultiplayerRouter.set_authentication_access_token(response.access_token)
 			GlobalManager.set_can_silent_auth_user_data(true)
 		print("auth successful")
-		#request_http_user_data()
 		WebsocketMultiplayerRouter.connect_to_online_websocket_server(authenticate_access_token)
 	else:
 		SignalManager.emit_open_loading_screen_signal(false)

@@ -2,7 +2,7 @@ extends VBoxContainer
 
 @onready var powerup_texture_rect: TextureRect = $PowerupTextureRect
 @onready var powerup_quantity_label: Label = $PowerupQuantityLabel
-@onready var coin_boost_h_box_container: HBoxContainer = $CoinBoostHBoxContainer
+@onready var coin_boost_h_box_container: VBoxContainer = $CoinBoostHBoxContainer
 
 const BOOST_UI = preload("uid://bnfs5vcyxrokp")
 const SHIELD_UI = preload("uid://crbo16c1nu43q")

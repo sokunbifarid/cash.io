@@ -13,6 +13,7 @@ extends Node2D
 @onready var coin_bonus_h_box_container: HBoxContainer = $CharacterDataHolderNode/CharacterOverHeadUI/CoinBonusHBoxContainer
 @onready var coin_bonus_value_label: Label = $CharacterDataHolderNode/CharacterOverHeadUI/CoinBonusHBoxContainer/CoinBonusValueLabel
 @onready var character_shield: Sprite2D = $CharacterDataHolderNode/CharacterShield
+@onready var high_speed_gpu_particles_2d: GPUParticles2D = $HighSpeedGPUParticles2D
 
 var mouse_in_use_by_character: bool = false
 var is_character_enabled: bool = false
@@ -39,13 +40,14 @@ var last_direction: Vector2 = Vector2.ZERO
 var local_input_sequence: int = 0
 var last_server_position: Vector2 = Vector2.ZERO
 
-
+var particle_process_material: ParticleProcessMaterial
 const STANDARD_LERP_SPEED: float = 0.1
 const SKIN_PATH: String = "res://assets/game/character/avatars/"
 const SKIN_DOMAIN: String = ".png"
 
 
 func _ready() -> void:
+	particle_process_material = high_speed_gpu_particles_2d.process_material.duplicate()
 	set_process(false)
 	set_process_input(false)
 	disable_powerups()
@@ -82,7 +84,12 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 			next_character_texture_scale = Vector2(mass / character_texture.texture.get_size().x,mass / character_texture.texture.get_size().y)
 		if next_shield_scale != Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5:
 			next_shield_scale = Vector2(mass / character_shield.texture.get_size().x, mass / character_shield.texture.get_size().y) * 1.5
-
+		if particle_process_material.initial_velocity_max != mass and particle_process_material.initial_velocity_min != mass:
+			particle_process_material.initial_velocity_max = mass
+			particle_process_material.initial_velocity_min = mass
+			particle_process_material.scale_min = mass
+			particle_process_material.scale_max = mass
+			high_speed_gpu_particles_2d.process_material = particle_process_material
 		if current_coin != coin:
 			coin_value_label.text = str(int(coin))
 			current_coin = coin
@@ -92,8 +99,7 @@ func set_data(pos: Vector2, mass: float, coin: int) -> void:
 			if next_pos != pos:
 				next_pos = pos
 		else:
-			client_side_prediction_data_mapper_new(pos)
-			#client_side_prediction_data_mapper_newest(pos)
+			client_side_prediction_data_mapper(pos)
 
 func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "", player_name: String = "") -> void:
 	current_coin = coin
@@ -102,7 +108,12 @@ func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "
 	local_pos = pos
 	next_pos = pos
 	current_mass = mass
-	appearance = GlobalManager.player_selected_skin_id
+	if particle_process_material.initial_velocity_max != mass and particle_process_material.initial_velocity_min != mass:
+		particle_process_material.initial_velocity_max = mass
+		particle_process_material.initial_velocity_min = mass
+		particle_process_material.scale_min = mass
+		particle_process_material.scale_max = mass
+		high_speed_gpu_particles_2d.process_material = particle_process_material
 	if appearance != "":
 		coin_value_label.label_settings.font_color = Color.WHITE
 		coin_bonus_value_label.label_settings.font_color = Color.WHITE
@@ -128,46 +139,8 @@ func set_force_data(pos: Vector2, mass: float, coin: int, appearance: String = "
 		self.show()
 
 func client_side_prediction_data_mapper(pos: Vector2) -> void:
-	var local_last_pos_count: int = 0
-	if pending_inputs.size() > 0:
-		for i in range (pending_inputs.size()):
-			if next_pos.length() <= pending_inputs[0].length() + current_speed / 60 and next_pos.length() > pending_inputs[0].length() - current_speed / 60:
-				if local_last_pos_count == 0:
-					pending_inputs[0] = pos
-					print("input found but at 0 location")
-				else:
-					for j in range (local_last_pos_count):
-						pending_inputs.pop_at(j)
-						print("input found but at location not 0")
-				break
-			local_last_pos_count += 1
-	else:
-		pending_inputs.append(pos)
-
-func client_side_prediction_data_mapper_new(pos: Vector2) -> void:
 	next_pos = pos
 	pass
-
-func client_side_prediction_data_mapper_newest(pos: Vector2) -> void:
-	var error = pos - local_pos
-	var error_distance = error.length()
-
-	var RECONCILE_THRESHOLD = 20.0
-	if error_distance > RECONCILE_THRESHOLD:
-		local_pos = pos
-	#next_pos = pos
-	var remaining_input: Array = []
-	for input in pending_inputs:
-		if input.input_seq > GameHttpNetworkManager.server_last_input_sequence:
-			remaining_input.append(input)
-	
-	pending_inputs = remaining_input
-	for input in pending_inputs:
-		#self.global_position += Vector2(input.dx, input.dy)
-		local_pos += Vector2(input.dx, input.dy) * current_speed/50 * delta_frame
-	local_pos = local_pos.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
-	#self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
-	#self.global_position = local_pos
 
 func set_camera_limit(bounds: Vector2 = Vector2.ZERO) -> void:
 	if bounds != Vector2.ZERO:
@@ -191,8 +164,7 @@ func _process(delta: float) -> void:
 			delta_frame = delta
 			touch_input()
 			if using_client_side_prediction:
-				#client_side_prediction()
-				client_side_prediction_2()
+				client_side_prediction()
 			else:
 				if direction != Vector2.ZERO:
 					GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y)
@@ -217,45 +189,64 @@ func touch_input() -> void:
 			direction = direction.sign()
 
 
+#func client_side_prediction() -> void:
+	#if direction != Vector2.ZERO:
+		#local_input_sequence += 1
+		#local_pos += direction * (current_speed/50) * delta_frame
+		#pending_inputs.append({"dx": direction.x, "dy": direction.y, "input_seq": local_input_sequence})
+		#if pending_inputs.size() > 100:
+			#pending_inputs.pop_front()
+		#GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y, local_input_sequence)
+		#
+	#self.global_position = self.global_position.lerp(local_pos, (current_speed/80) * delta_frame)
+	#self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
+
 func client_side_prediction() -> void:
 	if direction != Vector2.ZERO:
-		last_direction = direction
-		local_pos += direction * current_speed * delta_frame#(direction * current_speed * delta_frame)
-		GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y)
-		
-		if direction != Vector2.ZERO:
-			var error: Vector2 = next_pos - local_pos
-			var distance: float = error.length()
-			var correction_threshold := 5.0
-			var snap_threshold := 500.0
-			if distance > snap_threshold:
-				local_pos = next_pos
-				print("position distance is snapping: ", distance)
-			elif distance > correction_threshold:
-				local_pos += error * 0.1  # smooth correction
-				pass
-	else:
-		local_pos = next_pos
-	local_pos = local_pos.clamp(
-		Vector2(current_mass, current_mass),
-		GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2)
-	)
-	#NOTICE: do not touch this value to increase speed, instead increase the speed being addedd after the new position on the server then increase the speed here
-	self.global_position = lerp(self.global_position, local_pos, current_speed * delta_frame / 200)
-
-func client_side_prediction_2() -> void:
-	if direction != Vector2.ZERO:
 		local_input_sequence += 1
-		local_pos += direction * (current_speed/50) * delta_frame
-		pending_inputs.append({"dx": direction.x, "dy": direction.y, "input_seq": local_input_sequence})
+		local_pos += direction * (current_speed / 50) * delta_frame
+		
+		pending_inputs.append({
+			"dx": direction.x,
+			"dy": direction.y,
+			"input_seq": local_input_sequence
+		})
+		
 		if pending_inputs.size() > 100:
 			pending_inputs.pop_front()
-		GameHttpNetworkManager.send_player_movement_input(direction.x, direction.y, local_input_sequence)
 		
-	#self.global_position = local_pos
-	self.global_position = self.global_position.lerp(local_pos, (current_speed/80) * delta_frame)
-	self.global_position = self.global_position.clamp(Vector2(current_mass, current_mass), GameHttpNetworkManager.room_bound - Vector2(current_mass/2, current_mass/2))
+		GameHttpNetworkManager.send_player_movement_input(
+			direction.x,
+			direction.y,
+			local_input_sequence
+		)
 
+	# --- Direction change detection ---
+	var direction_changed := false
+	
+	if last_direction != Vector2.ZERO and direction != Vector2.ZERO:
+		var dot := last_direction.normalized().dot(direction.normalized())
+		direction_changed = dot < 0.2#0.5  # adjust threshold if needed
+
+	# --- Apply movement ---
+	if direction_changed:
+		# snap instantly on sharp turns
+		self.global_position = local_pos
+	else:
+		# smooth movement otherwise
+		self.global_position = self.global_position.lerp(
+			local_pos,
+			(current_speed / 80) * delta_frame
+		)
+
+	# --- Clamp position ---
+	self.global_position = self.global_position.clamp(
+		Vector2(current_mass, current_mass),
+		GameHttpNetworkManager.room_bound - Vector2(current_mass / 2, current_mass / 2)
+	)
+
+	# --- Store last direction ---
+	last_direction = direction
 
 func character_enabled(is_authority_player: bool = false,  bounds: Vector2 = Vector2.ZERO) -> void:
 	is_character_enabled = true
@@ -303,9 +294,11 @@ func disable_coin_bonus() -> void:
 
 func enable_high_speed() -> void:
 	current_speed = HIGH_SPEED
+	high_speed_gpu_particles_2d.emitting = true
 
 func disable_high_speed() -> void:
 	current_speed = DEFAULT_SPEED
+	high_speed_gpu_particles_2d.emitting = false
 
 func _on_burst_cpu_particles_2d_finished() -> void:
 	queue_free()

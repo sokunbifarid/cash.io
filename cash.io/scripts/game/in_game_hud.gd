@@ -23,11 +23,6 @@ func _ready() -> void:
 	hide_hud()
 	set_process(false)
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_pressed():
-		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			#input_rect.position = get_local_mouse_position() - input_rect.size/2
-
 func _on_prepare_game_for_play_again_signal() -> void:
 	hide_hud()
 	set_process(false)
@@ -54,6 +49,7 @@ func _on_reset_game_signal() -> void:
 		i.queue_free()
 
 func _on_load_in_game_powersups_signal(payload: Array) -> void:
+	print("loaded powerups: ", payload)
 	spawn_powerup(payload)
 
 func _process(delta: float) -> void:
@@ -102,8 +98,6 @@ func hide_hud() -> void:
 	cash_out_button.hide()
 	clock_v_box_container.hide()
 	powerup_sorter_v_box_container.hide()
-
-#"powerups": [{ "id": "8d6bb1c8-3f7f-4c8c-9ef8-6c5a4f0c1b72", "name": "Turbo Booster", "quantity": 20.0 }, { "id": "2f8a9f3d-0f4c-4b9f-8d1d-2f6a7c1e5b13", "name": "Guardian Shield", "quantity": 11.0 }, { "id": "7b14d3c2-6e5a-4c11-9c7e-3d8f2a6b4e90", "name": "Flash Speed", "quantity": 5.0 }], "remaining_sec": 90.0 } }
 
 func spawn_powerup(data: Array) -> void:
 	for j in powerup_sorter_v_box_container.get_children():

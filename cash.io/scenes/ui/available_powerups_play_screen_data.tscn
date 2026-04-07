@@ -16,6 +16,8 @@ font_size = 12
 
 [node name="AvailablePowerupsPlayScreenData" type="VBoxContainer"]
 custom_minimum_size = Vector2(28, 38)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = -5
 alignment = 1
 script = ExtResource("1_c5rig")
@@ -29,7 +31,7 @@ texture = ExtResource("1_odtuq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CoinBoostHBoxContainer" type="HBoxContainer" parent="."]
+[node name="CoinBoostHBoxContainer" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -42,8 +44,9 @@ text = "+20%"
 label_settings = SubResource("LabelSettings_shxhf")
 
 [node name="CoinTextureRect" type="TextureRect" parent="CoinBoostHBoxContainer"]
-custom_minimum_size = Vector2(15, 17.5)
+custom_minimum_size = Vector2(12, 13)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("4_183ia")

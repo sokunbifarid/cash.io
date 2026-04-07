@@ -14,7 +14,6 @@ func _on_signout_successful() -> void:
 	self.hide()
 
 func try_getting_all_user_data() -> void:
-	#NetworkManager.nakama_connect_to_web_socket_server()
 	WebsocketMultiplayerRouter.reconnect_to_online_websocket_server()
 
 

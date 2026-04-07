@@ -28,13 +28,6 @@ func enable_loading_screen() -> void:
 	if not self.visible:
 		self.show()
 		loading_progress_texture_progress_bar.value = 0
-		#if the_tween:
-			#the_tween.kill()
-		#the_tween = create_tween()
-		#the_tween.tween_property(loading_label, "text", "Loading", DURATION)
-		#the_tween.tween_property(loading_label, "text", "Loading.", DURATION)
-		#the_tween.tween_property(loading_label, "text", "Loading..", DURATION)
-		#the_tween.tween_property(loading_label, "text", "Loading...", DURATION)
 		the_tween = create_tween().set_loops()
 		the_tween.tween_property(
 			loading_progress_texture_progress_bar,
